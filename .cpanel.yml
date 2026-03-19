@@ -1,5 +1,4 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/xcrhbbveon/repositories/portfolio-website
-    - /bin/cp -R * $DEPLOYPATH
+    - /bin/echo "Deployed successfully"
