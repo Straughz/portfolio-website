@@ -1,0 +1,90 @@
+.footer {
+    border-top: 1px solid rgba(212, 168, 67, 0.08);
+    padding: var(--space-3xl) 0 var(--space-xl);
+}
+
+.footerInner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+}
+
+.footerBrand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.footerLogo {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.footerLogoAccent {
+    background: var(--gradient-gold-green);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footerTagline {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.footerLinks {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.footerLink {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.footerLink:hover {
+    color: var(--accent-gold);
+}
+
+.footerRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-xs);
+}
+
+.footerEmail {
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    transition: color var(--transition-fast);
+}
+
+.footerEmail:hover {
+    color: var(--accent-gold-light);
+}
+
+.footerCopy {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .footerInner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footerLinks {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footerRight {
+        align-items: center;
+    }
+}

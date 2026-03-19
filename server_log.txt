@@ -1,0 +1,25 @@
+
+> portfolio-website@1.0.0 dev
+> next dev 
+
+ ⚠ Port 3000 is in use by process 137408, using available port 3001 instead.
+   ▲ Next.js 15.5.12
+   - Local:        http://localhost:3001
+   - Network:      http://10.2.0.2:3001
+
+ ✓ Starting...
+ ✓ Ready in 1719ms
+ ○ Compiling / ...
+ ✓ Compiled / in 630ms (625 modules)
+ GET / 200 in 988ms
+ GET / 200 in 151ms
+ GET / 200 in 121ms
+ ✓ Compiled /about in 245ms (633 modules)
+ GET /about 200 in 353ms
+ ✓ Compiled /projects/web-design in 296ms (642 modules)
+ GET /projects/web-design 200 in 404ms
+ ✓ Compiled /projects/graphic-design in 164ms (644 modules)
+ GET /projects/graphic-design 200 in 231ms
+ ✓ Compiled /projects in 135ms (646 modules)
+ GET /projects 200 in 201ms
+ GET / 200 in 44ms

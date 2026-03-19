@@ -1,0 +1,66 @@
+.glowCard {
+    position: relative;
+    border-radius: var(--radius-md);
+    padding: 1px;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.glowCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-md);
+    padding: 1px;
+    background: conic-gradient(from var(--glow-angle, 0deg),
+            rgba(212, 168, 67, 0.1) 0%,
+            rgba(56, 178, 122, 0.4) 25%,
+            rgba(240, 208, 120, 0.1) 50%,
+            rgba(92, 217, 160, 0.4) 75%,
+            rgba(212, 168, 67, 0.1) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: glowRotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.glowCard:hover::before {
+    opacity: 1;
+}
+
+.glowCard::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: var(--radius-md);
+    background: conic-gradient(from var(--glow-angle, 0deg),
+            rgba(212, 168, 67, 0) 0%,
+            rgba(56, 178, 122, 0.15) 25%,
+            rgba(212, 168, 67, 0) 50%,
+            rgba(56, 178, 122, 0.15) 75%,
+            rgba(212, 168, 67, 0) 100%);
+    filter: blur(16px);
+    z-index: -1;
+    animation: glowRotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.glowCard:hover::after {
+    opacity: 1;
+}
+
+.glowCardAlwaysOn::before,
+.glowCardAlwaysOn::after {
+    opacity: 1;
+}
+
+.cardInner {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    height: 100%;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 168, 67, 0.08);
+}
