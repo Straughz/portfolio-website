@@ -2,12 +2,12 @@ import Link from 'next/link';
 import ProjectCard from '@/components/ProjectCard';
 import ContactCTA from '@/components/ContactCTA';
 import { webDesignProjects } from '@/data/projects';
-import { webOfferings } from '@/data/webOfferings';
 import styles from '../page.module.css';
 
 export const metadata = {
     title: 'Web Design Projects – Kavish Singh | Nexus Vantage Group',
-    description: 'Browse web design projects by Kavish Singh. Modern websites, dashboards, e-commerce platforms, and web applications.',
+    description:
+        'Live web design work by Kavish Singh — shipped sites for clients and organizations.',
 };
 
 export default function WebDesignProjects() {
@@ -20,8 +20,7 @@ export default function WebDesignProjects() {
                         <span className="gradient-text">Web Design</span> Work
                     </h1>
                     <p className={styles.pageDescription}>
-                        Modern websites, dashboards, e-commerce platforms, and web applications
-                        built with cutting-edge technology and stunning design.
+                        Selected live sites — click a card to open the project in a new tab.
                     </p>
                 </div>
 
@@ -35,27 +34,6 @@ export default function WebDesignProjects() {
                     <Link href="/projects/web-design" className={`${styles.filterTab} ${styles.filterTabActive}`}>
                         Web Design
                     </Link>
-                </div>
-
-                <div className={styles.offeringsBlock}>
-                    <div className={styles.offeringsHeader}>
-                        <h2 className={styles.offeringsTitle}>Websites I can build</h2>
-                        <p className={styles.offeringsSubtitle}>
-                            Types of sites and products I take on — tailored to your goals, audience, and brand.
-                        </p>
-                    </div>
-                    <div className={styles.projectsGrid}>
-                        {webOfferings.map((item, i) => (
-                            <ProjectCard key={`offering-${i}`} {...item} />
-                        ))}
-                    </div>
-                </div>
-
-                <div className={styles.sectionDivider} aria-hidden />
-
-                <div className={styles.sectionHeading}>
-                    <span className={styles.sectionHeadingLabel}>Portfolio</span>
-                    <h2 className={styles.sectionHeadingTitle}>Live sites &amp; style examples</h2>
                 </div>
 
                 <div className={styles.projectsGrid}>

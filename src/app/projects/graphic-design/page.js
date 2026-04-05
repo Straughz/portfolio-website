@@ -10,6 +10,8 @@ export const metadata = {
 };
 
 export default function GraphicDesignProjects() {
+    const hasProjects = graphicDesignProjects.length > 0;
+
     return (
         <div className={styles.projectsPage}>
             <div className="container">
@@ -36,11 +38,18 @@ export default function GraphicDesignProjects() {
                     </Link>
                 </div>
 
-                <div className={styles.projectsGrid}>
-                    {graphicDesignProjects.map((project, i) => (
-                        <ProjectCard key={i} {...project} />
-                    ))}
-                </div>
+                {hasProjects ? (
+                    <div className={styles.projectsGrid}>
+                        {graphicDesignProjects.map((project, i) => (
+                            <ProjectCard key={i} {...project} />
+                        ))}
+                    </div>
+                ) : (
+                    <p className={styles.emptyState}>
+                        No graphic design projects are listed yet. If you&rsquo;d like to work together, use the contact
+                        section below.
+                    </p>
+                )}
             </div>
 
             <ContactCTA />

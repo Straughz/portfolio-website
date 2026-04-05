@@ -19,8 +19,7 @@ export default function Projects() {
                         All <span className="gradient-text">Projects</span>
                     </h1>
                     <p className={styles.pageDescription}>
-                        A curated collection of my work across graphic design and web design.
-                        Each project represents a unique challenge and creative solution.
+                        Graphic design and web design work. Open web entries in a new tab to view the live site.
                     </p>
                 </div>
 
