@@ -1,9 +1,8 @@
 import GlowingCard from './GlowingCard';
 import styles from './ProjectCard.module.css';
 
-export default function ProjectCard({ title, description, category, image, color }) {
-    return (
-        <GlowingCard>
+export default function ProjectCard({ title, description, category, image, color, href }) {
+    const card = (
             <div className={styles.card}>
                 <div className={styles.cardImage}>
                     <div
@@ -32,6 +31,22 @@ export default function ProjectCard({ title, description, category, image, color
                 </div>
                 <div className={styles.cardArrow}>↗</div>
             </div>
+    );
+
+    return (
+        <GlowingCard>
+            {href ? (
+                <a
+                    href={href}
+                    className={styles.cardLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {card}
+                </a>
+            ) : (
+                card
+            )}
         </GlowingCard>
     );
 }

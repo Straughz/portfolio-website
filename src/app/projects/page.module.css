@@ -35,6 +35,64 @@
     line-height: 1.7;
 }
 
+.offeringsBlock {
+    margin-bottom: var(--space-4xl);
+}
+
+.offeringsHeader {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.offeringsTitle {
+    font-family: var(--font-heading);
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-sm);
+}
+
+.offeringsSubtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.sectionDivider {
+    margin: var(--space-4xl) 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(212, 168, 67, 0.2),
+        transparent
+    );
+}
+
+.sectionHeading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.sectionHeadingLabel {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent-gold);
+    margin-bottom: var(--space-sm);
+    display: block;
+}
+
+.sectionHeadingTitle {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
 /* Filter Tabs */
 .filterTabs {
     display: flex;
