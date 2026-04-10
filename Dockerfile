@@ -6,6 +6,8 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+# Ensure `public` always exists so cross-stage COPY doesn't fail.
+RUN mkdir -p public
 RUN npm run build
 
 FROM node:20-alpine AS runner
