@@ -4,7 +4,7 @@ import ProjectCard from '@/components/ProjectCard';
 import ServicesSection from '@/components/ServicesSection';
 import ProcessSection from '@/components/ProcessSection';
 import ContactCTA from '@/components/ContactCTA';
-import { homeFeaturedProjects } from '@/data/projects';
+import { webDesignProjects, prospectProjects } from '@/data/projects';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -26,9 +26,23 @@ export default function Home() {
                             View All Projects →
                         </Link>
                     </div>
+                    <h3 className={styles.featuredSectionTitle}>Pipeline</h3>
+                    <p className={styles.featuredSectionIntro}>
+                        Web work in motion — coming soon or in development.
+                    </p>
                     <div className={styles.projectsGrid}>
-                        {homeFeaturedProjects.map((project, i) => (
-                            <ProjectCard key={`${project.title}-${i}`} {...project} />
+                        {webDesignProjects.map((project, i) => (
+                            <ProjectCard key={`pipeline-${project.title}-${i}`} {...project} />
+                        ))}
+                    </div>
+
+                    <h3 className={styles.featuredSectionTitle}>Prospect</h3>
+                    <p className={styles.featuredSectionIntro}>
+                        Demos from outreach — working to bring these engagements in.
+                    </p>
+                    <div className={styles.projectsGrid}>
+                        {prospectProjects.map((project, i) => (
+                            <ProjectCard key={`prospect-${project.title}-${i}`} {...project} />
                         ))}
                     </div>
                 </div>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './ContactCTA.module.css';
 
 export default function ContactCTA() {
@@ -15,9 +16,9 @@ export default function ContactCTA() {
                     Have a project in mind? We&apos;d love to help bring your vision to life.
                     Let&apos;s discuss how we can grow your business together.
                 </p>
-                <a href="mailto:kavish@nexusvantagegroup.com" className={styles.ctaButton}>
+                <Link href="/contact?intent=conversation" className={styles.ctaButton}>
                     Start a Conversation <span className={styles.ctaArrow}>→</span>
-                </a>
+                </Link>
             </div>
         </section>
     );

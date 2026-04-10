@@ -1,26 +1,27 @@
 import Link from 'next/link';
 import ProjectCard from '@/components/ProjectCard';
 import ContactCTA from '@/components/ContactCTA';
-import { webDesignProjects } from '@/data/projects';
+import { prospectProjects } from '@/data/projects';
 import styles from '../page.module.css';
 
 export const metadata = {
-    title: 'Web Design Projects – Nexus Vantage Group',
+    title: 'Prospect Work – Nexus Vantage Group',
     description:
-        'Live web design work by Nexus Vantage Group — shipped sites for clients and organizations.',
+        'Demo sites and outreach work in progress — not retained client engagements until signed.',
 };
 
-export default function WebDesignProjects() {
+export default function ProspectProjects() {
     return (
         <div className={styles.projectsPage}>
             <div className="container">
                 <div className={styles.pageHeader}>
                     <span className={styles.pageLabel}>Portfolio</span>
                     <h1 className={styles.pageTitle}>
-                        <span className="gradient-text">Web Design</span> Work
+                        <span className="gradient-text">Prospect</span> work
                     </h1>
                     <p className={styles.pageDescription}>
-                        Pipeline web work — coming soon or in development. Opens in a new tab when a live link exists.
+                        Demos built from outreach — we are still working to convert these into full engagements.
+                        Open a live demo in a new tab when a link is available.
                     </p>
                 </div>
 
@@ -31,16 +32,16 @@ export default function WebDesignProjects() {
                     <Link href="/projects/graphic-design" className={styles.filterTab}>
                         Graphic Design
                     </Link>
-                    <Link href="/projects/web-design" className={`${styles.filterTab} ${styles.filterTabActive}`}>
+                    <Link href="/projects/web-design" className={styles.filterTab}>
                         Web Design
                     </Link>
-                    <Link href="/projects/prospect" className={styles.filterTab}>
+                    <Link href="/projects/prospect" className={`${styles.filterTab} ${styles.filterTabActive}`}>
                         Prospect
                     </Link>
                 </div>
 
                 <div className={styles.projectsGrid}>
-                    {webDesignProjects.map((project, i) => (
+                    {prospectProjects.map((project, i) => (
                         <ProjectCard key={i} {...project} />
                     ))}
                 </div>

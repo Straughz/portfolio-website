@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import ProjectCard from '@/components/ProjectCard';
 import ContactCTA from '@/components/ContactCTA';
-import { allProjects } from '@/data/projects';
+import { webDesignProjects, prospectProjects } from '@/data/projects';
 import styles from './page.module.css';
 
 export const metadata = {
     title: 'Projects – Nexus Vantage Group',
-    description: 'Browse graphic design, web design, and brand strategy projects by Nexus Vantage Group.',
+    description: 'Pipeline work, prospect demos, and design projects by Nexus Vantage Group.',
 };
 
 export default function Projects() {
@@ -19,7 +19,7 @@ export default function Projects() {
                         All <span className="gradient-text">Projects</span>
                     </h1>
                     <p className={styles.pageDescription}>
-                        Brand, web, and strategy work for service businesses. Click any live project to view it.
+                        Pipeline work in motion, plus prospect demos we are working to bring under contract.
                     </p>
                 </div>
 
@@ -33,11 +33,28 @@ export default function Projects() {
                     <Link href="/projects/web-design" className={styles.filterTab}>
                         Web Design
                     </Link>
+                    <Link href="/projects/prospect" className={styles.filterTab}>
+                        Prospect
+                    </Link>
                 </div>
 
+                <h2 className={styles.projectsSectionTitle}>Pipeline</h2>
+                <p className={styles.projectsSectionIntro}>
+                    Active web work — coming soon or in development.
+                </p>
                 <div className={styles.projectsGrid}>
-                    {allProjects.map((project, i) => (
-                        <ProjectCard key={i} {...project} />
+                    {webDesignProjects.map((project, i) => (
+                        <ProjectCard key={`pipeline-${i}`} {...project} />
+                    ))}
+                </div>
+
+                <h2 className={styles.projectsSectionTitle}>Prospect</h2>
+                <p className={styles.projectsSectionIntro}>
+                    Demos from outreach — still working to get these engagements across the line.
+                </p>
+                <div className={styles.projectsGrid}>
+                    {prospectProjects.map((project, i) => (
+                        <ProjectCard key={`prospect-${i}`} {...project} />
                     ))}
                 </div>
             </div>

@@ -19,6 +19,8 @@ export default function Footer() {
                     <Link href="/projects" className={styles.footerLink}>Projects</Link>
                     <Link href="/projects/graphic-design" className={styles.footerLink}>Graphic Design</Link>
                     <Link href="/projects/web-design" className={styles.footerLink}>Web Design</Link>
+                    <Link href="/projects/prospect" className={styles.footerLink}>Prospect</Link>
+                    <Link href="/contact" className={styles.footerLink}>Contact</Link>
                 </div>
 
                 <div className={styles.footerRight}>

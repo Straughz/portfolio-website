@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import GlowingCard from './GlowingCard';
 import styles from './ProcessSection.module.css';
 
@@ -54,9 +55,9 @@ export default function ProcessSection() {
                     ))}
                 </div>
                 <div className={styles.processCta}>
-                    <a href="mailto:kavish@nexusvantagegroup.com" className={styles.processButton}>
+                    <Link href="/contact?intent=strategy" className={styles.processButton}>
                         Book a Strategy Call <span className={styles.processArrow}>→</span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

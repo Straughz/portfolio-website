@@ -36,6 +36,9 @@ export default function GraphicDesignProjects() {
                     <Link href="/projects/web-design" className={styles.filterTab}>
                         Web Design
                     </Link>
+                    <Link href="/projects/prospect" className={styles.filterTab}>
+                        Prospect
+                    </Link>
                 </div>
 
                 {hasProjects ? (

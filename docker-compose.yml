@@ -6,5 +6,10 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - PORT=3000
+      PORT: "3000"
+      NODE_ENV: production
+      # Supplied by Hostinger deploy (GitHub Actions) and/or Docker Manager Environment
+      RESEND_API_KEY: "${RESEND_API_KEY}"
+      CONTACT_TO_EMAIL: "${CONTACT_TO_EMAIL:-}"
+      CONTACT_FROM_EMAIL: "${CONTACT_FROM_EMAIL:-}"
     restart: always

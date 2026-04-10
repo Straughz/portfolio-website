@@ -65,12 +65,15 @@ export default function Navbar() {
                                 <Link href="/projects/web-design" className={styles.dropdownItem}>
                                     Web Design
                                 </Link>
+                                <Link href="/projects/prospect" className={styles.dropdownItem}>
+                                    Prospect
+                                </Link>
                             </div>
                         </div>
 
-                        <a href="mailto:kavish@nexusvantagegroup.com" className={styles.contactBtn}>
+                        <Link href="/contact" className={styles.contactBtn}>
                             Get in Touch
-                        </a>
+                        </Link>
                     </div>
 
                     <button
@@ -96,9 +99,12 @@ export default function Navbar() {
                 <Link href="/projects/web-design" className={`${styles.mobileLink} ${styles.mobileSub}`}>
                     → Web Design
                 </Link>
-                <a href="mailto:kavish@nexusvantagegroup.com" className={styles.contactBtn} style={{ fontSize: '1rem', marginTop: '1rem' }}>
+                <Link href="/projects/prospect" className={`${styles.mobileLink} ${styles.mobileSub}`}>
+                    → Prospect
+                </Link>
+                <Link href="/contact" className={styles.contactBtn} style={{ fontSize: '1rem', marginTop: '1rem' }}>
                     Get in Touch
-                </a>
+                </Link>
             </div>
         </>
     );

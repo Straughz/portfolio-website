@@ -143,6 +143,11 @@
     color: var(--text-secondary);
 }
 
+.statusTemplate {
+    background: rgba(156, 163, 175, 0.12);
+    color: var(--text-secondary);
+}
+
 .statusLive {
     background: rgba(61, 139, 147, 0.15);
     color: var(--accent-gold-light);

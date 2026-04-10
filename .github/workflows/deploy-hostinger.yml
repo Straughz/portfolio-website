@@ -1,0 +1,35 @@
+# Push-to-deploy for Hostinger VPS Docker Manager.
+# Prerequisites (GitHub → Settings → Secrets and variables → Actions):
+#   Secrets: HOSTINGER_API_KEY, RESEND_API_KEY
+#   Optional secrets: CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL
+#   Variables: HOSTINGER_VM_ID (e.g. 1568010 from srv1568010.hstgr.cloud)
+#
+# Private GitHub repo: ensure Hostinger can read the compose URL at deploy time
+# (see https://www.hostinger.com/support/how-to-deploy-from-private-github-repository-on-hostinger-docker-manager/).
+
+name: Deploy to Hostinger VPS
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Hostinger VPS
+        uses: hostinger/deploy-on-vps@v2
+        with:
+          api-key: ${{ secrets.HOSTINGER_API_KEY }}
+          virtual-machine: ${{ vars.HOSTINGER_VM_ID }}
+          project-name: portfolio-website
+          docker-compose-path: docker-compose.yml
+          environment-variables: |
+            NODE_ENV=production
+            PORT=3000
+            RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
+            CONTACT_TO_EMAIL=${{ secrets.CONTACT_TO_EMAIL }}
+            CONTACT_FROM_EMAIL=${{ secrets.CONTACT_FROM_EMAIL }}

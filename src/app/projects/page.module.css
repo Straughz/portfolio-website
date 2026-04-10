@@ -43,6 +43,22 @@
     margin: 0 auto var(--space-4xl);
 }
 
+.projectsSectionTitle {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-sm);
+}
+
+.projectsSectionIntro {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    max-width: 560px;
+}
+
 /* Filter Tabs */
 .filterTabs {
     display: flex;
