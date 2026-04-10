@@ -1,6 +1,13 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+/** Lazy init: `new Resend()` throws during `next build` if no key (Docker builder has no env). */
+function getResend() {
+    const key = process.env.RESEND_API_KEY;
+    if (!key?.trim()) {
+        throw new Error('RESEND_API_KEY is not configured');
+    }
+    return new Resend(key);
+}
 
 const TO = process.env.CONTACT_TO_EMAIL || 'kavish@nexusvantagegroup.com';
 const FROM = process.env.CONTACT_FROM_EMAIL || 'Nexus Vantage <onboarding@resend.dev>';
@@ -37,6 +44,7 @@ export async function POST(request) {
         const intentLabel = INTENT_LABELS[intent] || 'General Inquiry';
         const phoneLine = phone?.trim() ? `<p><strong>Phone:</strong> ${phone.trim()}</p>` : '';
 
+        const resend = getResend();
         const { error } = await resend.emails.send({
             from: FROM,
             to: TO,
