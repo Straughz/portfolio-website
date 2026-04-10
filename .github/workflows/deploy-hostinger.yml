@@ -9,6 +9,9 @@
 # Private repo: use a deploy key on the VPS + repo (Hostinger docs)—not the same as SSH keys on your GitHub profile.
 # Profile SSH keys are for your machines pushing to GitHub; they are not used by Hostinger’s deploy API.
 #
+# A green GitHub job only meant “API accepted the deploy” until we poll the VPS action below.
+# If the site still looks old: hard-refresh / disable cache; check Nginx Proxy Manager upstream; read Docker build logs.
+#
 # Secrets: HOSTINGER_API_KEY, RESEND_API_KEY
 # Optional secrets: CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL
 # Variable or secret: HOSTINGER_VM_ID (digits only, e.g. 1568010)
@@ -92,4 +95,33 @@ jobs:
             echo "::error::Hostinger API HTTP ${HTTP_STATUS}. Check API key permissions, VM id, private-repo deploy key on VPS, and message above."
             exit 1
           fi
-          echo "Hostinger accepted deploy (HTTP ${HTTP_STATUS})."
+          echo "Hostinger accepted deploy request (HTTP ${HTTP_STATUS})."
+
+          # POST queues work on the VPS; wait for that action so CI reflects real build outcome.
+          ACTION_ID=$(echo "$HTTP_BODY" | jq -r '(.data // .) | .id? // empty')
+          if [ -z "$ACTION_ID" ] || [ "$ACTION_ID" = "null" ]; then
+            echo "::warning::No action id in response; clone/build may still be running. Check hPanel → Docker Manager → portfolio-website → Logs."
+            exit 0
+          fi
+
+          echo "Polling Hostinger action ${ACTION_ID} (GET …/actions/${ACTION_ID})…"
+          for i in $(seq 1 45); do
+            DET=$(curl -sS -H "Authorization: Bearer ${HOSTINGER_API_KEY}" \
+              "https://developers.hostinger.com/api/vps/v1/virtual-machines/${VM_ID}/actions/${ACTION_ID}")
+            STATE=$(echo "$DET" | jq -r '(.data // .) | .state? // empty' | tr '[:upper:]' '[:lower:]')
+            echo "poll $i/45 state=${STATE:-<empty>}"
+            case "$STATE" in
+              success|completed|done|finished|succeeded)
+                echo "Hostinger deploy action finished successfully."
+                exit 0
+                ;;
+              failed|error|cancelled|canceled)
+                echo "$DET"
+                echo "::error::Hostinger deploy action ended with state=${STATE}. See Docker Manager → portfolio-website → Logs / .build.log on the VPS."
+                exit 1
+                ;;
+            esac
+            sleep 15
+          done
+          echo "::error::Timeout waiting for action ${ACTION_ID}. See last JSON above and Docker Manager logs."
+          exit 1
