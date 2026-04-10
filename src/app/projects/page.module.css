@@ -58,15 +58,15 @@
     font-size: 0.85rem;
     font-weight: 500;
     color: var(--text-secondary);
-    border: 1px solid rgba(212, 168, 67, 0.1);
+    border: 1px solid rgba(61, 139, 147, 0.1);
     transition: all var(--transition-fast);
     text-decoration: none;
 }
 
 .filterTab:hover {
     color: var(--accent-gold);
-    border-color: rgba(212, 168, 67, 0.3);
-    background: rgba(212, 168, 67, 0.05);
+    border-color: rgba(61, 139, 147, 0.3);
+    background: rgba(61, 139, 147, 0.05);
 }
 
 .filterTabActive {

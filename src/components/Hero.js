@@ -13,23 +13,23 @@ export default function Hero() {
 
             <div className={styles.heroContent}>
                 <div className={styles.heroText}>
-                    <span className={styles.heroLabel}>Graphic &amp; Web Designer</span>
+                    <span className={styles.heroLabel}>Digital Growth Partner</span>
                     <h1 className={styles.heroTitle}>
-                        Crafting Digital
-                        <span className={styles.heroTitleGradient}>Experiences</span>
-                        That Inspire
+                        We Build Brands
+                        <span className={styles.heroTitleGradient}>That Convert</span>
+                        &amp; Scale
                     </h1>
                     <p className={styles.heroDescription}>
-                        Hi, I&apos;m Kavish Singh — founder of Nexus Vantage Group.
-                        I transform ideas into stunning visual identities and immersive web
-                        experiences that captivate audiences and elevate brands.
+                        Nexus Vantage Group — led by Kavish Singh — designs brand
+                        and web systems that drive trust, credibility, and qualified
+                        leads for service businesses.
                     </p>
                     <div className={styles.heroActions}>
                         <Link href="/projects" className={styles.heroCta}>
-                            View My Work <span className={styles.heroCtaArrow}>→</span>
+                            See Our Work <span className={styles.heroCtaArrow}>→</span>
                         </Link>
                         <Link href="/about" className={styles.heroSecondary}>
-                            About Me
+                            About Us
                         </Link>
                     </div>
                 </div>
@@ -40,7 +40,7 @@ export default function Hero() {
                         <div className={styles.heroRing}></div>
                         <div className={styles.heroRing}></div>
                         <div className={styles.heroCenter}>
-                            <span className={styles.heroCenterText}>NVG</span>
+                            <img src="/logo.png" alt="Nexus Vantage Group" className={styles.heroCenterLogo} />
                         </div>
                         {/* Floating badges */}
                         <div className={styles.heroBadge}>

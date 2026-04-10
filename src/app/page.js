@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
 import ServicesSection from '@/components/ServicesSection';
+import ProcessSection from '@/components/ProcessSection';
 import ContactCTA from '@/components/ContactCTA';
 import { homeFeaturedProjects } from '@/data/projects';
 import styles from './page.module.css';
@@ -34,6 +35,7 @@ export default function Home() {
             </section>
 
             <ServicesSection />
+            <ProcessSection />
             <ContactCTA />
         </>
     );

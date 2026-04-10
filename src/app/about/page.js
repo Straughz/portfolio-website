@@ -3,8 +3,8 @@ import ContactCTA from '@/components/ContactCTA';
 import styles from './page.module.css';
 
 export const metadata = {
-    title: 'About – Kavish Singh | Nexus Vantage Group',
-    description: 'Learn more about Kavish Singh, founder of Nexus Vantage Group. Graphic designer, web designer, and brand strategist.',
+    title: 'About – Nexus Vantage Group',
+    description: 'Meet the team behind Nexus Vantage Group. Led by Kavish Singh — building brand and web systems that drive trust and growth for service businesses.',
 };
 
 const stats = [
@@ -42,13 +42,13 @@ export default function About() {
             <div className="container">
                 {/* Page Header */}
                 <div className={styles.pageHeader}>
-                    <span className={styles.pageLabel}>Get to Know Me</span>
+                    <span className={styles.pageLabel}>About Us</span>
                     <h1 className={styles.pageTitle}>
-                        About <span className="gradient-text">Kavish Singh</span>
+                        Meet <span className="gradient-text">Nexus Vantage Group</span>
                     </h1>
                     <p className={styles.pageDescription}>
-                        Founder of Nexus Vantage Group — passionate about creating visual experiences
-                        that connect brands with their audience.
+                        Led by Kavish Singh — we build brand and web systems that
+                        help service businesses earn trust and grow.
                     </p>
                 </div>
 
@@ -63,22 +63,21 @@ export default function About() {
 
                     <div className={styles.aboutContent}>
                         <div className={styles.aboutBio}>
-                            <h3>The Journey</h3>
+                            <h3>Our Story</h3>
                             <p>
-                                I&apos;m a graphic and web designer with a passion for creating beautiful,
-                                functional digital experiences. As the founder of Nexus Vantage Group, I work
-                                with businesses and individuals to bring their creative visions to life.
+                                Nexus Vantage Group started with a simple conviction: service businesses
+                                deserve the same caliber of design and digital strategy that Fortune 500
+                                companies take for granted.
                             </p>
                             <p>
-                                My approach combines strategic thinking with aesthetic excellence — every project
+                                Our approach combines strategic thinking with aesthetic excellence — every project
                                 is an opportunity to push boundaries and deliver work that not only looks stunning
-                                but achieves real results. From brand identities to full-scale web platforms, I
-                                bring the same level of dedication and creativity to every project.
+                                but achieves real results. From brand identities to full-scale web platforms, we
+                                bring the same level of dedication and creativity to every engagement.
                             </p>
                             <p>
-                                When I&apos;m not designing, you&apos;ll find me exploring new creative tools,
-                                staying on top of design trends, and finding inspiration in art, architecture,
-                                and the world around me.
+                                We stay sharp by exploring emerging creative tools, tracking design trends,
+                                and finding inspiration in art, architecture, and the businesses we serve.
                             </p>
                         </div>
 

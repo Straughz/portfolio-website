@@ -3,9 +3,9 @@ import Footer from '@/components/Footer';
 import './globals.css';
 
 export const metadata = {
-    title: 'Kavish Singh | Nexus Vantage Group – Graphic & Web Design',
-    description: 'Portfolio of Kavish Singh, founder of Nexus Vantage Group. Specializing in graphic design, web design, and brand strategy that elevates your business.',
-    keywords: 'graphic design, web design, brand identity, portfolio, Kavish Singh, Nexus Vantage Group',
+    title: 'Nexus Vantage Group – Digital Growth Partner for Service Businesses',
+    description: 'Nexus Vantage Group designs brand and web systems that improve trust, conversion, and qualified inbound leads for service businesses.',
+    keywords: 'digital agency, web design, brand strategy, lead generation, service business, Nexus Vantage Group, Kavish Singh',
 };
 
 export default function RootLayout({ children }) {

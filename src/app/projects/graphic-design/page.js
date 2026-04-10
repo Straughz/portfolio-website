@@ -5,8 +5,8 @@ import { graphicDesignProjects } from '@/data/projects';
 import styles from '../page.module.css';
 
 export const metadata = {
-    title: 'Graphic Design Projects – Kavish Singh | Nexus Vantage Group',
-    description: 'Browse graphic design projects by Kavish Singh. Brand identities, marketing materials, print design, and visual systems.',
+    title: 'Graphic Design Projects – Nexus Vantage Group',
+    description: 'Brand identities, marketing materials, print design, and visual systems by Nexus Vantage Group.',
 };
 
 export default function GraphicDesignProjects() {

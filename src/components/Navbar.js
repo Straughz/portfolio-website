@@ -32,9 +32,8 @@ export default function Navbar() {
             <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : ''}`}>
                 <div className={styles.navInner}>
                     <Link href="/" className={styles.logo}>
+                        <img src="/logo.png" alt="Nexus Vantage Group" className={styles.logoImage} />
                         <span className={styles.logoAccent}>NVG</span>
-                        <span style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', fontWeight: 400 }}>|</span>
-                        <span style={{ fontSize: '0.85rem', fontWeight: 400, color: 'var(--text-secondary)' }}>Kavish Singh</span>
                     </Link>
 
                     <div className={styles.navLinks}>

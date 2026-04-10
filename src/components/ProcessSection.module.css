@@ -1,0 +1,117 @@
+.process {
+    position: relative;
+}
+
+.processHeader {
+    text-align: center;
+    margin-bottom: var(--space-4xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.processLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent-gold);
+    margin-bottom: var(--space-md);
+    display: block;
+}
+
+.processTitle {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+}
+
+.processSubtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.processGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+}
+
+.stepCard {
+    padding: var(--space-2xl);
+    text-align: center;
+    position: relative;
+}
+
+.stepNumber {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--gradient-gold-green);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-md);
+    line-height: 1;
+}
+
+.stepTitle {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+.stepDescription {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.processCta {
+    text-align: center;
+    margin-top: var(--space-3xl);
+}
+
+.processButton {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-2xl);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--bg-primary);
+    background: var(--gradient-gold-green);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    text-decoration: none;
+}
+
+.processButton:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-gold);
+}
+
+.processArrow {
+    transition: transform var(--transition-fast);
+}
+
+.processButton:hover .processArrow {
+    transform: translateX(4px);
+}
+
+@media (max-width: 968px) {
+    .processGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .processGrid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -12,11 +12,11 @@ export default function ContactCTA() {
                     <span className="gradient-text">Great Things.</span>
                 </h2>
                 <p className={styles.ctaDescription}>
-                    Have a project in mind? I&apos;d love to help bring your vision to life.
-                    Let&apos;s discuss how we can work together.
+                    Have a project in mind? We&apos;d love to help bring your vision to life.
+                    Let&apos;s discuss how we can grow your business together.
                 </p>
                 <a href="mailto:kavish@nexusvantagegroup.com" className={styles.ctaButton}>
-                    Drop me a line <span className={styles.ctaArrow}>→</span>
+                    Start a Conversation <span className={styles.ctaArrow}>→</span>
                 </a>
             </div>
         </section>

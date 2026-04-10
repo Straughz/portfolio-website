@@ -6,7 +6,7 @@
 }
 
 .cardLink:focus-visible {
-    outline: 2px solid var(--accent-gold);
+    outline: 2px solid var(--accent-gold-light);
     outline-offset: 2px;
 }
 
@@ -55,7 +55,7 @@
     letter-spacing: 0.15em;
     padding: 4px 12px;
     border-radius: var(--radius-full);
-    background: rgba(212, 168, 67, 0.1);
+    background: rgba(61, 139, 147, 0.1);
     color: var(--accent-gold);
     margin-bottom: var(--space-sm);
 }
@@ -88,7 +88,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: rgba(212, 168, 67, 0.1);
+    background: rgba(61, 139, 147, 0.1);
     color: var(--accent-gold);
     font-size: 0.9rem;
     z-index: 2;
@@ -100,4 +100,77 @@
 .card:hover .cardArrow {
     opacity: 1;
     transform: translate(0, 0);
+}
+
+/* Meta row: category + status side by side */
+.cardMeta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.cardMeta .cardCategory {
+    margin-bottom: 0;
+}
+
+/* Status badge */
+.cardStatus {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    background: rgba(61, 139, 147, 0.1);
+    color: var(--accent-gold);
+}
+
+.statusComingSoon {
+    background: rgba(61, 139, 147, 0.1);
+    color: var(--accent-gold);
+}
+
+.statusInDevelopment {
+    background: rgba(99, 149, 237, 0.1);
+    color: #6395ed;
+}
+
+.statusConcept {
+    background: rgba(156, 163, 175, 0.1);
+    color: var(--text-secondary);
+}
+
+.statusLive {
+    background: rgba(61, 139, 147, 0.15);
+    color: var(--accent-gold-light);
+}
+
+/* Case study block */
+.caseStudy {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.caseStudyItem p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.caseStudyLabel {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent-gold);
+    margin-bottom: 4px;
 }

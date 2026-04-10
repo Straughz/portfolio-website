@@ -23,37 +23,37 @@
 }
 
 .path:nth-child(1) {
-    stroke: rgba(212, 168, 67, 0.12);
+    stroke: rgba(61, 139, 147, 0.12);
     stroke-width: 1.5;
     animation-delay: 0s, 4s;
 }
 
 .path:nth-child(2) {
-    stroke: rgba(56, 178, 122, 0.1);
+    stroke: rgba(98, 196, 204, 0.1);
     stroke-width: 1;
     animation-delay: 0.5s, 4.5s;
 }
 
 .path:nth-child(3) {
-    stroke: rgba(212, 168, 67, 0.08);
+    stroke: rgba(61, 139, 147, 0.08);
     stroke-width: 2;
     animation-delay: 1s, 5s;
 }
 
 .path:nth-child(4) {
-    stroke: rgba(56, 178, 122, 0.12);
+    stroke: rgba(98, 196, 204, 0.12);
     stroke-width: 1.5;
     animation-delay: 1.5s, 5.5s;
 }
 
 .path:nth-child(5) {
-    stroke: rgba(240, 208, 120, 0.06);
+    stroke: rgba(98, 196, 204, 0.06);
     stroke-width: 1;
     animation-delay: 2s, 6s;
 }
 
 .path:nth-child(6) {
-    stroke: rgba(92, 217, 160, 0.08);
+    stroke: rgba(61, 139, 147, 0.06);
     stroke-width: 1.5;
     animation-delay: 2.5s, 6.5s;
 }

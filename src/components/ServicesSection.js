@@ -27,7 +27,7 @@ export default function ServicesSection() {
         <section className={`${styles.services} section`} id="services">
             <div className="container">
                 <div className={styles.servicesHeader}>
-                    <span className={styles.servicesLabel}>What I Do</span>
+                    <span className={styles.servicesLabel}>What We Do</span>
                     <h2 className={styles.servicesTitle}>
                         Services & <span className="gradient-text">Expertise</span>
                     </h2>

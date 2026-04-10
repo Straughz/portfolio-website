@@ -5,8 +5,8 @@ import { allProjects } from '@/data/projects';
 import styles from './page.module.css';
 
 export const metadata = {
-    title: 'Projects – Kavish Singh | Nexus Vantage Group',
-    description: 'Explore the portfolio of Kavish Singh. Browse graphic design and web design projects by Nexus Vantage Group.',
+    title: 'Projects – Nexus Vantage Group',
+    description: 'Browse graphic design, web design, and brand strategy projects by Nexus Vantage Group.',
 };
 
 export default function Projects() {
@@ -19,7 +19,7 @@ export default function Projects() {
                         All <span className="gradient-text">Projects</span>
                     </h1>
                     <p className={styles.pageDescription}>
-                        Graphic design and web design work. Open web entries in a new tab to view the live site.
+                        Brand, web, and strategy work for service businesses. Click any live project to view it.
                     </p>
                 </div>
 
