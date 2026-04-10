@@ -2,10 +2,12 @@
 # Prerequisites (GitHub → Settings → Secrets and variables → Actions):
 #   Secrets: HOSTINGER_API_KEY, RESEND_API_KEY
 #   Optional secrets: CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL
-#   HOSTINGER_VM_ID: use Repository *Variables* OR *Secrets* (same name)
+#   HOSTINGER_VM_ID: Repository *Variable* or *Secret* (e.g. 1568010)
 #
-# Private GitHub repo: ensure Hostinger can read the compose URL at deploy time
-# (see https://www.hostinger.com/support/how-to-deploy-from-private-github-repository-on-hostinger-docker-manager/).
+# Uses raw.githubusercontent.com for compose (plain YAML). The marketplace
+# action sends a /blob/ URL (HTML), which can cause Hostinger API failures.
+#
+# Private repo: https://www.hostinger.com/support/how-to-deploy-from-private-github-repository-on-hostinger-docker-manager/
 
 name: Deploy to Hostinger VPS
 
@@ -18,18 +20,60 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+
+      - name: Check Hostinger configuration
+        run: |
+          set -euo pipefail
+          if [ -z "${{ secrets.HOSTINGER_API_KEY }}" ]; then
+            echo "::error::Add repository secret HOSTINGER_API_KEY (hPanel → Profile → API)."
+            exit 1
+          fi
+          VM="${{ vars.HOSTINGER_VM_ID != '' && vars.HOSTINGER_VM_ID || secrets.HOSTINGER_VM_ID }}"
+          if [ -z "$VM" ]; then
+            echo "::error::Set HOSTINGER_VM_ID as a repository Variable or Secret (numeric id from srv…hstgr.cloud)."
+            exit 1
+          fi
+          echo "Configuration OK (VM id and API key are set)."
 
       - name: Deploy to Hostinger VPS
-        uses: hostinger/deploy-on-vps@v2
-        with:
-          api-key: ${{ secrets.HOSTINGER_API_KEY }}
-          virtual-machine: ${{ vars.HOSTINGER_VM_ID != '' && vars.HOSTINGER_VM_ID || secrets.HOSTINGER_VM_ID }}
-          project-name: portfolio-website
-          docker-compose-path: docker-compose.yml
-          environment-variables: |
-            NODE_ENV=production
-            PORT=3000
-            RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}
-            CONTACT_TO_EMAIL=${{ secrets.CONTACT_TO_EMAIL }}
-            CONTACT_FROM_EMAIL=${{ secrets.CONTACT_FROM_EMAIL }}
+        env:
+          HOSTINGER_API_KEY: ${{ secrets.HOSTINGER_API_KEY }}
+          VM_ID: ${{ vars.HOSTINGER_VM_ID != '' && vars.HOSTINGER_VM_ID || secrets.HOSTINGER_VM_ID }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          CONTACT_TO_EMAIL: ${{ secrets.CONTACT_TO_EMAIL }}
+          CONTACT_FROM_EMAIL: ${{ secrets.CONTACT_FROM_EMAIL }}
+        run: |
+          set -euo pipefail
+          CONTENT_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/docker-compose.yml"
+          ENVIRONMENT=$(printf '%s\n' \
+            "NODE_ENV=production" \
+            "PORT=3000" \
+            "RESEND_API_KEY=${RESEND_API_KEY}" \
+            "CONTACT_TO_EMAIL=${CONTACT_TO_EMAIL:-}" \
+            "CONTACT_FROM_EMAIL=${CONTACT_FROM_EMAIL:-}")
+
+          BODY=$(jq -n \
+            --arg content "$CONTENT_URL" \
+            --arg project_name "portfolio-website" \
+            --arg environment "$ENVIRONMENT" \
+            '{project_name: $project_name, content: $content, environment: $environment} | with_entries(select(.value != ""))')
+
+          echo "POST docker deploy with compose URL: $CONTENT_URL"
+
+          RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST \
+            -H "Authorization: Bearer ${HOSTINGER_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d "$BODY" \
+            "https://developers.hostinger.com/api/vps/v1/virtual-machines/${VM_ID}/docker")
+
+          HTTP_BODY=$(echo "$RESPONSE" | sed '$d')
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+
+          echo "$HTTP_BODY"
+
+          if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
+            echo "::error::Hostinger API HTTP ${HTTP_STATUS}. Fix API key, VM id, or request body; see response above."
+            exit 1
+          fi
+          echo "Hostinger accepted deploy (HTTP ${HTTP_STATUS})."
