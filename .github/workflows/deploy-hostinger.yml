@@ -5,7 +5,9 @@
 #   the default branch and used with full repo context for `build: .` (correct for this project).
 # - A raw compose URL only sends YAML; it does not ship Dockerfile/source, so avoid that here.
 #
-# Private repo: add a deploy key on the VPS and to the repo (Hostinger docs), then this URL still works.
+# Public repo: Hostinger can clone over HTTPS; no GitHub SSH key needed for this API flow.
+# Private repo: use a deploy key on the VPS + repo (Hostinger docs)—not the same as SSH keys on your GitHub profile.
+# Profile SSH keys are for your machines pushing to GitHub; they are not used by Hostinger’s deploy API.
 #
 # Secrets: HOSTINGER_API_KEY, RESEND_API_KEY
 # Optional secrets: CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL
