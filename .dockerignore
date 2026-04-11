@@ -1,0 +1,55 @@
+# Dependencies (installed in image)
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js build output (created inside Docker builder)
+.next
+out
+
+# Git / CI (not needed to compile the app)
+.git
+.github
+
+# Secrets & local env (never bake into layers)
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.test
+*.pem
+*.key
+*.cert
+
+# Tooling & editor
+.cursor
+.vscode
+.idea
+*.swp
+*.swo
+
+# Tests & coverage
+coverage
+.nyc_output
+
+# Logs & caches
+*.log
+logs
+.cache
+.parcel-cache
+.eslintcache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large design sources not imported by the app (runtime uses public/)
+Setup
+
+# Session / local docs (not in git for some; harmless if absent)
+PROJECT.md
+INIT.md
+INIT_CHECK.md
+INIT_EXISTING.md
