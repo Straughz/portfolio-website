@@ -212,10 +212,10 @@
 }
 
 .heroCenterLogo {
-    width: 72px;
+    width: clamp(96px, 14vw, 132px);
     height: auto;
-    opacity: 0.95;
-    filter: drop-shadow(0 0 24px rgba(61, 139, 147, 0.4));
+    opacity: 1;
+    filter: drop-shadow(0 0 28px rgba(61, 139, 147, 0.55));
 }
 
 /* Floating badges */
