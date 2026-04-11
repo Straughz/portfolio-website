@@ -1,4 +1,5 @@
 # Push-to-deploy for Hostinger VPS Docker Manager.
+# Reusable checklist for other projects: docs/HOSTINGER-GITHUB-DEPLOY.md
 #
 # Hostinger API `content` field (per official SDK docs):
 # - A GitHub repo URL `https://github.com/owner/repo` is resolved to docker-compose on
