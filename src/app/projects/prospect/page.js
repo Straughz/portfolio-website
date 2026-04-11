@@ -5,7 +5,7 @@ import { prospectProjects } from '@/data/projects';
 import styles from '../page.module.css';
 
 export const metadata = {
-    title: 'Prospect Work – Nexus Vantage Group',
+    title: 'Prospect',
     description:
         'Demo sites and outreach work in progress — not retained client engagements until signed.',
 };

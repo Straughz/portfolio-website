@@ -5,7 +5,7 @@ import { webDesignProjects } from '@/data/projects';
 import styles from '../page.module.css';
 
 export const metadata = {
-    title: 'Web Design Projects – Nexus Vantage Group',
+    title: 'Web Design',
     description:
         'Live web design work by Nexus Vantage Group — shipped sites for clients and organizations.',
 };

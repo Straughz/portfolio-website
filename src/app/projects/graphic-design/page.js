@@ -5,7 +5,7 @@ import { graphicDesignProjects } from '@/data/projects';
 import styles from '../page.module.css';
 
 export const metadata = {
-    title: 'Graphic Design Projects – Nexus Vantage Group',
+    title: 'Graphic Design',
     description: 'Brand identities, marketing materials, print design, and visual systems by Nexus Vantage Group.',
 };
 

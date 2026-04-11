@@ -7,7 +7,7 @@ export default function Footer() {
             <div className={`container ${styles.footerInner}`}>
                 <div className={styles.footerBrand}>
                     <Link href="/" className={styles.footerLogo}>
-                        <img src="/logo.png" alt="Nexus Vantage Group" className={styles.footerLogoImage} />
+                        <img src="/logo-mark.png" alt="Nexus Vantage Group" className={styles.footerLogoImage} />
                         <span className={styles.footerLogoAccent}>Nexus Vantage Group</span>
                     </Link>
                     <span className={styles.footerTagline}>Digital growth partner for service businesses.</span>

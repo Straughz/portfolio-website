@@ -2,7 +2,7 @@ import ContactForm from '@/components/ContactForm';
 import styles from './page.module.css';
 
 export const metadata = {
-    title: 'Contact – Nexus Vantage Group',
+    title: 'Contact',
     description: 'Get in touch with Nexus Vantage Group. Tell us about your project and we\'ll get back to you within 24 hours.',
 };
 

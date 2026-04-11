@@ -31,9 +31,8 @@ export default function Navbar() {
         <>
             <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : ''}`}>
                 <div className={styles.navInner}>
-                    <Link href="/" className={styles.logo}>
-                        <img src="/logo.png" alt="Nexus Vantage Group" className={styles.logoImage} />
-                        <span className={styles.logoAccent}>NVG</span>
+                    <Link href="/" className={styles.logo} aria-label="Nexus Vantage Group — Home">
+                        <img src="/logo-mark.png" alt="Nexus Vantage Group" className={styles.logoImage} />
                     </Link>
 
                     <div className={styles.navLinks}>

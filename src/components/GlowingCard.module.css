@@ -4,6 +4,9 @@
     padding: 1px;
     overflow: hidden;
     isolation: isolate;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .glowCard::before {
@@ -60,7 +63,10 @@
 .cardInner {
     background: var(--bg-card);
     border-radius: var(--radius-md);
-    height: 100%;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
     backdrop-filter: blur(12px);
     border: 1px solid rgba(61, 139, 147, 0.08);
 }
