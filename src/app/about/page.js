@@ -7,12 +7,6 @@ export const metadata = {
     description: 'Meet the team behind Nexus Vantage Group. Led by Kavish Singh — building brand and web systems that drive trust and growth for service businesses.',
 };
 
-const stats = [
-    { number: '50+', label: 'Projects Completed' },
-    { number: '30+', label: 'Happy Clients' },
-    { number: '5+', label: 'Years Experience' },
-];
-
 const skillIcons = {
     design: (
         <svg className={styles.skillGroupIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -106,18 +100,6 @@ export default function About() {
                                 We stay sharp by exploring emerging creative tools, tracking design trends,
                                 and finding inspiration in art, architecture, and the businesses we serve.
                             </p>
-                        </div>
-
-                        {/* Stats */}
-                        <div className={styles.statsGrid}>
-                            {stats.map((stat, i) => (
-                                <GlowingCard key={i}>
-                                    <div className={styles.statCard}>
-                                        <div className={styles.statNumber}>{stat.number}</div>
-                                        <div className={styles.statLabel}>{stat.label}</div>
-                                    </div>
-                                </GlowingCard>
-                            ))}
                         </div>
                     </div>
                 </div>
