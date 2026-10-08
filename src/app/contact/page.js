@@ -3,7 +3,7 @@ import styles from './page.module.css';
 
 export const metadata = {
     title: 'Contact',
-    description: 'Get in touch with Nexus Vantage Group. Tell us about your project and we\'ll get back to you within 24 hours.',
+    description: 'Contact Kavish Singh at Nexus Vantage Group about a website, app, software or design project.',
 };
 
 export default async function ContactPage({ searchParams }) {
@@ -18,7 +18,7 @@ export default async function ContactPage({ searchParams }) {
                         Let&apos;s <span className="gradient-text">Talk</span>
                     </h1>
                     <p className={styles.pageDescription}>
-                        Tell us about your project and we&apos;ll get back to you within 24 hours.
+                        Tell me about your project. I&apos;ll reply when I can.
                     </p>
                 </div>
 

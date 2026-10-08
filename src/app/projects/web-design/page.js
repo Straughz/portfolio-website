@@ -5,9 +5,9 @@ import { webDesignProjects } from '@/data/projects';
 import styles from '../page.module.css';
 
 export const metadata = {
-    title: 'Web Design',
+    title: 'Client Work',
     description:
-        'Live web design work by Nexus Vantage Group — shipped sites for clients and organizations.',
+        'Websites and customer-facing software by Kavish Singh for local businesses.',
 };
 
 export default function WebDesignProjects() {
@@ -17,10 +17,10 @@ export default function WebDesignProjects() {
                 <div className={styles.pageHeader}>
                     <span className={styles.pageLabel}>Portfolio</span>
                     <h1 className={styles.pageTitle}>
-                        <span className="gradient-text">Web Design</span> Work
+                        <span className="gradient-text">Client</span> Work
                     </h1>
                     <p className={styles.pageDescription}>
-                        Pipeline web work — coming soon or in development. Opens in a new tab when a live link exists.
+                        Websites and customer-facing software I build for local businesses.
                     </p>
                 </div>
 
@@ -32,10 +32,10 @@ export default function WebDesignProjects() {
                         Graphic Design
                     </Link>
                     <Link href="/projects/web-design" className={`${styles.filterTab} ${styles.filterTabActive}`}>
-                        Web Design
+                        Client Work
                     </Link>
                     <Link href="/projects/prospect" className={styles.filterTab}>
-                        Prospect
+                        Products
                     </Link>
                 </div>
 

@@ -17,7 +17,7 @@ export default function Home() {
                 <div className="container">
                     <div className={styles.featuredHeader}>
                         <div className={styles.featuredHeaderText}>
-                            <span className={styles.featuredLabel}>Selected Works</span>
+                            <span className={styles.featuredLabel}>Selected work</span>
                             <h2 className={styles.featuredTitle}>
                                 Featured <span className="gradient-text">Projects</span>
                             </h2>
@@ -26,9 +26,9 @@ export default function Home() {
                             View All Projects →
                         </Link>
                     </div>
-                    <h3 className={styles.featuredSectionTitle}>Pipeline</h3>
+                    <h3 className={styles.featuredSectionTitle}>Client work</h3>
                     <p className={styles.featuredSectionIntro}>
-                        Web work in motion — coming soon or in development.
+                        Websites and customer-facing software I build for local businesses.
                     </p>
                     <div className={styles.projectsGrid}>
                         {webDesignProjects.map((project, i) => (
@@ -36,9 +36,9 @@ export default function Home() {
                         ))}
                     </div>
 
-                    <h3 className={styles.featuredSectionTitle}>Prospect</h3>
+                    <h3 className={styles.featuredSectionTitle}>My own products</h3>
                     <p className={styles.featuredSectionIntro}>
-                        Demos from outreach — working to bring these engagements in.
+                        Software I build for my own work and for other builders.
                     </p>
                     <div className={styles.projectsGrid}>
                         {prospectProjects.map((project, i) => (

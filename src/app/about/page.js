@@ -4,7 +4,7 @@ import styles from './page.module.css';
 
 export const metadata = {
     title: 'About',
-    description: 'Meet the team behind Nexus Vantage Group. Led by Kavish Singh — building brand and web systems that drive trust and growth for service businesses.',
+    description: 'About Kavish Singh and his one-person studio in Sacramento, California.',
 };
 
 const skillIcons = {
@@ -37,23 +37,23 @@ const skillIcons = {
 const skillGroups = [
     {
         icon: skillIcons.design,
-        title: 'Design Tools',
-        skills: ['Photoshop', 'Illustrator', 'Figma', 'InDesign', 'After Effects', 'XD'],
+        title: 'Brand and Print',
+        skills: ['Brand design', 'Print design'],
     },
     {
         icon: skillIcons.code,
-        title: 'Web Technologies',
-        skills: ['HTML/CSS', 'JavaScript', 'React', 'Next.js', 'WordPress', 'Responsive Design'],
+        title: 'Web Development',
+        skills: ['Web design', 'Front-end development', 'Back-end development'],
     },
     {
         icon: skillIcons.ruler,
-        title: 'Design Skills',
-        skills: ['Brand Identity', 'Typography', 'Layout Design', 'Color Theory', 'UI/UX', 'Print Design'],
+        title: 'Apps and Software',
+        skills: ['Customer apps', 'Internal software', 'Desktop tools'],
     },
     {
         icon: skillIcons.rocket,
-        title: 'Business',
-        skills: ['Project Management', 'Client Relations', 'Brand Strategy', 'Marketing', 'Consulting'],
+        title: 'After Launch',
+        skills: ['Deployment', 'Upkeep'],
     },
 ];
 
@@ -63,13 +63,12 @@ export default function About() {
             <div className="container">
                 {/* Page Header */}
                 <div className={styles.pageHeader}>
-                    <span className={styles.pageLabel}>About Us</span>
+                    <span className={styles.pageLabel}>About</span>
                     <h1 className={styles.pageTitle}>
-                        Meet <span className="gradient-text">Nexus Vantage Group</span>
+                        Meet <span className="gradient-text">Kavish Singh</span>
                     </h1>
                     <p className={styles.pageDescription}>
-                        Led by Kavish Singh — we build brand and web systems that
-                        help service businesses earn trust and grow.
+                        Nexus Vantage Group is Kavish Singh.
                     </p>
                 </div>
 
@@ -84,21 +83,17 @@ export default function About() {
 
                     <div className={styles.aboutContent}>
                         <div className={styles.aboutBio}>
-                            <h3>Our Story</h3>
+                            <h3>About my work</h3>
                             <p>
-                                Nexus Vantage Group started with a simple conviction: service businesses
-                                deserve the same caliber of design and digital strategy that Fortune 500
-                                companies take for granted.
+                                I have run this one-person studio in Sacramento, California since 2025.
+                                I work with local businesses on websites, customer-facing apps and internal software.
                             </p>
                             <p>
-                                Our approach combines strategic thinking with aesthetic excellence — every project
-                                is an opportunity to push boundaries and deliver work that not only looks stunning
-                                but achieves real results. From brand identities to full-scale web platforms, we
-                                bring the same level of dedication and creativity to every engagement.
+                                I also do brand and print design. My work can start with a visual identity,
+                                continue through a website or app, and include deployment and upkeep.
                             </p>
                             <p>
-                                We stay sharp by exploring emerging creative tools, tracking design trends,
-                                and finding inspiration in art, architecture, and the businesses we serve.
+                                I build my own software tools too, including Cokpit and NVG Voice.
                             </p>
                         </div>
                     </div>

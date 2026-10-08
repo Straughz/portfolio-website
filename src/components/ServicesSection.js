@@ -23,20 +23,20 @@ const serviceIcons = {
 const services = [
     {
         icon: serviceIcons.graphic,
-        title: 'Graphic Design',
-        description: 'Brand identities, logos, marketing materials, and visual systems that communicate your story with precision and beauty.',
+        title: 'Brand and print',
+        description: 'I design brand materials and print pieces for your business.',
         number: '01',
     },
     {
         icon: serviceIcons.web,
-        title: 'Web Design',
-        description: 'Modern, responsive websites and web applications built with cutting-edge technology and stunning visual design.',
+        title: 'Websites and customer apps',
+        description: 'I build your website, then customer-facing tools when the work calls for them.',
         number: '02',
     },
     {
         icon: serviceIcons.brand,
-        title: 'Brand Strategy',
-        description: 'Comprehensive brand development from concept to execution — positioning your business for maximum impact and growth.',
+        title: 'Internal software and care',
+        description: 'I build internal software where needed and can handle deployment and upkeep.',
         number: '03',
     },
 ];
@@ -46,7 +46,7 @@ export default function ServicesSection() {
         <section className={`${styles.services} section`} id="services">
             <div className="container">
                 <div className={styles.servicesHeader}>
-                    <span className={styles.servicesLabel}>What We Do</span>
+                    <span className={styles.servicesLabel}>What I do</span>
                     <h2 className={styles.servicesTitle}>
                         Services & <span className="gradient-text">Expertise</span>
                     </h2>

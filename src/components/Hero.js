@@ -13,23 +13,22 @@ export default function Hero() {
 
             <div className={styles.heroContent}>
                 <div className={styles.heroText}>
-                    <span className={styles.heroLabel}>Digital Growth Partner</span>
+                    <span className={styles.heroLabel}>One-person studio</span>
                     <h1 className={styles.heroTitle}>
-                        We Build Brands
-                        <span className={styles.heroTitleGradient}>That Convert</span>
-                        &amp; Scale
+                        Websites, Apps
+                        <span className={styles.heroTitleGradient}>&amp; Software</span>
+                        Built to Ship
                     </h1>
                     <p className={styles.heroDescription}>
-                        Nexus Vantage Group — led by Kavish Singh — designs brand
-                        and web systems that drive trust, credibility, and qualified
-                        leads for service businesses.
+                        Nexus Vantage Group is Kavish Singh. I design and build websites,
+                        customer apps and internal software for local businesses, and I build my own tools.
                     </p>
                     <div className={styles.heroActions}>
                         <Link href="/projects" className={styles.heroCta}>
-                            See Our Work <span className={styles.heroCtaArrow}>→</span>
+                            See the Work <span className={styles.heroCtaArrow}>→</span>
                         </Link>
                         <Link href="/about" className={styles.heroSecondary}>
-                            About Us
+                            About
                         </Link>
                     </div>
                 </div>

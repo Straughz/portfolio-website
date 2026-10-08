@@ -4,12 +4,19 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     environment:
       PORT: "3000"
       NODE_ENV: production
+      HOST: "0.0.0.0"
       # Supplied by Hostinger deploy (GitHub Actions) and/or Docker Manager Environment
       RESEND_API_KEY: "${RESEND_API_KEY}"
       CONTACT_TO_EMAIL: "${CONTACT_TO_EMAIL:-}"
       CONTACT_FROM_EMAIL: "${CONTACT_FROM_EMAIL:-}"
     restart: always
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

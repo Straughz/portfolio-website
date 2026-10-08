@@ -6,7 +6,7 @@ import styles from '../page.module.css';
 
 export const metadata = {
     title: 'Graphic Design',
-    description: 'Brand identities, marketing materials, print design, and visual systems by Nexus Vantage Group.',
+    description: 'Brand and print design work by Kavish Singh.',
 };
 
 export default function GraphicDesignProjects() {
@@ -21,8 +21,7 @@ export default function GraphicDesignProjects() {
                         <span className="gradient-text">Graphic Design</span> Work
                     </h1>
                     <p className={styles.pageDescription}>
-                        Brand identities, marketing materials, print design, and visual systems
-                        crafted with attention to detail and creative excellence.
+                        I also do brand and print design. Project examples are being added.
                     </p>
                 </div>
 
@@ -34,10 +33,10 @@ export default function GraphicDesignProjects() {
                         Graphic Design
                     </Link>
                     <Link href="/projects/web-design" className={styles.filterTab}>
-                        Web Design
+                        Client Work
                     </Link>
                     <Link href="/projects/prospect" className={styles.filterTab}>
-                        Prospect
+                        Products
                     </Link>
                 </div>
 
@@ -49,8 +48,7 @@ export default function GraphicDesignProjects() {
                     </div>
                 ) : (
                     <p className={styles.emptyState}>
-                        No graphic design projects are listed yet. If you&rsquo;d like to work together, use the contact
-                        section below.
+                        Print and brand work is being added.
                     </p>
                 )}
             </div>

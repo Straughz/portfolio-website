@@ -111,7 +111,7 @@
     gap: var(--space-xl);
 }
 
-/* Honeypot — visually hidden */
+/* Honeypot, visually hidden */
 .hpField {
     position: absolute;
     left: -9999px;

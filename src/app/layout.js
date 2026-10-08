@@ -7,8 +7,8 @@ export const metadata = {
         default: 'Nexus Vantage Group',
         template: '%s | Nexus Vantage Group',
     },
-    description: 'Nexus Vantage Group designs brand and web systems that improve trust, conversion, and qualified inbound leads for service businesses.',
-    keywords: 'digital agency, web design, brand strategy, lead generation, service business, Nexus Vantage Group, Kavish Singh',
+    description: 'Websites, customer apps, internal software, brand and print design by Kavish Singh in Sacramento, California.',
+    keywords: 'web design, customer apps, internal software, brand design, print design, Sacramento, Nexus Vantage Group, Kavish Singh',
 };
 
 export default function RootLayout({ children }) {

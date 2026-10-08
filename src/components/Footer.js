@@ -10,7 +10,7 @@ export default function Footer() {
                         <img src="/logo-mark.png" alt="Nexus Vantage Group" className={styles.footerLogoImage} />
                         <span className={styles.footerLogoAccent}>Nexus Vantage Group</span>
                     </Link>
-                    <span className={styles.footerTagline}>Digital growth partner for service businesses.</span>
+                    <span className={styles.footerTagline}>Websites, apps, software, brand and print design by Kavish Singh.</span>
                 </div>
 
                 <div className={styles.footerLinks}>
@@ -18,8 +18,8 @@ export default function Footer() {
                     <Link href="/about" className={styles.footerLink}>About</Link>
                     <Link href="/projects" className={styles.footerLink}>Projects</Link>
                     <Link href="/projects/graphic-design" className={styles.footerLink}>Graphic Design</Link>
-                    <Link href="/projects/web-design" className={styles.footerLink}>Web Design</Link>
-                    <Link href="/projects/prospect" className={styles.footerLink}>Prospect</Link>
+                    <Link href="/projects/web-design" className={styles.footerLink}>Client Work</Link>
+                    <Link href="/projects/prospect" className={styles.footerLink}>Products</Link>
                     <Link href="/contact" className={styles.footerLink}>Contact</Link>
                 </div>
 
@@ -28,7 +28,7 @@ export default function Footer() {
                         kavish@nexusvantagegroup.com
                     </a>
                     <span className={styles.footerCopy}>
-                        © {new Date().getFullYear()} Nexus Vantage Group. All rights reserved.
+                        © {new Date().getFullYear()} Nexus Vantage Group.
                     </span>
                 </div>
             </div>

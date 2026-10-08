@@ -7,25 +7,25 @@ const steps = [
         number: '01',
         title: 'Discovery',
         description:
-            'We learn your business, audience, and goals. A short strategy call gives us everything we need to move with clarity.',
+            'I ask about your business, the people using the work, and what you need it to do.',
     },
     {
         number: '02',
         title: 'Strategy',
         description:
-            'We map out positioning, site structure, and brand direction — so every design decision ties back to a business outcome.',
+            'I outline the scope and structure before design and development begin.',
     },
     {
         number: '03',
         title: 'Build',
         description:
-            'Design, development, and content come together in focused sprints. You review progress at every milestone.',
+            'I design and build the agreed work, then share it for your review.',
     },
     {
         number: '04',
-        title: 'Launch & Optimize',
+        title: 'Launch and upkeep',
         description:
-            'We go live, monitor performance, and refine. Your project is built to grow — not just to ship.',
+            'I launch the finished work and handle upkeep when it is part of the project.',
     },
 ];
 
@@ -34,13 +34,12 @@ export default function ProcessSection() {
         <section className={`${styles.process} section`} id="process">
             <div className="container">
                 <div className={styles.processHeader}>
-                    <span className={styles.processLabel}>How We Work</span>
+                    <span className={styles.processLabel}>How I work</span>
                     <h2 className={styles.processTitle}>
-                        A Clear Path to <span className="gradient-text">Results</span>
+                        From Brief to <span className="gradient-text">Launch</span>
                     </h2>
                     <p className={styles.processSubtitle}>
-                        No guesswork, no scope creep — just a proven process that
-                        takes your project from idea to measurable impact.
+                        I scope the work, build it, and share it with you before launch.
                     </p>
                 </div>
                 <div className={styles.processGrid}>
@@ -56,7 +55,7 @@ export default function ProcessSection() {
                 </div>
                 <div className={styles.processCta}>
                     <Link href="/contact?intent=strategy" className={styles.processButton}>
-                        Book a Strategy Call <span className={styles.processArrow}>→</span>
+                        Talk About a Project <span className={styles.processArrow}>→</span>
                     </Link>
                 </div>
             </div>

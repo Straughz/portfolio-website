@@ -57,7 +57,7 @@ export default function ContactForm({ intent }) {
             setStatus('success');
         } catch {
             setStatus('error');
-            setErrorMsg('Network error — please check your connection and try again.');
+        setErrorMsg('Network error. Check your connection and try again.');
         }
     }
 
@@ -68,7 +68,7 @@ export default function ContactForm({ intent }) {
                     <span className={styles.successIcon}>✓</span>
                     <h2 className={styles.successTitle}>Message Sent</h2>
                     <p className={styles.successText}>
-                        Thanks for reaching out — we&apos;ll be in touch within 24 hours.
+                        Thanks for reaching out. I&apos;ll reply when I can.
                     </p>
                 </div>
             </div>
@@ -149,7 +149,7 @@ export default function ContactForm({ intent }) {
                     required
                     maxLength={3000}
                     className={styles.formTextarea}
-                    placeholder="Tell us about your project, goals, or questions..."
+                    placeholder="Tell me about your project or question..."
                     value={form.message}
                     onChange={update}
                 />

@@ -5,9 +5,9 @@ import { prospectProjects } from '@/data/projects';
 import styles from '../page.module.css';
 
 export const metadata = {
-    title: 'Prospect',
+    title: 'Products',
     description:
-        'Demo sites and outreach work in progress — not retained client engagements until signed.',
+        'Software products and studio tools built by Kavish Singh.',
 };
 
 export default function ProspectProjects() {
@@ -17,11 +17,10 @@ export default function ProspectProjects() {
                 <div className={styles.pageHeader}>
                     <span className={styles.pageLabel}>Portfolio</span>
                     <h1 className={styles.pageTitle}>
-                        <span className="gradient-text">Prospect</span> work
+                        <span className="gradient-text">My</span> Products
                     </h1>
                     <p className={styles.pageDescription}>
-                        Demos built from outreach — we are still working to convert these into full engagements.
-                        Open a live demo in a new tab when a link is available.
+                        Software I build for my own work and for other builders.
                     </p>
                 </div>
 
@@ -33,10 +32,10 @@ export default function ProspectProjects() {
                         Graphic Design
                     </Link>
                     <Link href="/projects/web-design" className={styles.filterTab}>
-                        Web Design
+                        Client Work
                     </Link>
                     <Link href="/projects/prospect" className={`${styles.filterTab} ${styles.filterTabActive}`}>
-                        Prospect
+                        Products
                     </Link>
                 </div>
 

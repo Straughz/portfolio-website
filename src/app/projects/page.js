@@ -6,7 +6,7 @@ import styles from './page.module.css';
 
 export const metadata = {
     title: 'Projects',
-    description: 'Pipeline work, prospect demos, and design projects by Nexus Vantage Group.',
+    description: 'Client websites and apps, plus software products by Kavish Singh.',
 };
 
 export default function Projects() {
@@ -19,7 +19,7 @@ export default function Projects() {
                         All <span className="gradient-text">Projects</span>
                     </h1>
                     <p className={styles.pageDescription}>
-                        Pipeline work in motion, plus prospect demos we are working to bring under contract.
+                        Client work and software products I build.
                     </p>
                 </div>
 
@@ -31,16 +31,16 @@ export default function Projects() {
                         Graphic Design
                     </Link>
                     <Link href="/projects/web-design" className={styles.filterTab}>
-                        Web Design
+                        Client Work
                     </Link>
                     <Link href="/projects/prospect" className={styles.filterTab}>
-                        Prospect
+                        Products
                     </Link>
                 </div>
 
-                <h2 className={styles.projectsSectionTitle}>Pipeline</h2>
+                <h2 className={styles.projectsSectionTitle}>Client work</h2>
                 <p className={styles.projectsSectionIntro}>
-                    Active web work — coming soon or in development.
+                    Websites and customer-facing software I build for local businesses.
                 </p>
                 <div className={styles.projectsGrid}>
                     {webDesignProjects.map((project, i) => (
@@ -48,9 +48,9 @@ export default function Projects() {
                     ))}
                 </div>
 
-                <h2 className={styles.projectsSectionTitle}>Prospect</h2>
+                <h2 className={styles.projectsSectionTitle}>Products</h2>
                 <p className={styles.projectsSectionIntro}>
-                    Demos from outreach — still working to get these engagements across the line.
+                    Software I build for my own work and for other builders.
                 </p>
                 <div className={styles.projectsGrid}>
                     {prospectProjects.map((project, i) => (

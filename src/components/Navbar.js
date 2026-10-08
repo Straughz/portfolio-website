@@ -31,7 +31,7 @@ export default function Navbar() {
         <>
             <nav className={`${styles.nav} ${scrolled ? styles.navScrolled : ''}`}>
                 <div className={styles.navInner}>
-                    <Link href="/" className={styles.logo} aria-label="Nexus Vantage Group — Home">
+                    <Link href="/" className={styles.logo} aria-label="Nexus Vantage Group home">
                         <img src="/logo-mark.png" alt="Nexus Vantage Group" className={styles.logoImage} />
                     </Link>
 
@@ -62,10 +62,10 @@ export default function Navbar() {
                                     Graphic Design
                                 </Link>
                                 <Link href="/projects/web-design" className={styles.dropdownItem}>
-                                    Web Design
+                                    Client Work
                                 </Link>
                                 <Link href="/projects/prospect" className={styles.dropdownItem}>
-                                    Prospect
+                                    Products
                                 </Link>
                             </div>
                         </div>
@@ -96,10 +96,10 @@ export default function Navbar() {
                     → Graphic Design
                 </Link>
                 <Link href="/projects/web-design" className={`${styles.mobileLink} ${styles.mobileSub}`}>
-                    → Web Design
+                    → Client Work
                 </Link>
                 <Link href="/projects/prospect" className={`${styles.mobileLink} ${styles.mobileSub}`}>
-                    → Prospect
+                    → Products
                 </Link>
                 <Link href="/contact" className={styles.contactBtn} style={{ fontSize: '1rem', marginTop: '1rem' }}>
                     Get in Touch

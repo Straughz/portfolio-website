@@ -49,7 +49,7 @@ export async function POST(request) {
             from: FROM,
             to: TO,
             replyTo: email.trim(),
-            subject: `[NVG] ${intentLabel} — ${name.trim()}`,
+            subject: `[NVG] ${intentLabel}: ${name.trim()}`,
             html: `
                 <h2>${intentLabel}</h2>
                 <p><strong>Name:</strong> ${name.trim()}</p>
