@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import newsreaderUrl from '../assets/fonts/newsreader-latin-standard-normal.woff2?url';
+import schibstedUrl from '../assets/fonts/schibsted-grotesk-latin-wght-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+
+const { title, description, canonical } = Astro.props;
+const siteName = 'Nexus Vantage Group';
+const pageTitle = title === siteName ? title : `${title} | ${siteName}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://nexusvantagegroup.com').href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="preload" href={newsreaderUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={schibstedUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <SiteHeader />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    z-index: 100;
+    top: 0.5rem;
+    left: 0.5rem;
+    transform: translateY(-150%);
+    padding: 0.75rem 1rem;
+    background: var(--color-stone);
+    color: var(--color-charcoal);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .skip-link:focus-visible {
+    transform: none;
+    outline-color: var(--color-focus-light);
+  }
+</style>

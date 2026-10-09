@@ -1,0 +1,39 @@
+:root {
+  /* Approved identity inks and paper. */
+  --color-charcoal: #12262a;
+  --color-teal: #0e5a63;
+  --color-stone: #efebe2;
+  --color-brass: #9a7b3c;
+  --color-light-teal: #6fb3b8;
+
+  --color-page: var(--color-stone);
+  --color-ink: var(--color-charcoal);
+  --color-link: var(--color-teal);
+  --color-dark-surface: var(--color-charcoal);
+  --color-dark-ink: var(--color-stone);
+  --color-dark-accent: var(--color-light-teal);
+  --color-rule: var(--color-brass);
+  --color-focus-light: var(--color-teal);
+  --color-focus-dark: var(--color-light-teal);
+
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'Schibsted Grotesk', 'Segoe UI', sans-serif;
+  --font-data: 'Martian Mono', Consolas, monospace;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* 16px base, major third (1.25) scale; each step is defined once. */
+  --type-0: clamp(1rem, 1rem, 1rem);
+  --type-1: clamp(1.25rem, 1.18rem + 0.35vw, 1.25rem);
+  --type-2: clamp(1.5625rem, 1.38rem + 0.9vw, 1.5625rem);
+  --type-3: clamp(1.5625rem, 1.35rem + 1.05vw, 1.953125rem);
+  --type-4: clamp(1.953125rem, 1.6rem + 1.75vw, 2.44140625rem);
+  --type-5: clamp(2.44140625rem, 1.9rem + 2.7vw, 3.0517578125rem);
+  --type-6: clamp(2.44140625rem, 1.6rem + 4.2vw, 3.814697265625rem);
+
+  --tracking-default: 0;
+  --tracking-label: 0.08em;
+  --tracking-display: -0.035em;
+  --page-gutter: clamp(1rem, 4vw, 4rem);
+  --content-width: 81.25rem;
+}

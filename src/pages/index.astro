@@ -1,17 +1,37 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Nexus Vantage Group is Kavish Singh's design and software studio." />
-    <title>Nexus Vantage Group</title>
-  </head>
-  <body>
-    <header><a href="/">Nexus Vantage Group</a></header>
-    <main id="main">
-      <h1>Nexus Vantage Group</h1>
-      <p>Nexus Vantage Group is Kavish Singh.</p>
-      <p>I build websites, apps, and software.</p>
-    </main>
-  </body>
-</html>
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+  title="Nexus Vantage Group"
+  description="Nexus Vantage Group is Kavish Singh's design and software studio."
+>
+  <section class="placeholder" aria-labelledby="home-title">
+    <h1 id="home-title">Nexus Vantage Group</h1>
+    <p>Nexus Vantage Group is Kavish Singh.</p>
+    <p>I build websites, apps, and software.</p>
+  </section>
+</SiteLayout>
+
+<style>
+  .placeholder {
+    width: min(100%, var(--content-width));
+    margin-inline: auto;
+    padding: 4rem var(--page-gutter);
+  }
+
+  h1 {
+    max-width: 20ch;
+    margin: 0 0 1.5rem;
+    font-family: var(--font-display);
+    font-size: var(--type-5);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-display);
+    font-optical-sizing: auto;
+  }
+
+  p {
+    max-width: 66ch;
+  }
+</style>

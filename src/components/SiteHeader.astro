@@ -1,0 +1,122 @@
+---
+import smallMarkUrl from '../assets/identity/nvg-monogram-small.svg?url';
+---
+
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Nexus Vantage Group home">
+      <span class="brand-plate" aria-hidden="true">
+        <img src={smallMarkUrl} width="48" height="45" alt="" />
+      </span>
+      <span class="brand-name">Nexus Vantage Group</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#work">Work</a>
+      <a href="/#services">Services</a>
+      <a href="/#about">About</a>
+      <a class="contact-link" href="/#contact">Start a ticket</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--color-dark-surface);
+    color: var(--color-dark-ink);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: min(100%, var(--content-width));
+    margin-inline: auto;
+    padding: 0.75rem var(--page-gutter);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .brand-plate {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    background: var(--color-stone);
+    border-radius: 0.25rem;
+  }
+
+  .brand-plate img {
+    width: 3rem;
+    height: auto;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: var(--type-1);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-display);
+    font-optical-sizing: auto;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.25rem, 1vw, 1.25rem);
+  }
+
+  .site-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .site-nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .site-nav .contact-link {
+    border: 1px solid var(--color-dark-accent);
+    color: var(--color-dark-accent);
+    padding-inline: 0.875rem;
+  }
+
+  .site-header :focus-visible {
+    outline-color: var(--color-focus-dark);
+  }
+
+  @media (max-width: 52rem) {
+    .header-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+
+    .site-nav {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .site-nav {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
