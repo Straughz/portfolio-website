@@ -1,0 +1,61 @@
+---
+import { SERVICE_LABELS } from '../../lib/services';
+import { EMPTY_SCOPE_SUMMARY } from '../../lib/scope-state';
+import '../../styles/services.css';
+
+const descriptions: Record<(typeof SERVICE_LABELS)[number], string> = {
+  'Brand and print': 'Identity, paper pieces, and the files that make them.',
+  Website: 'A public face built for the people using it.',
+  'Customer apps': 'Tools your customers use to get a task done.',
+  'Internal software': 'The systems that support the work out of public view.',
+  Care: 'Updates, fixes, and infrastructure I run.',
+};
+---
+
+<section class="services" id="services" aria-labelledby="services-title" data-service-column>
+  <div class="services-inner">
+    <div class="services-heading">
+      <div>
+        <p class="services-kicker">The service column</p>
+        <h2 id="services-title">Tick what you need.</h2>
+      </div>
+      <p>Each tick adds a service to your inquiry. All are optional.</p>
+    </div>
+
+    <div class="service-ticket">
+      <div class="service-table-head" aria-hidden="true">
+        <span>Scope / in order</span>
+        <span>Store #4507 example</span>
+        <span>Your ticket</span>
+      </div>
+      <ol class="service-list">
+        {SERVICE_LABELS.map((service, index) => (
+          <li class="service-row">
+            <div class="service-description">
+              <h3 id={`service-title-${index}`}>{service}</h3>
+              <p>{descriptions[service]}</p>
+            </div>
+            <span class="service-example" aria-label={`Store example: ${service} selected`}>
+              <span aria-hidden="true">✓</span>
+              <span class="service-example-caption">Store example</span>
+            </span>
+            <label class="service-choice">
+              <input type="checkbox" name="scope" value={service} aria-labelledby={`service-title-${index} service-choice-${index}`} />
+              <span id={`service-choice-${index}`}>Add to ticket</span>
+            </label>
+          </li>
+        ))}
+      </ol>
+      <div class="service-table-foot">
+        <div>
+          <p class="service-stop">You can stop at any step.</p>
+          <p class="service-scope-label">Your scope</p>
+          <p id="scope-summary" role="status" aria-live="polite" aria-atomic="true">{EMPTY_SCOPE_SUMMARY}</p>
+        </div>
+        <a data-scope-contact-link href="/contact">Continue to your ticket <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../../scripts/service-scope.ts"></script>
