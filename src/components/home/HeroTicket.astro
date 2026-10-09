@@ -1,0 +1,48 @@
+---
+import { getStudioProductEntries } from '../../lib/content';
+import ProofImage from '../ProofImage.astro';
+import '../../styles/home-hero.css';
+
+const cokpit = (await getStudioProductEntries()).find((entry) => entry.data.slug === 'cokpit');
+if (!cokpit) throw new Error('Cokpit work entry is required for the home hero.');
+
+const { title, kind, status, media } = cokpit.data;
+---
+
+<section class="home-hero" id="top" aria-labelledby="home-hero-title">
+  <div class="home-hero__outer-label" aria-hidden="true">
+    <span>NVG / WORK ORDER</span>
+    <span>DESIGN / BUILD / CARE</span>
+  </div>
+
+  <div class="home-hero__sheet">
+    <div class="home-hero__rule home-hero__rule--top">
+      <span>NEXUS VANTAGE GROUP / WORK ORDER</span>
+      <span>NEW INQUIRY</span>
+    </div>
+
+    <div class="home-hero__body">
+      <div class="home-hero__copy">
+        <p class="home-hero__label">DESCRIPTION OF WORK</p>
+        <h1 id="home-hero-title">Design, websites and software built to work together.</h1>
+        <p class="home-hero__lede">I take a job from its first mark through the website, the tools behind it and the care that follows.</p>
+        <a class="home-hero__action" href="/#contact">Start a ticket <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <aside class="home-hero__proof" aria-label={`${title} product proof`}>
+        <div class="home-hero__proof-media">
+          <ProofImage media={media} hero heroHolding={!media} sizes="(max-width: 720px) 100vw, 32vw" />
+        </div>
+        <div class="home-hero__proof-caption">
+          <strong>{title}</strong>
+          <span>{kind} / {status}</span>
+        </div>
+      </aside>
+    </div>
+
+    <div class="home-hero__rule home-hero__rule--bottom" aria-hidden="true">
+      <span>DESIGN / BUILD / CARE</span>
+      <span>NEXUS VANTAGE GROUP</span>
+    </div>
+  </div>
+</section>
