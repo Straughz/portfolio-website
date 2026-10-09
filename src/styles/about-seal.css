@@ -1,0 +1,102 @@
+.about-seal {
+  padding: clamp(3rem, 7vw, 6rem) var(--page-gutter);
+  background: var(--color-dark-surface);
+  color: var(--color-dark-ink);
+}
+
+.about-seal__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+}
+
+.about-seal__account {
+  max-width: 66ch;
+}
+
+.about-seal__label {
+  margin: 0 0 0.75rem;
+  color: var(--color-dark-accent);
+  font-size: var(--type-0);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.about-seal h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--type-4);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-display);
+  font-optical-sizing: auto;
+}
+
+.about-seal__account > p:not(.about-seal__label) {
+  max-width: 60ch;
+  margin: 1.5rem 0;
+  font-size: var(--type-1);
+  line-height: 1.5;
+}
+
+.about-seal a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: var(--color-dark-accent);
+  font-weight: var(--font-weight-bold);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.about-seal a:focus-visible {
+  outline: 3px solid var(--color-focus-dark);
+  outline-offset: 3px;
+}
+
+.about-seal__plate {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: var(--color-stone);
+}
+
+.engraved-seal {
+  width: 100%;
+  max-width: 870px;
+  aspect-ratio: 870 / 692.2;
+}
+
+.engraved-seal svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.engraved-seal[data-seal-playing] svg > g[clip-path] > g[fill="none"] {
+  animation: cut-engraving 2400ms steps(132, end) 0ms both;
+}
+
+@keyframes cut-engraving {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@media (max-width: 48rem) {
+  .about-seal__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .engraved-seal[data-seal-playing] svg > g[clip-path] > g[fill="none"] {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
+  }
+}

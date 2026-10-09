@@ -1,0 +1,20 @@
+---
+import EngravedSeal from '../EngravedSeal.astro';
+import '../../styles/about-seal.css';
+---
+
+<section class="about-seal" id="about" aria-labelledby="about-seal-title">
+  <div class="about-seal__inner">
+    <div class="about-seal__account">
+      <p class="about-seal__label">About</p>
+      <h2 id="about-seal-title">I stay with the work.</h2>
+      <p>I design print pieces, build websites and apps, and make tools of my own. I also care for the work after it is built.</p>
+      <a href="/about">More about my work <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="about-seal__plate">
+      <EngravedSeal />
+    </div>
+  </div>
+</section>
+
+<script src="../../scripts/seal-reveal.ts"></script>
