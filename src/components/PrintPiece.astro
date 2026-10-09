@@ -1,6 +1,5 @@
 ---
 import type { PrintEntry } from '../lib/content';
-import ProofImage from './ProofImage.astro';
 import PieceViewer from './print/PieceViewer.astro';
 
 interface Props {
@@ -8,19 +7,19 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, medium, attribution, media, clearance } = entry.data;
+const { title, medium, attribution, clearance } = entry.data;
 
 // privacyCondition and proofPolicy are editorial review metadata in the print
 // collection. They must be checked against the exact export before clearance;
 // neither belongs in public copy or image alt text.
-const approvedMedia = clearance === 'approved' ? media : undefined;
+const approvedMedia = clearance === 'approved';
 ---
 
 <li class="print-piece">
   <article aria-labelledby={`print-${entry.data.slug}`}>
     <div class="print-piece__visual">
       {approvedMedia ? (
-        <ProofImage media={approvedMedia} class="print-piece__image" sizes="(max-width: 720px) 92vw, (max-width: 1100px) 44vw, 38vw" />
+        <PieceViewer entry={entry} />
       ) : (
         <div class="print-piece__holding" role="img" aria-label={`Image for ${title} pending review`}>
           <span>Image pending review</span>
@@ -31,7 +30,6 @@ const approvedMedia = clearance === 'approved' ? media : undefined;
       <p class="print-piece__medium">{medium}</p>
       <h3 id={`print-${entry.data.slug}`}>{title}</h3>
       <p class="print-piece__attribution">{attribution}</p>
-      {approvedMedia && <PieceViewer entry={entry} />}
     </div>
   </article>
 </li>

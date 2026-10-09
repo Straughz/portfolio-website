@@ -4,15 +4,33 @@ type Piece = {
   kind: 'card' | 'brochure' | 'sticker' | 'sheet' | 'sign';
   faces: Face[];
 };
+type Drag = {
+  pointerId: number;
+  target: HTMLElement;
+  startX: number;
+  startY: number;
+  action: -1 | 0 | 1;
+  page?: HTMLElement;
+  startAngle?: number;
+  direction?: number;
+  moved: boolean;
+};
 
 let dialog: HTMLDialogElement | undefined;
 let trigger: HTMLAnchorElement | undefined;
 let piece: Piece | undefined;
 let flipped = false;
 let panel = 0;
+let drag: Drag | undefined;
+let suppressClick = false;
+let sheetDepth = 1;
 let inertBefore: Array<[HTMLElement, boolean]> = [];
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-function faceImage(face: Face): HTMLImageElement {
+function faceElement(face: Face, className: string, index: number): HTMLElement {
+  const surface = document.createElement('div');
+  surface.className = `pv-face ${className}`;
+  surface.dataset.faceIndex = String(index);
   const image = document.createElement('img');
   image.src = face.src;
   image.alt = face.alt;
@@ -20,23 +38,20 @@ function faceImage(face: Face): HTMLImageElement {
   image.height = face.height;
   image.decoding = 'async';
   image.className = 'pv-image';
-  return image;
-}
-
-function faceElement(face: Face, className: string, index: number): HTMLElement {
-  const surface = document.createElement('div');
-  surface.className = `pv-face ${className}`;
-  surface.dataset.faceIndex = String(index);
-  surface.append(faceImage(face));
+  surface.append(image);
   return surface;
 }
 
-function makeObject(model: Piece): HTMLElement {
+function makeObject(model: Piece, faceIndex = 0): HTMLElement {
   const object = document.createElement('div');
   object.className = `pv-object pv-object--${model.kind} pv-tilt`;
-  object.style.aspectRatio = `${model.faces[0].width} / ${model.faces[0].height}`;
-
+  object.style.aspectRatio = `${model.faces[faceIndex].width} / ${model.faces[faceIndex].height}`;
+  object.style.setProperty('--piece-ratio', String(model.faces[faceIndex].width / model.faces[faceIndex].height));
   if (model.kind === 'card' && model.faces.length > 1) {
+    object.classList.add('pv-card');
+    object.tabIndex = 0;
+    object.setAttribute('role', 'group');
+    object.setAttribute('aria-label', 'Card. Drag or click to turn. Use Left or Right arrow, Space, or Enter.');
     const rotor = document.createElement('div');
     rotor.className = 'pv-card__rotor';
     rotor.append(
@@ -45,81 +60,69 @@ function makeObject(model: Piece): HTMLElement {
     );
     object.append(rotor);
   } else {
-    object.append(faceElement(model.faces[0], 'pv-object__front', 0));
+    if (model.faces.length > 1) {
+      object.tabIndex = 0;
+      object.setAttribute('role', 'group');
+      object.setAttribute('aria-label', `Sheet ${faceIndex + 1}. Click or press Enter to bring it to the front.`);
+    }
+    object.append(faceElement(model.faces[faceIndex], 'pv-object__front', faceIndex));
   }
   return object;
 }
 
 function makeBrochure(model: Piece): HTMLElement {
-  if (model.faces.length === 1) return makeObject(model);
-
+  if (model.faces.length < 4) return makeObject(model);
   const booklet = document.createElement('div');
   booklet.className = 'pv-booklet pv-tilt';
+  booklet.style.aspectRatio = `${model.faces[0].width * 2} / ${model.faces[0].height}`;
   booklet.dataset.panel = String(panel);
+  booklet.tabIndex = 0;
+  booklet.setAttribute('role', 'group');
+  booklet.setAttribute('aria-label', 'Brochure. Click or drag the right page forward or the left page back. Use Left and Right arrows, Home, or End.');
   const base = document.createElement('div');
   base.className = 'pv-booklet__base';
-  if (model.faces[2]) base.append(faceElement(model.faces[2], 'pv-booklet__inside-right', 2));
-  if (model.faces[3]) base.append(faceElement(model.faces[3], 'pv-booklet__back', 3));
+  base.append(
+    faceElement(model.faces[2], 'pv-booklet__inside-right', 2),
+    faceElement(model.faces[3], 'pv-booklet__back', 3),
+  );
   const leaf = document.createElement('div');
   leaf.className = 'pv-booklet__leaf';
-  leaf.append(faceElement(model.faces[0], 'pv-booklet__cover', 0));
-  if (model.faces[1]) leaf.append(faceElement(model.faces[1], 'pv-booklet__inside-left', 1));
+  leaf.append(
+    faceElement(model.faces[0], 'pv-booklet__cover', 0),
+    faceElement(model.faces[1], 'pv-booklet__inside-left', 1),
+  );
   booklet.append(base, leaf);
   return booklet;
 }
 
 function setVisibleFaces(): void {
   if (!dialog || !piece) return;
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const faces = dialog.querySelectorAll<HTMLElement>('.pv-face');
-  faces.forEach((face) => {
+  dialog.querySelectorAll<HTMLElement>('.pv-face').forEach((face) => {
     const index = Number(face.dataset.faceIndex);
-    const visible = reduced || piece?.kind === 'sheet' || piece?.faces.length === 1 ||
-      (piece?.kind === 'card' ? index === Number(flipped) :
-        panel === 0 ? index === 0 : panel === 1 ? index === 1 || index === 2 : index === 3);
+    const visible = piece?.kind === 'card' && piece.faces.length > 1
+      ? index === Number(flipped)
+      : piece?.kind === 'brochure' && piece.faces.length >= 4
+        ? panel === 0 ? index === 0 : panel === 1 ? index === 1 || index === 2 : index === 3
+        : true;
     face.setAttribute('aria-hidden', String(!visible));
   });
 }
 
-function button(label: string, action: string): HTMLButtonElement {
-  const control = document.createElement('button');
-  control.type = 'button';
-  control.className = 'pv-control';
-  control.textContent = label;
-  control.dataset.action = action;
-  return control;
-}
-
-function updateControls(): void {
+function updateState(): void {
   if (!dialog || !piece) return;
-  const controls = dialog.querySelector<HTMLElement>('.pv-controls');
+  const rotor = dialog.querySelector<HTMLElement>('.pv-card__rotor');
+  if (rotor) rotor.style.setProperty('--rotation', flipped ? '180deg' : '0deg');
+  const booklet = dialog.querySelector<HTMLElement>('.pv-booklet');
+  if (booklet) booklet.dataset.panel = String(panel);
   const status = dialog.querySelector<HTMLElement>('.pv-status');
-  if (!controls || !status) return;
-  const focusedAction = dialog.contains(document.activeElement)
-    ? (document.activeElement as HTMLElement).dataset.action
-    : undefined;
-  controls.replaceChildren();
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    status.textContent = `All ${piece.faces.length} cleared ${piece.faces.length === 1 ? 'face' : 'faces'} visible`;
-    if (focusedAction && focusedAction !== 'close') dialog.querySelector<HTMLButtonElement>('.pv-close')?.focus();
-    return;
+  if (status) {
+    status.textContent = piece.kind === 'card' && piece.faces.length > 1
+      ? flipped ? 'Back of card' : 'Front of card'
+      : piece.kind === 'brochure' && piece.faces.length >= 4
+        ? ['Cover', 'Inside panels', 'Back panel'][panel]
+        : piece.faces.length > 1 ? `${piece.faces.length} loose sheets` : 'One cleared face';
   }
-  if (piece.kind === 'card' && piece.faces.length > 1) {
-    controls.append(button('Flip', 'flip'));
-    status.textContent = flipped ? 'Back of card' : 'Front of card';
-  } else if (piece.kind === 'brochure' && piece.faces.length > 1) {
-    if (panel === 0) controls.append(button('Open', 'open'));
-    if (panel > 0) controls.append(button('Previous panel', 'previous'));
-    if (panel < 2 && panel > 0 && piece.faces.length > 3) controls.append(button('Next panel', 'next'));
-    status.textContent = panel === 0 ? 'Cover' : panel === 1 ? 'Inside panels' : 'Back panel';
-  } else {
-    status.textContent = piece.faces.length > 1 ? `${piece.faces.length} loose sheets` : 'One cleared face';
-  }
-  if (focusedAction && focusedAction !== 'close') {
-    (controls.querySelector<HTMLButtonElement>(`[data-action="${focusedAction}"]`)
-      ?? controls.querySelector<HTMLButtonElement>('button')
-      ?? dialog.querySelector<HTMLButtonElement>('.pv-close'))?.focus();
-  }
+  setVisibleFaces();
 }
 
 function updateStage(): void {
@@ -128,24 +131,43 @@ function updateStage(): void {
   if (!stage) return;
   stage.replaceChildren();
   stage.className = `pv-stage pv-stage--${piece.kind}`;
-  if (piece.kind === 'sheet' && piece.faces.length > 1) {
-    for (const face of piece.faces) {
-      stage.append(makeObject({ ...piece, faces: [face] }));
-    }
+  if ((piece.kind === 'sheet' || piece.kind === 'sticker' || piece.kind === 'sign') && piece.faces.length > 1) {
+    piece.faces.forEach((_, index) => stage.append(makeObject(piece!, index)));
   } else {
     stage.append(piece.kind === 'brochure' ? makeBrochure(piece) : makeObject(piece));
   }
-  updateControls();
-  setVisibleFaces();
+  const hint = dialog.querySelector<HTMLElement>('.pv-hint');
+  if (hint) hint.textContent = piece.kind === 'card' && piece.faces.length > 1
+    ? 'Drag or click the card to turn it'
+    : piece.kind === 'brochure' && piece.faces.length >= 4
+      ? 'Click or drag a page to turn it'
+      : piece.faces.length > 1 ? 'Click a sheet to bring it forward' : 'Move the pointer to tilt the piece';
+  updateState();
 }
 
-function updateMotion(): void {
-  if (!dialog || !piece) return;
-  dialog.querySelector('.pv-card__rotor')?.classList.toggle('pv-card__rotor--flipped', flipped);
-  const booklet = dialog.querySelector<HTMLElement>('.pv-booklet');
-  if (booklet) booklet.dataset.panel = String(panel);
-  updateControls();
-  setVisibleFaces();
+function turnCard(): void {
+  flipped = !flipped;
+  updateState();
+}
+
+function turnPage(direction: number): void {
+  panel = Math.max(0, Math.min(2, panel + direction));
+  updateState();
+}
+
+function pageAction(booklet: HTMLElement, clientX: number): -1 | 0 | 1 {
+  const bounds = booklet.getBoundingClientRect();
+  const right = clientX >= bounds.left + bounds.width / 2;
+  if (right && panel < 2) return 1;
+  if (!right && panel > 0) return -1;
+  return 0;
+}
+
+function clearTilt(stage: HTMLElement): void {
+  stage.querySelectorAll<HTMLElement>('.pv-tilt').forEach((target) => {
+    target.style.removeProperty('--tilt-x');
+    target.style.removeProperty('--tilt-y');
+  });
 }
 
 function ensureDialog(): HTMLDialogElement {
@@ -157,55 +179,118 @@ function ensureDialog(): HTMLDialogElement {
     <div class="pv-shell">
       <header class="pv-header">
         <div><p class="pv-kicker">The print drawer</p><h2 id="piece-viewer-title"></h2></div>
-        <button class="pv-close" type="button" data-action="close">Close</button>
+        <button class="pv-close" type="button">Close</button>
       </header>
       <div class="pv-stage" aria-label="Print piece"></div>
-      <footer class="pv-footer"><div class="pv-controls"></div><p class="pv-status" role="status" aria-live="polite"></p></footer>
+      <footer class="pv-footer"><p class="pv-hint"></p><p class="pv-status" aria-live="polite"></p></footer>
     </div>`;
   document.body.append(dialog);
-
+  dialog.querySelector('.pv-close')?.addEventListener('click', () => dialog?.close());
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) { dialog?.close(); return; }
-    const action = (event.target as Element).closest<HTMLButtonElement>('[data-action]')?.dataset.action;
-    if (!action) return;
-    if (action === 'close') dialog?.close();
-    if (action === 'flip') flipped = !flipped;
-    if (action === 'open') panel = 1;
-    if (action === 'next') panel = Math.min(2, panel + 1);
-    if (action === 'previous') panel = Math.max(0, panel - 1);
-    updateMotion();
+    if (suppressClick) { suppressClick = false; return; }
+    const target = event.target as Element;
+    if (target.closest('.pv-card')) { turnCard(); return; }
+    const booklet = target.closest<HTMLElement>('.pv-booklet');
+    if (booklet) { turnPage(pageAction(booklet, event.clientX)); return; }
+    const sheet = target.closest<HTMLElement>('.pv-object');
+    if (sheet && piece && piece.faces.length > 1) sheet.style.zIndex = String(++sheetDepth);
   });
   dialog.addEventListener('close', () => {
     for (const [element, wasInert] of inertBefore) element.inert = wasInert;
     inertBefore = [];
+    drag = undefined;
     trigger?.focus();
   });
-  const stage = dialog.querySelector<HTMLElement>('.pv-stage');
-  stage?.addEventListener('pointermove', (event) => {
-    if (event.pointerType === 'touch' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const stage = dialog.querySelector<HTMLElement>('.pv-stage')!;
+  stage.addEventListener('keydown', (event) => {
+    const target = event.target as Element;
+    if (target.closest('.pv-card') && ['ArrowLeft', 'ArrowRight', ' ', 'Enter'].includes(event.key)) {
+      event.preventDefault();
+      turnCard();
+    } else if (target.closest('.pv-booklet')) {
+      if (event.key === 'ArrowRight') { event.preventDefault(); turnPage(1); }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); turnPage(-1); }
+      if (event.key === 'Home') { event.preventDefault(); panel = 0; updateState(); }
+      if (event.key === 'End') { event.preventDefault(); panel = 2; updateState(); }
+    } else if (target.closest('.pv-object') && [' ', 'Enter'].includes(event.key)) {
+      event.preventDefault();
+      (target.closest<HTMLElement>('.pv-object'))!.style.zIndex = String(++sheetDepth);
+    }
+  });
+  stage.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0) return;
+    const target = (event.target as Element).closest<HTMLElement>('.pv-card, .pv-booklet');
+    if (!target) return;
+    const action = target.classList.contains('pv-booklet') ? pageAction(target, event.clientX) : 1;
+    if (action === 0) return;
+    const page = target.classList.contains('pv-booklet')
+      ? target.querySelector<HTMLElement>(panel === 0 || panel === 1 && action < 0 ? '.pv-booklet__leaf' : '.pv-booklet__base')
+      : undefined;
+    drag = {
+      pointerId: event.pointerId, target, startX: event.clientX, startY: event.clientY,
+      action, page: page ?? undefined,
+      startAngle: page?.classList.contains('pv-booklet__leaf')
+        ? panel === 0 ? 0 : -180
+        : panel === 2 ? -180 : 0,
+      direction: action > 0 ? -1 : 1,
+      moved: false,
+    };
+    target.setPointerCapture(event.pointerId);
+  });
+  stage.addEventListener('pointermove', (event) => {
+    if (drag && event.pointerId === drag.pointerId) {
+      const dx = event.clientX - drag.startX;
+      if (Math.abs(dx) > 6 || Math.abs(event.clientY - drag.startY) > 6) drag.moved = true;
+      if (!drag.moved || reducedMotion.matches) return;
+      if (drag.target.classList.contains('pv-card')) {
+        const width = drag.target.getBoundingClientRect().width;
+        const delta = Math.max(-180, Math.min(180, dx / width * 240));
+        const rotor = drag.target.querySelector<HTMLElement>('.pv-card__rotor');
+        rotor?.classList.add('pv-dragging');
+        rotor?.style.setProperty('--rotation', `${(flipped ? 180 : 0) + delta}deg`);
+      } else if (drag.page) {
+        const width = drag.target.getBoundingClientRect().width / 2;
+        const progress = Math.max(0, Math.min(180, Math.abs(dx) / width * 180));
+        drag.page.classList.add('pv-dragging');
+        drag.page.style.transform = `rotateY(${(drag.startAngle ?? 0) + (drag.direction ?? -1) * progress}deg)`;
+      }
+      return;
+    }
+    if (event.pointerType === 'touch' || reducedMotion.matches) return;
     const target = (event.target as Element).closest<HTMLElement>('.pv-tilt');
     if (!target) return;
-    stage.querySelectorAll<HTMLElement>('.pv-tilt').forEach((other) => {
-      if (other === target) return;
-      other.style.removeProperty('--tilt-x');
-      other.style.removeProperty('--tilt-y');
-    });
+    clearTilt(stage);
     const bounds = target.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - 0.5;
     const y = (event.clientY - bounds.top) / bounds.height - 0.5;
     target.style.setProperty('--tilt-x', `${(-y * 8).toFixed(2)}deg`);
     target.style.setProperty('--tilt-y', `${(x * 8).toFixed(2)}deg`);
   });
-  stage?.addEventListener('pointerleave', () => {
-    stage.querySelectorAll<HTMLElement>('.pv-tilt').forEach((target) => {
-      target.style.removeProperty('--tilt-x');
-      target.style.removeProperty('--tilt-y');
-    });
-  });
-  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => {
-    updateControls();
-    setVisibleFaces();
-  });
+  const finishDrag = (event: PointerEvent) => {
+    if (!drag || event.pointerId !== drag.pointerId) return;
+    const current = drag;
+    drag = undefined;
+    current.target.releasePointerCapture(event.pointerId);
+    const dx = event.clientX - current.startX;
+    current.target.querySelector('.pv-card__rotor')?.classList.remove('pv-dragging');
+    current.page?.classList.remove('pv-dragging');
+    current.page?.style.removeProperty('transform');
+    if (!current.moved) return;
+    suppressClick = true;
+    window.setTimeout(() => { suppressClick = false; }, 0);
+    if (current.target.classList.contains('pv-card')) {
+      const width = current.target.getBoundingClientRect().width;
+      if (Math.abs(dx / width * 240) >= 90) flipped = !flipped;
+    } else if (Math.abs(dx) > 32 && Math.sign(dx) === current.direction) {
+      panel = Math.max(0, Math.min(2, panel + current.action));
+    }
+    updateState();
+  };
+  stage.addEventListener('pointerup', finishDrag);
+  stage.addEventListener('pointercancel', finishDrag);
+  stage.addEventListener('pointerleave', () => { if (!drag) clearTilt(stage); });
+  reducedMotion.addEventListener('change', () => { clearTilt(stage); updateState(); });
   return dialog;
 }
 
@@ -218,6 +303,7 @@ export function openPiece(link: HTMLAnchorElement): void {
   trigger = link;
   flipped = false;
   panel = 0;
+  sheetDepth = 1;
   const modal = ensureDialog();
   const title = modal.querySelector<HTMLElement>('#piece-viewer-title');
   if (title) title.textContent = piece.title;
@@ -227,5 +313,5 @@ export function openPiece(link: HTMLAnchorElement): void {
     .filter((child): child is HTMLElement => child instanceof HTMLElement && child !== modal)
     .map((child): [HTMLElement, boolean] => [child, child.inert]);
   for (const [element] of inertBefore) element.inert = true;
-  modal.querySelector<HTMLButtonElement>('.pv-close')?.focus();
+  (modal.querySelector<HTMLElement>('.pv-card, .pv-booklet, .pv-object[tabindex]') ?? modal.querySelector<HTMLButtonElement>('.pv-close'))?.focus();
 }

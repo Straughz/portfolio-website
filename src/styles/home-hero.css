@@ -64,8 +64,7 @@
   padding: 3rem clamp(1.5rem, 4vw, 4rem) 3.5rem;
 }
 
-.home-hero__label,
-.who-ticket__label {
+.home-hero__label {
   margin: 0 0 1.5rem;
   color: var(--color-teal);
   font-weight: var(--font-weight-bold);
@@ -145,25 +144,14 @@
 .home-hero__proof-caption span { color: var(--color-teal); }
 
 .who-ticket {
-  padding: clamp(4.5rem, 9vw, 9rem) var(--page-gutter);
-  border-bottom: 1px solid var(--color-rule);
-  background: var(--color-stone);
-  color: var(--color-charcoal);
+  min-width: 0;
 }
 
-.who-ticket__inner { max-width: var(--content-width); margin: 0 auto; }
-.who-ticket__body {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
-  align-items: end;
-  gap: clamp(2rem, 7vw, 7rem);
-}
-.who-ticket h2 { font-size: var(--type-5); line-height: 1.1; }
-.who-ticket__body p { max-width: 60ch; margin: 0; font-size: var(--type-1); }
+.who-ticket h2 { max-width: 13ch; font-size: var(--type-5); line-height: 1.1; }
+.who-ticket__body p { max-width: 46ch; margin: 1.5rem 0 0; font-size: var(--type-1); }
 
 @media (max-width: 48rem) {
-  .home-hero__body,
-  .who-ticket__body { grid-template-columns: minmax(0, 1fr); }
+  .home-hero__body { grid-template-columns: minmax(0, 1fr); }
   .home-hero__proof { max-width: 30rem; }
 }
 

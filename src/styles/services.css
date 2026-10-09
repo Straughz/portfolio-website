@@ -1,231 +1,35 @@
 .services {
-  padding: clamp(3rem, 7vw, 6rem) var(--page-gutter);
-  background: var(--color-dark-surface);
-  color: var(--color-dark-ink);
-}
-
-.services-inner {
-  width: min(100%, var(--content-width));
-  margin-inline: auto;
-}
-
-.services-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.services-heading > p {
-  max-width: 30ch;
-  margin: 0;
-}
-
-.services-kicker,
-.service-table-head,
-.service-scope-label {
-  font-size: var(--type-0);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-}
-
-.services-kicker {
-  margin: 0 0 0.75rem;
-  color: var(--color-dark-accent);
+  min-width: 0;
+  padding-left: clamp(1.5rem, 4vw, 4rem);
+  border-left: 1px solid var(--color-rule);
 }
 
 .services h2 {
-  margin: 0;
+  margin: 0 0 1rem;
   font-family: var(--font-display);
-  font-size: var(--type-4);
+  font-size: var(--type-3);
   font-weight: var(--font-weight-bold);
-  line-height: 1.1;
   letter-spacing: var(--tracking-display);
-  font-optical-sizing: auto;
-}
-
-.service-ticket {
-  border: 2px solid var(--color-stone);
-}
-
-.service-table-head,
-.service-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 10rem 12rem;
-  align-items: center;
-  gap: 1rem;
-}
-
-.service-table-head {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--color-dark-accent);
-}
-
-.service-table-head span:not(:first-child) {
-  text-align: center;
-}
-
-.service-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.service-row {
-  min-height: 7rem;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--color-dark-accent);
-}
-
-.service-description h3 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--type-2);
-  font-weight: var(--font-weight-bold);
   line-height: 1.15;
-  font-optical-sizing: auto;
 }
 
-.service-description p {
-  max-width: 60ch;
-  margin: 0.25rem 0 0;
-}
+.service-list { margin: 0; padding: 0; list-style: none; }
+.service-list li { padding: 0.5rem 0; border-top: 1px solid var(--color-rule); }
+.service-list h3 { margin: 0; font-size: var(--type-0); font-weight: var(--font-weight-bold); }
+.service-list p { margin: 0.25rem 0 0; }
 
-.service-example {
-  justify-self: center;
-  color: var(--color-dark-accent);
-  font-size: var(--type-2);
-  font-weight: var(--font-weight-bold);
-  line-height: 1;
-}
-
-.service-example-caption {
-  display: none;
-}
-
-.service-choice {
-  justify-self: center;
+.services__link {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   min-height: 44px;
-  padding: 0.25rem;
-  cursor: pointer;
-}
-
-.service-choice input {
-  flex: none;
-  width: 24px;
-  height: 24px;
-  margin: 0;
-  accent-color: var(--color-dark-accent);
-  cursor: pointer;
-}
-
-.service-choice:has(input:focus-visible) {
-  outline: 3px solid var(--color-focus-dark);
-  outline-offset: 3px;
-}
-
-.service-choice input:focus-visible {
-  outline: none;
-}
-
-.service-choice span {
-  line-height: 1.25;
-}
-
-.service-table-foot {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.5rem;
-}
-
-.service-table-foot p {
-  margin: 0;
-}
-
-.service-stop {
-  font-family: var(--font-display);
-  font-size: var(--type-2);
-  font-optical-sizing: auto;
-}
-
-.service-scope-label {
-  margin-top: 1rem !important;
-  color: var(--color-dark-accent);
-}
-
-#scope-summary {
-  max-width: 60ch;
-  overflow-wrap: anywhere;
-}
-
-.service-table-foot a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-height: 44px;
-  color: var(--color-dark-accent);
+  margin-top: 0.75rem;
+  color: var(--color-link);
   font-weight: var(--font-weight-bold);
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-}
-
-.service-table-foot a:focus-visible {
-  outline-color: var(--color-focus-dark);
+  text-underline-offset: 0.25em;
+  white-space: nowrap;
 }
 
 @media (max-width: 48rem) {
-  .services-heading,
-  .service-table-foot {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .service-table-head {
-    display: none;
-  }
-
-  .service-row {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 0.75rem;
-  }
-
-  .service-description {
-    grid-column: 1 / -1;
-  }
-
-  .service-example {
-    justify-self: start;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: var(--type-0);
-  }
-
-  .service-example-caption {
-    display: inline;
-    color: var(--color-dark-ink);
-    font-weight: var(--font-weight-regular);
-  }
-
-  .service-choice {
-    justify-self: end;
-  }
-}
-
-@media (max-width: 25rem) {
-  .service-row,
-  .service-table-foot {
-    padding-inline: 1rem;
-  }
-
-  .service-choice {
-    gap: 0.5rem;
-  }
+  .services { padding: 1.5rem 0 0; border-left: 0; border-top: 1px solid var(--color-rule); }
 }

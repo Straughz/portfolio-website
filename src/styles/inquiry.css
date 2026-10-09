@@ -1,3 +1,5 @@
+body:has(.inquiry) { min-width: 0; }
+
 .inquiry {
   display: grid;
   grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1.5fr);
@@ -10,8 +12,7 @@
 
 .inquiry-intro { max-width: 28rem; }
 .inquiry-kicker,
-.inquiry-ticket-head,
-.inquiry-scope > span {
+.inquiry-ticket-head {
   font-family: var(--font-data);
   font-size: var(--type-0);
   letter-spacing: var(--tracking-label);
@@ -42,12 +43,6 @@
   color: var(--color-ink);
   font-size: 0.75rem;
 }
-.inquiry-scope {
-  border-bottom: 1px solid var(--color-rule);
-  padding: 1.5rem;
-}
-.inquiry-scope > span { color: var(--color-link); font-size: 0.75rem; }
-.inquiry-scope p { margin: 0.5rem 0 0; font-weight: var(--font-weight-bold); }
 .inquiry-fields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

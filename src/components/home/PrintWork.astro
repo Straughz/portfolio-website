@@ -1,23 +1,24 @@
 ---
 import { getPrintEntries } from '../../lib/content';
-import PrintPiece from '../PrintPiece.astro';
-import '../../styles/print.css';
+import ProofImage from '../ProofImage.astro';
+import '../../styles/home-print.css';
 
-const pieces = await getPrintEntries();
+const pieces = (await getPrintEntries()).slice(0, 3);
 ---
 
-<section class="print-work" id="print" aria-labelledby="print-work-title">
-  <div class="print-work__inner">
-    <header class="print-work__heading">
-      <div>
-        <p class="print-work__kicker">The print drawer</p>
-        <h2 id="print-work-title">Print belongs here too.</h2>
-      </div>
-      <p>These pieces are work I designed while working at The UPS Store. They are not Nexus Vantage Group client work.</p>
-    </header>
-
-    <ol class="print-work__list">
-      {pieces.map((entry) => <PrintPiece entry={entry} />)}
-    </ol>
+<section class="print-teaser" id="print" aria-labelledby="print-teaser-title">
+  <div class="print-teaser__inner">
+    <div class="print-teaser__copy">
+      <h2 id="print-teaser-title">The print drawer.</h2>
+      <p>These pieces were designed by Kavish Singh while employed at The UPS Store. They are not Nexus Vantage Group client work.</p>
+      <a href="/projects/graphic-design">Open the print gallery <span aria-hidden="true">↗</span></a>
+    </div>
+    <ul class="print-teaser__fan" aria-label="Print gallery preview">
+      {pieces.map((entry) => (
+        <li class="print-teaser__piece">
+          <ProofImage media={entry.data.media} sizes="(max-width: 720px) 48vw, 18vw" />
+        </li>
+      ))}
+    </ul>
   </div>
 </section>

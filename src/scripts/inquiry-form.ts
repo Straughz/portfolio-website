@@ -1,37 +1,11 @@
 import { validateContactInput, type ContactField } from '../lib/contact-validation';
-import {
-  getSelectedScope,
-  initialScopeForPage,
-  scopeSummary,
-  SCOPE_CHANGE_EVENT,
-  type ScopeChangeDetail,
-} from '../lib/scope-state';
-import { validateScope, type ServiceLabel } from '../lib/services';
 
 for (const root of document.querySelectorAll<HTMLElement>('[data-inquiry-form]')) {
   const form = root.querySelector<HTMLFormElement>('form');
-  const summary = root.querySelector<HTMLElement>('[data-inquiry-scope]');
   const status = root.querySelector<HTMLElement>('[data-inquiry-status]');
   const indicator = root.querySelector<HTMLElement>('[data-waiting-indicator]');
   const submit = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
-  if (!form || !summary || !status || !indicator || !submit) continue;
-
-  let scope: ServiceLabel[] = initialScopeForPage();
-  try {
-    const given: unknown = JSON.parse(root.dataset.initialScope ?? '[]');
-    if (!scope.length && Array.isArray(given)) scope = validateScope(given) ?? [];
-  } catch { /* The default empty scope is valid. */ }
-  if (window.location.pathname.replace(/\/$/, '') !== '/contact' && getSelectedScope().length) scope = getSelectedScope();
-  summary.textContent = scopeSummary(scope);
-
-  function onScopeChange(event: Event) {
-    const detail = (event as CustomEvent<ScopeChangeDetail>).detail;
-    const valid = validateScope(detail?.labels ?? []);
-    if (valid === null) return;
-    scope = valid;
-    summary!.textContent = scopeSummary(scope);
-  }
-  window.addEventListener(SCOPE_CHANGE_EVENT, onScopeChange);
+  if (!form || !status || !indicator || !submit) continue;
 
   const fields = ['name', 'email', 'phone', 'message'] as const;
   type FormField = (typeof fields)[number];
@@ -42,7 +16,6 @@ for (const root of document.querySelectorAll<HTMLElement>('[data-inquiry-form]')
     email: inputFor('email').value,
     phone: inputFor('phone').value,
     message: inputFor('message').value,
-    scope,
     intent: new URLSearchParams(window.location.search).get('intent') ?? 'general',
     _hp: (form.elements.namedItem('_hp') as HTMLInputElement).value,
   });

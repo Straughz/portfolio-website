@@ -1,5 +1,5 @@
 .selected-work {
-  padding: clamp(4rem, 8vw, 7rem) var(--page-gutter);
+  padding: clamp(2rem, 4vw, 4rem) var(--page-gutter);
   background: var(--color-page);
   color: var(--color-ink);
 }
@@ -17,23 +17,22 @@
   margin-bottom: 2rem;
 }
 
-.selected-work__heading > p {
-  max-width: 32ch;
-  margin: 0;
+.selected-work__heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: var(--color-link);
+  font-weight: var(--font-weight-bold);
+  white-space: nowrap;
 }
 
-.selected-work__kicker,
 .work-row__kind,
 .work-status__word {
   font-size: var(--type-0);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-}
-
-.selected-work__kicker {
-  margin: 0 0 0.75rem;
-  color: var(--color-link);
 }
 
 .selected-work h2,
@@ -132,24 +131,46 @@
   max-width: min(100%, 25vw);
 }
 
+.selected-work__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1.5rem;
+}
+
+.work-row--home .work-row__body,
+.work-row--home.work-row--with-proof .work-row__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1rem 0;
+}
+
+.work-row--home .work-row__copy { min-width: 0; }
+.work-row--home h3 { font-size: var(--type-2); }
+.work-row--home .work-row__summary { max-width: 48ch; margin-top: 0.5rem; }
+.work-row--home .work-status { justify-content: flex-start; margin-top: auto; text-align: left; }
+.work-row--home .work-row__proof { width: 100%; max-width: 22rem; justify-self: auto; }
+.work-row--home .work-row__proof .proof-image { max-width: 100%; }
+.work-row--lead { grid-column: 1 / -1; }
+.work-row--lead .work-row__body { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); align-items: center; }
+.work-row--lead .work-status { grid-column: 1 / -1; }
+
+@media (max-width: 48rem) {
+  .selected-work__list { grid-template-columns: minmax(0, 1fr); }
+  .work-row--lead { grid-column: auto; }
+  .work-row--lead .work-row__body { display: flex !important; }
+}
+
 @media (max-width: 720px) {
   .selected-work__heading {
     display: block;
-  }
-
-  .selected-work__heading > p {
-    max-width: 66ch;
-    margin-top: 1rem;
   }
 
   .work-row__body,
   .work-row--with-proof .work-row__body {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.75rem;
-  }
-
-  .work-row:nth-child(2n) .work-row__body {
-    padding-left: 0;
   }
 
   .work-status {

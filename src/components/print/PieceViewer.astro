@@ -15,15 +15,26 @@ const faces = await Promise.all(viewer.faces.map(async (face) => {
   return { src: optimized.src, fallback: fallback.src, alt: face.alt, width: image.width, height: image.height };
 }));
 const stillsId = `print-stills-${slug}`;
+const viewLabel = viewer.kind === 'card' && faces.length > 1
+  ? 'business card, front and back'
+  : viewer.kind === 'brochure' && faces.length >= 4
+    ? 'brochure, four pages'
+    : entry.data.medium.toLowerCase();
 ---
 
 <a
   class="print-piece__open"
   href={`#${stillsId}`}
   data-print-viewer
+  data-viewer-kind={viewer.kind}
   data-viewer={JSON.stringify({ title, kind: viewer.kind, faces: faces.map(({ src, alt, width, height }) => ({ src, alt, width, height })) })}
-  aria-label={`Open ${title} print piece`}
->Open piece</a>
+  aria-label={`View ${title}, ${viewLabel}`}
+>
+  <picture class="print-piece__art">
+    <source srcset={faces[0].src} type="image/webp" />
+    <img src={faces[0].fallback} alt="" width={faces[0].width} height={faces[0].height} loading="lazy" decoding="async" />
+  </picture>
+</a>
 <div class="print-piece__stills" id={stillsId} aria-label={`${title} flat stills`}>
   <p class="print-piece__stills-heading">Flat stills</p>
   {faces.map((face) => (

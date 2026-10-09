@@ -1,5 +1,5 @@
 .about-seal {
-  padding: clamp(3rem, 7vw, 6rem) var(--page-gutter);
+  padding: clamp(2rem, 4vw, 4rem) var(--page-gutter);
   background: var(--color-dark-surface);
   color: var(--color-dark-ink);
 }
@@ -17,15 +17,6 @@
   max-width: 66ch;
 }
 
-.about-seal__label {
-  margin: 0 0 0.75rem;
-  color: var(--color-dark-accent);
-  font-size: var(--type-0);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-}
-
 .about-seal h2 {
   margin: 0;
   font-family: var(--font-display);
@@ -36,12 +27,15 @@
   font-optical-sizing: auto;
 }
 
-.about-seal__account > p:not(.about-seal__label) {
+.about-seal__account > p {
   max-width: 60ch;
   margin: 1.5rem 0;
   font-size: var(--type-1);
   line-height: 1.5;
 }
+
+.about-seal__contact { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--color-dark-accent); }
+.about-seal__contact p { margin: 0; }
 
 .about-seal a {
   display: inline-flex;
@@ -63,7 +57,7 @@
   display: grid;
   place-items: center;
   min-width: 0;
-  padding: clamp(1rem, 4vw, 3rem);
+  padding: clamp(1rem, 2vw, 2rem);
   background: var(--color-stone);
 }
 

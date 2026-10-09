@@ -6,7 +6,7 @@ import SelectedWork from '../components/home/SelectedWork.astro';
 import ServiceColumn from '../components/home/ServiceColumn.astro';
 import PrintWork from '../components/home/PrintWork.astro';
 import AboutSeal from '../components/home/AboutSeal.astro';
-import InquiryForm from '../components/InquiryForm.astro';
+import '../styles/home-overview.css';
 ---
 
 <SiteLayout
@@ -14,10 +14,11 @@ import InquiryForm from '../components/InquiryForm.astro';
   description="Nexus Vantage Group is Kavish Singh's design and software studio."
 >
   <HeroTicket />
-  <WhoIsOnTicket />
+  <div class="home-overview">
+    <WhoIsOnTicket />
+    <ServiceColumn />
+  </div>
   <SelectedWork />
-  <ServiceColumn />
   <PrintWork />
   <AboutSeal />
-  <InquiryForm />
 </SiteLayout>

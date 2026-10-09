@@ -61,6 +61,16 @@ test('empty scope remains a valid inquiry', async () => {
   assert.match(html, /scope to discuss/);
 });
 
+test('contact form payload without scope remains a valid inquiry', async () => {
+  let calls = 0;
+  const response = await handleContactRequest(request(payload({ scope: undefined })), {
+    readConfig: config, log: silent,
+    send: async () => { calls++; return { data: { id: 'mock-accepted' }, error: null }; },
+  });
+  assert.equal(response.status, 200);
+  assert.equal(calls, 1);
+});
+
 test('invalid JSON and invalid fields return 400 without sending', async () => {
   let calls = 0;
   const deps = { readConfig: config, log: silent, send: async () => { calls++; return { data: { id: 'mock-accepted' }, error: null }; } };

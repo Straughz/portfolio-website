@@ -10,13 +10,12 @@ const work = await getWorkEntries();
   <div class="selected-work__inner">
     <header class="selected-work__heading">
       <div>
-        <p class="selected-work__kicker">Selected work</p>
         <h2 id="work-title">Made and in the making.</h2>
       </div>
-      <p>Client websites and studio products, each marked with its current state.</p>
+      <a href="/projects">All work <span aria-hidden="true">↗</span></a>
     </header>
     <ol class="selected-work__list">
-      {work.map((entry) => <WorkRow entry={entry} />)}
+      {work.map((entry) => <WorkRow entry={entry} variant="home" />)}
     </ol>
   </div>
 </section>

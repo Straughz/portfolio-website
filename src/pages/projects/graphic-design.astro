@@ -3,6 +3,7 @@ import SiteLayout from '../../layouts/SiteLayout.astro';
 import PrintPiece from '../../components/PrintPiece.astro';
 import { getPrintEntries } from '../../lib/content';
 import '../../styles/print.css';
+import '../../styles/print-gallery.css';
 import '../../styles/routes.css';
 
 const pieces = await getPrintEntries();
@@ -12,7 +13,7 @@ const pieces = await getPrintEntries();
   title="Graphic Design"
   description="Brand and print design work by Kavish Singh."
 >
-  <div class="route-page">
+  <div class="route-page print-gallery">
     <header class="route-intro">
       <p class="route-kicker">Work / print</p>
       <h1>Graphic Design</h1>
@@ -26,7 +27,7 @@ const pieces = await getPrintEntries();
     </nav>
     <section class="route-print" aria-labelledby="print-pieces-title">
       <h2 id="print-pieces-title">Print pieces</h2>
-      <ol class="print-work__list">
+      <ol class="print-work__list print-gallery__list">
         {pieces.map((entry) => <PrintPiece entry={entry} />)}
       </ol>
     </section>
