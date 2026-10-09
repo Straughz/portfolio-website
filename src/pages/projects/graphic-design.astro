@@ -1,0 +1,38 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PrintPiece from '../../components/PrintPiece.astro';
+import { getPrintEntries } from '../../lib/content';
+import '../../styles/print.css';
+import '../../styles/routes.css';
+
+const pieces = await getPrintEntries();
+---
+
+<SiteLayout
+  title="Graphic Design"
+  description="Brand and print design work by Kavish Singh."
+>
+  <div class="route-page">
+    <header class="route-intro">
+      <p class="route-kicker">Work / print</p>
+      <h1>Graphic Design</h1>
+      <p>These are pieces I designed while employed at The UPS Store. They are not Nexus Vantage Group client work.</p>
+    </header>
+    <nav class="route-categories" aria-label="Work categories">
+      <a href="/projects">All projects</a>
+      <a href="/projects/web-design">Client Work</a>
+      <a href="/projects/prospect">Products</a>
+      <a href="/projects/graphic-design" aria-current="page">Print Work</a>
+    </nav>
+    <section class="route-print" aria-labelledby="print-pieces-title">
+      <h2 id="print-pieces-title">Print pieces</h2>
+      <ol class="print-work__list">
+        {pieces.map((entry) => <PrintPiece entry={entry} />)}
+      </ol>
+    </section>
+    <aside class="route-action" aria-label="Start an inquiry">
+      <p>Have a print or identity job in mind?</p>
+      <a href="/contact">Start a ticket <span aria-hidden="true">↗</span></a>
+    </aside>
+  </div>
+</SiteLayout>

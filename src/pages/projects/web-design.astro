@@ -1,0 +1,38 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import WorkRow from '../../components/WorkRow.astro';
+import { getClientWorkEntries } from '../../lib/content';
+import '../../styles/work.css';
+import '../../styles/routes.css';
+
+const work = await getClientWorkEntries();
+---
+
+<SiteLayout
+  title="Client Work"
+  description="Websites and customer-facing software by Kavish Singh for local businesses."
+>
+  <div class="route-page">
+    <header class="route-intro">
+      <p class="route-kicker">Work / client</p>
+      <h1>Client Work</h1>
+      <p>I build websites and customer-facing software for businesses. Work still in progress is marked as such.</p>
+    </header>
+    <nav class="route-categories" aria-label="Work categories">
+      <a href="/projects">All projects</a>
+      <a href="/projects/web-design" aria-current="page">Client Work</a>
+      <a href="/projects/prospect">Products</a>
+      <a href="/projects/graphic-design">Print Work</a>
+    </nav>
+    <section class="route-work" aria-labelledby="client-work-title">
+      <h2 id="client-work-title">The work</h2>
+      <ol class="selected-work__list">
+        {work.map((entry) => <WorkRow entry={entry} />)}
+      </ol>
+    </section>
+    <aside class="route-action" aria-label="Start an inquiry">
+      <p>Need a website or customer tool?</p>
+      <a href="/contact">Start a ticket <span aria-hidden="true">↗</span></a>
+    </aside>
+  </div>
+</SiteLayout>
