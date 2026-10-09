@@ -95,9 +95,13 @@ function updateControls(): void {
   const controls = dialog.querySelector<HTMLElement>('.pv-controls');
   const status = dialog.querySelector<HTMLElement>('.pv-status');
   if (!controls || !status) return;
+  const focusedAction = dialog.contains(document.activeElement)
+    ? (document.activeElement as HTMLElement).dataset.action
+    : undefined;
   controls.replaceChildren();
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     status.textContent = `All ${piece.faces.length} cleared ${piece.faces.length === 1 ? 'face' : 'faces'} visible`;
+    if (focusedAction && focusedAction !== 'close') dialog.querySelector<HTMLButtonElement>('.pv-close')?.focus();
     return;
   }
   if (piece.kind === 'card' && piece.faces.length > 1) {
@@ -110,6 +114,11 @@ function updateControls(): void {
     status.textContent = panel === 0 ? 'Cover' : panel === 1 ? 'Inside panels' : 'Back panel';
   } else {
     status.textContent = piece.faces.length > 1 ? `${piece.faces.length} loose sheets` : 'One cleared face';
+  }
+  if (focusedAction && focusedAction !== 'close') {
+    (controls.querySelector<HTMLButtonElement>(`[data-action="${focusedAction}"]`)
+      ?? controls.querySelector<HTMLButtonElement>('button')
+      ?? dialog.querySelector<HTMLButtonElement>('.pv-close'))?.focus();
   }
 }
 

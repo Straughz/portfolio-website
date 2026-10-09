@@ -89,7 +89,13 @@
 
 .route-prose section { max-width: 66ch; }
 .route-prose p { margin: 0 0 1rem; }
-.route-prose a { color: var(--color-link); font-weight: var(--font-weight-bold); }
+.route-prose a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-link);
+  font-weight: var(--font-weight-bold);
+}
 
 .route-action {
   display: flex;

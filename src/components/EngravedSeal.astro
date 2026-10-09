@@ -1,6 +1,7 @@
 ---
-// Keep the approved vector intact. Inline it so only its engraving strokes can be cut on view.
-import engravedMarkup from '../assets/identity/nvg-monogram-engraved-woven.svg?raw';
+import engravedUrl from '../assets/identity/nvg-monogram-engraved-woven.svg?url';
 ---
 
-<div class="engraved-seal" data-engraved-seal set:html={engravedMarkup} />
+<div class="engraved-seal" data-engraved-seal>
+  <img src={engravedUrl} width="870" height="692" alt="NVG monogram, woven" loading="lazy" decoding="async" />
+</div>

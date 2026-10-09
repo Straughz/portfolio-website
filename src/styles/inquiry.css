@@ -150,6 +150,6 @@
   .inquiry-wait-small { display: block; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .inquiry-wait-ring, .inquiry-wait-engraved { animation: none; }
+  .inquiry-wait-ring, .inquiry-wait-engraved { animation-duration: 0.01ms; animation-delay: 0ms; }
   .inquiry-wait-engraved { display: none; }
 }
