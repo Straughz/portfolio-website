@@ -25,14 +25,25 @@ viewer:
   kind: card
   faces:
   - image:
+      source: src/assets/print/good-ground-and-co-front.png
+      filename: good-ground-and-co-front.png
+      width: 1400
+      height: 801
+      alt: Black card front with the company name and a service list, name and phone replaced by bars
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-09'
+    alt: Black card front with the company name and a service list, name and phone replaced by bars
+  - image:
       source: src/assets/print/good-ground-and-co.png
       filename: good-ground-and-co.png
       width: 1400
       height: 800
-      alt: Good Ground services side of a card with green headings over a garden photograph
+      alt: Card back listing yard and roofing services on a dark green ground
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
-      clearanceDate: '2026-10-08'
-    alt: Good Ground services side of a card with green headings over a garden photograph
+      clearanceDate: '2026-10-09'
+    alt: Card back listing yard and roofing services on a dark green ground
 ---

@@ -29,10 +29,21 @@ viewer:
       filename: quantum-submetering.png
       width: 1751
       height: 1001
-      alt: Quantum Submetering card front with a white bolt and wave symbol on blue
+      alt: Blue business card front with a lightning bolt logo
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
-      clearanceDate: '2026-10-08'
-    alt: Quantum Submetering card front with a white bolt and wave symbol on blue
+      clearanceDate: '2026-10-09'
+    alt: Blue business card front with a lightning bolt logo
+  - image:
+      source: src/assets/print/quantum-submetering-back.png
+      filename: quantum-submetering-back.png
+      width: 1400
+      height: 800
+      alt: Card back with contact lines replaced by plain bars
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-09'
+    alt: Card back with contact lines replaced by plain bars
 ---

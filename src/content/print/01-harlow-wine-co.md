@@ -32,28 +32,28 @@ secondaryMedia:
   clearance: approved
   clearanceDate: '2026-10-08'
 viewer:
-  kind: sheet
+  kind: card
   faces:
   - image:
-      source: src/assets/print/harlow-wine-co.png
-      filename: harlow-wine-co.png
+      source: src/assets/print/harlow-wine-co-card-front.png
+      filename: harlow-wine-co-card-front.png
       width: 1400
-      height: 840
-      alt: Harlow Wine Co logo lockup in pale lettering and copper flourishes on navy
+      height: 800
+      alt: Navy business card front with the Harlow wordmark and a copper flourish
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
-      clearanceDate: '2026-10-08'
-    alt: Harlow Wine Co logo lockup in pale lettering and copper flourishes on navy
+      clearanceDate: '2026-10-09'
+    alt: Navy business card front with the Harlow wordmark and a copper flourish
   - image:
-      source: src/assets/print/harlow-wine-co-tasting.png
-      filename: harlow-wine-co-tasting.png
-      width: 766
-      height: 1127
-      alt: Four Harlow tasting cards arranged on a sheet, each with a logo and QR code
+      source: src/assets/print/harlow-wine-co-card-back.png
+      filename: harlow-wine-co-card-back.png
+      width: 1400
+      height: 800
+      alt: Card back with the company name, contact lines replaced by bars
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
-      clearanceDate: '2026-10-08'
-    alt: Four Harlow tasting cards arranged on a sheet, each with a logo and QR code
+      clearanceDate: '2026-10-09'
+    alt: Card back with the company name, contact lines replaced by bars
 ---

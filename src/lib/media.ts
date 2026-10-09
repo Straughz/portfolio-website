@@ -9,6 +9,15 @@ import kumuBack from '../assets/print/kumu-hula-nohea-macugay-back.png';
 import kumu from '../assets/print/kumu-hula-nohea-macugay.png';
 import quantum from '../assets/print/quantum-submetering.png';
 import spareRoom from '../assets/print/the-spare-room.png';
+import cokpitHero from '../assets/hero/cokpit-hero.png';
+import compassionPage1 from '../assets/print/compassion-care-transport-page-1.png';
+import compassionPage2 from '../assets/print/compassion-care-transport-page-2.png';
+import compassionPage3 from '../assets/print/compassion-care-transport-page-3.png';
+import compassionPage4 from '../assets/print/compassion-care-transport-page-4.png';
+import goodGroundFront from '../assets/print/good-ground-and-co-front.png';
+import harlowCardBack from '../assets/print/harlow-wine-co-card-back.png';
+import harlowCardFront from '../assets/print/harlow-wine-co-card-front.png';
+import quantumBack from '../assets/print/quantum-submetering-back.png';
 
 export type ClearedMedia = {
   source: string;
@@ -34,6 +43,15 @@ const approvedAssets: Readonly<Record<string, ImageMetadata>> = {
   'src/assets/print/kumu-hula-nohea-macugay.png': kumu,
   'src/assets/print/quantum-submetering.png': quantum,
   'src/assets/print/the-spare-room.png': spareRoom,
+  'src/assets/hero/cokpit-hero.png': cokpitHero,
+  'src/assets/print/compassion-care-transport-page-1.png': compassionPage1,
+  'src/assets/print/compassion-care-transport-page-2.png': compassionPage2,
+  'src/assets/print/compassion-care-transport-page-3.png': compassionPage3,
+  'src/assets/print/compassion-care-transport-page-4.png': compassionPage4,
+  'src/assets/print/good-ground-and-co-front.png': goodGroundFront,
+  'src/assets/print/harlow-wine-co-card-back.png': harlowCardBack,
+  'src/assets/print/harlow-wine-co-card-front.png': harlowCardFront,
+  'src/assets/print/quantum-submetering-back.png': quantumBack,
 };
 
 export function resolveApprovedMedia(media: ClearedMedia): ImageMetadata {
