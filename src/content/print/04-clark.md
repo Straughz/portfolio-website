@@ -21,4 +21,18 @@ media:
   sourceNote: privacy-reviewed export
   clearance: approved
   clearanceDate: '2026-10-08'
+viewer:
+  kind: sign
+  faces:
+  - image:
+      source: src/assets/print/clark.png
+      filename: clark.png
+      width: 1400
+      height: 680
+      alt: Clark aluminium mailbox sign design with a white ornamental monogram on charcoal
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-08'
+    alt: Clark aluminium mailbox sign design with a white ornamental monogram on charcoal
 ---

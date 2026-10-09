@@ -80,6 +80,31 @@
 .print-piece__medium { margin: 0 0 0.5rem; }
 .print-piece h3 { margin: 0; font-size: var(--type-2); line-height: 1.2; }
 .print-piece__attribution { max-width: 48ch; margin: 0.75rem 0 0; line-height: 1.5; }
+.print-piece__open {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 1rem;
+  padding: 8px 16px;
+  border: 1px solid var(--color-link);
+  color: var(--color-link);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+.print-piece__open:hover { background: var(--color-link); color: var(--color-page); }
+.print-piece__open:focus-visible,
+.print-piece__stills a:focus-visible { outline: 3px solid var(--color-focus-light); outline-offset: 4px; }
+.print-piece__stills { display: none; }
+.print-piece__stills:target {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.print-piece__stills-heading,
+.print-piece__stills a { grid-column: 1 / -1; margin: 0; }
+.print-piece__stills img { display: block; width: 100%; height: auto; }
+.print-piece__stills a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-link); }
 
 @media (max-width: 720px) {
   .print-work__heading { display: block; }

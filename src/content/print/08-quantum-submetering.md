@@ -21,4 +21,18 @@ media:
   sourceNote: privacy-reviewed export
   clearance: approved
   clearanceDate: '2026-10-08'
+viewer:
+  kind: card
+  faces:
+  - image:
+      source: src/assets/print/quantum-submetering.png
+      filename: quantum-submetering.png
+      width: 1751
+      height: 1001
+      alt: Quantum Submetering card front with a white bolt and wave symbol on blue
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-08'
+    alt: Quantum Submetering card front with a white bolt and wave symbol on blue
 ---

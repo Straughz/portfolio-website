@@ -21,4 +21,18 @@ media:
   sourceNote: privacy-reviewed export
   clearance: approved
   clearanceDate: '2026-10-08'
+viewer:
+  kind: card
+  faces:
+  - image:
+      source: src/assets/print/good-ground-and-co.png
+      filename: good-ground-and-co.png
+      width: 1400
+      height: 800
+      alt: Good Ground services side of a card with green headings over a garden photograph
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-08'
+    alt: Good Ground services side of a card with green headings over a garden photograph
 ---

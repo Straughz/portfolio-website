@@ -1,6 +1,7 @@
 ---
 import type { PrintEntry } from '../lib/content';
 import ProofImage from './ProofImage.astro';
+import PieceViewer from './print/PieceViewer.astro';
 
 interface Props {
   entry: PrintEntry;
@@ -30,6 +31,7 @@ const approvedMedia = clearance === 'approved' ? media : undefined;
       <p class="print-piece__medium">{medium}</p>
       <h3 id={`print-${entry.data.slug}`}>{title}</h3>
       <p class="print-piece__attribution">{attribution}</p>
+      {approvedMedia && <PieceViewer entry={entry} />}
     </div>
   </article>
 </li>

@@ -21,4 +21,18 @@ media:
   sourceNote: privacy-reviewed export
   clearance: approved
   clearanceDate: '2026-10-08'
+viewer:
+  kind: sheet
+  faces:
+  - image:
+      source: src/assets/print/the-spare-room.png
+      filename: the-spare-room.png
+      width: 800
+      height: 1400
+      alt: The Spare Room poster with a large dark wordmark on a light ground
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-08'
+    alt: The Spare Room poster with a large dark wordmark on a light ground
 ---

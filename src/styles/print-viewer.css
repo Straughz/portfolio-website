@@ -1,0 +1,88 @@
+.piece-viewer {
+  width: min(96vw, 1080px);
+  max-width: none;
+  max-height: min(94dvh, 900px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--color-rule);
+  color: var(--color-ink);
+  background-color: var(--color-page);
+  box-shadow: 12px 18px 0 var(--color-ink);
+}
+.piece-viewer::backdrop { background: color-mix(in srgb, var(--color-ink) 82%, transparent); }
+.pv-shell { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; max-height: min(94dvh, 900px); }
+.pv-header, .pv-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 24px; }
+.pv-header { border-bottom: 1px solid var(--color-rule); }
+.pv-footer { border-top: 1px solid var(--color-rule); }
+.pv-kicker { margin: 0 0 4px; color: var(--color-link); font-size: var(--type-0); font-weight: var(--font-weight-bold); letter-spacing: var(--tracking-label); text-transform: uppercase; }
+.pv-header h2 { margin: 0; font-family: var(--font-display); font-size: var(--type-2); line-height: 1.2; }
+.pv-close, .pv-control {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid var(--color-link);
+  background: var(--color-page);
+  color: var(--color-link);
+  font: inherit;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+.pv-close:hover, .pv-control:hover { background: var(--color-link); color: var(--color-page); }
+.piece-viewer :focus-visible { outline: 3px solid var(--color-focus-light); outline-offset: 3px; }
+.pv-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: min(58vh, 550px);
+  overflow: auto;
+  padding: 32px;
+  background-color: var(--color-stone);
+  background-image: linear-gradient(140deg, color-mix(in srgb, var(--color-page) 45%, transparent), transparent 55%);
+  perspective: 1200px;
+}
+.pv-tilt { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transform-style: preserve-3d; transition: transform 180ms ease-out; }
+.pv-object { position: relative; width: min(72vw, 680px); max-height: 54vh; flex: none; transform-style: preserve-3d; }
+.pv-object--sheet { width: min(38vw, 450px); }
+.pv-object--sheet:only-child { width: min(72vw, 680px); }
+.pv-object--sticker { width: min(60vw, 480px); border-radius: 50%; filter: drop-shadow(8px 12px 8px color-mix(in srgb, var(--color-ink) 20%, transparent)); }
+.pv-object--sign { width: min(76vw, 750px); padding: 10px; background-color: color-mix(in srgb, var(--color-page) 55%, var(--color-ink)); background-image: repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-page) 28%, transparent) 0 1px, color-mix(in srgb, var(--color-ink) 8%, transparent) 1px 2px); box-shadow: 8px 12px 14px color-mix(in srgb, var(--color-ink) 25%, transparent); }
+.pv-face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; background-color: var(--color-page); }
+.pv-image { display: block; width: 100%; height: 100%; object-fit: contain; }
+.pv-object--sheet > .pv-face { box-shadow: 5px 9px 12px color-mix(in srgb, var(--color-ink) 20%, transparent); }
+.pv-object--sticker > .pv-face { border-radius: 50%; }
+.pv-object--sticker::after { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: 50%; pointer-events: none; background: linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--color-page) 32%, transparent) 46%, transparent 62%); }
+.pv-object--sign::before { content: ''; position: absolute; inset: 10px; z-index: 2; pointer-events: none; background: linear-gradient(120deg, color-mix(in srgb, var(--color-page) 16%, transparent), transparent 46%, color-mix(in srgb, var(--color-page) 10%, transparent) 60%, transparent); }
+.pv-object--sign::after { content: ''; position: absolute; inset: 10px; z-index: 3; pointer-events: none; background: radial-gradient(circle at 3% 7%, var(--color-ink) 0 4px, var(--color-page) 5px 8px, transparent 9px), radial-gradient(circle at 97% 7%, var(--color-ink) 0 4px, var(--color-page) 5px 8px, transparent 9px), radial-gradient(circle at 3% 93%, var(--color-ink) 0 4px, var(--color-page) 5px 8px, transparent 9px), radial-gradient(circle at 97% 93%, var(--color-ink) 0 4px, var(--color-page) 5px 8px, transparent 9px); }
+.pv-object--sign > .pv-face { inset: 10px; }
+.pv-card__rotor { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 440ms ease-in-out; }
+.pv-card__rotor--flipped { transform: rotateY(180deg); }
+.pv-card__rotor::after { content: ''; position: absolute; inset: 0; border: 2px solid color-mix(in srgb, var(--color-ink) 20%, transparent); box-shadow: 3px 5px 8px color-mix(in srgb, var(--color-ink) 24%, transparent); transform: translateZ(-2px); pointer-events: none; }
+.pv-card__front { transform: translateZ(2px); }
+.pv-card__back { transform: rotateY(180deg) translateZ(2px); }
+.pv-booklet { position: relative; width: min(82vw, 850px); aspect-ratio: 2 / 1.25; transform-style: preserve-3d; }
+.pv-booklet__base, .pv-booklet__leaf { position: absolute; top: 0; left: 50%; width: 50%; height: 100%; transform-style: preserve-3d; transform-origin: left center; transition: transform 440ms ease-in-out; }
+.pv-booklet__base { background: var(--color-page); box-shadow: 6px 9px 12px color-mix(in srgb, var(--color-ink) 22%, transparent); }
+.pv-booklet__leaf { z-index: 2; box-shadow: 4px 8px 10px color-mix(in srgb, var(--color-ink) 20%, transparent); }
+.pv-booklet__inside-left, .pv-booklet__back { transform: rotateY(180deg); }
+.pv-booklet[data-panel='1'] .pv-booklet__leaf, .pv-booklet[data-panel='2'] .pv-booklet__leaf { transform: rotateY(-180deg); }
+.pv-booklet[data-panel='2'] .pv-booklet__base { z-index: 3; transform: rotateY(-180deg); }
+.pv-controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.pv-status { margin: 0; min-width: 10ch; text-align: right; }
+@media (max-width: 600px) {
+  .pv-header, .pv-footer { align-items: flex-start; padding: 12px 16px; }
+  .pv-header h2 { font-size: var(--type-1); }
+  .pv-stage { min-height: 42vh; padding: 16px; gap: 12px; }
+  .pv-object--sheet { width: 42vw; }
+  .pv-footer { flex-direction: column; }
+  .pv-status { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pv-stage { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); align-content: start; overflow-y: auto; perspective: none; }
+  .pv-tilt, .pv-card__rotor, .pv-booklet__base, .pv-booklet__leaf { transform: none !important; transition-duration: 0.01ms !important; }
+  .pv-object, .pv-booklet, .pv-card__rotor, .pv-booklet__base, .pv-booklet__leaf { display: contents; }
+  .pv-face { position: relative; inset: auto; width: 100%; height: auto; aspect-ratio: auto; transform: none !important; backface-visibility: visible; box-shadow: none; }
+  .pv-image { width: 100%; height: auto; }
+  .pv-object::before, .pv-object::after, .pv-card__rotor::after { display: none; }
+  .pv-controls { display: none; }
+}

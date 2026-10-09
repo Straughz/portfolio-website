@@ -21,4 +21,18 @@ media:
   sourceNote: privacy-reviewed export
   clearance: approved
   clearanceDate: '2026-10-08'
+viewer:
+  kind: sticker
+  faces:
+  - image:
+      source: src/assets/print/cozy-aroma-bar.png
+      filename: cozy-aroma-bar.png
+      width: 937
+      height: 937
+      alt: Round Cozy Aroma Bar sticker with lavender sprigs and fragrance bottles
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-08'
+    alt: Round Cozy Aroma Bar sticker with lavender sprigs and fragrance bottles
 ---

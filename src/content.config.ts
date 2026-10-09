@@ -49,6 +49,22 @@ const print = defineCollection({
     privacyCondition: z.string().min(1),
     clearance: z.enum(['pending', 'approved']),
     secondaryMedia: clearedMedia.optional(),
+    viewer: z.object({
+      kind: z.enum(['card', 'brochure', 'sticker', 'sheet', 'sign']),
+      faces: z.array(z.object({
+        image: clearedMedia,
+        alt: z.string().min(1),
+      })).max(4),
+    }),
+  }).refine((entry) => entry.viewer.faces.every((face) => face.alt === face.image.alt), {
+    message: 'Viewer face alt must match its cleared image metadata',
+    path: ['viewer', 'faces'],
+  }).refine((entry) => entry.clearance === 'approved' || entry.viewer.faces.length === 0, {
+    message: 'Pending print entries cannot include viewer faces',
+    path: ['viewer', 'faces'],
+  }).refine((entry) => entry.clearance !== 'approved' || entry.viewer.faces.length > 0, {
+    message: 'Approved print entries need at least one viewer face',
+    path: ['viewer', 'faces'],
   }).refine((entry) => entry.clearance === 'approved' || entry.media === undefined, {
     message: 'Pending print entries cannot include media',
     path: ['media'],

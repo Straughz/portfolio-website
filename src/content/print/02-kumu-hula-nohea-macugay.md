@@ -31,4 +31,29 @@ secondaryMedia:
   sourceNote: privacy-reviewed export
   clearance: approved
   clearanceDate: '2026-10-08'
+viewer:
+  kind: card
+  faces:
+  - image:
+      source: src/assets/print/kumu-hula-nohea-macugay.png
+      filename: kumu-hula-nohea-macugay.png
+      width: 1400
+      height: 821
+      alt: Black and coral business card with a floral emblem and hula school lettering
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-08'
+    alt: Black and coral business card with a floral emblem and hula school lettering
+  - image:
+      source: src/assets/print/kumu-hula-nohea-macugay-back.png
+      filename: kumu-hula-nohea-macugay-back.png
+      width: 1400
+      height: 821
+      alt: Coral reverse of the business card with a QR code and website
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-08'
+    alt: Coral reverse of the business card with a QR code and website
 ---

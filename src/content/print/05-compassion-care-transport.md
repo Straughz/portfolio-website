@@ -21,4 +21,18 @@ media:
   sourceNote: privacy-reviewed export
   clearance: approved
   clearanceDate: '2026-10-08'
+viewer:
+  kind: brochure
+  faces:
+  - image:
+      source: src/assets/print/compassion-care-transport.png
+      filename: compassion-care-transport.png
+      width: 840
+      height: 561
+      alt: Compassion Care brochure cover crop with a purple heart and house symbol
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-08'
+    alt: Compassion Care brochure cover crop with a purple heart and house symbol
 ---

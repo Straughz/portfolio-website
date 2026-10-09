@@ -1,0 +1,59 @@
+---
+import { getImage } from 'astro:assets';
+import type { PrintEntry } from '../../lib/content';
+import { resolveApprovedMedia } from '../../lib/media';
+import '../../styles/print-viewer.css';
+
+interface Props { entry: PrintEntry }
+
+const { entry } = Astro.props;
+const { title, slug, viewer } = entry.data;
+const faces = await Promise.all(viewer.faces.map(async (face) => {
+  const image = resolveApprovedMedia(face.image);
+  const optimized = await getImage({ src: image, width: Math.min(image.width, 1600), format: 'webp' });
+  return { src: optimized.src, alt: face.alt, width: image.width, height: image.height };
+}));
+const stillsId = `print-stills-${slug}`;
+---
+
+<a
+  class="print-piece__open"
+  href={`#${stillsId}`}
+  data-print-viewer
+  data-viewer={JSON.stringify({ title, kind: viewer.kind, faces })}
+  aria-label={`Open ${title} print piece`}
+>Open piece</a>
+<div class="print-piece__stills" id={stillsId} aria-label={`${title} flat stills`}>
+  <p class="print-piece__stills-heading">Flat stills</p>
+  {faces.map((face) => <img src={face.src} alt={face.alt} width={face.width} height={face.height} loading="lazy" decoding="async" />)}
+  <a href={`#print-${slug}`}>Back to piece</a>
+</div>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-print-viewer]');
+  let viewerModule: Promise<typeof import('./viewer')> | undefined;
+  const loadViewer = () => viewerModule ??= import('./viewer');
+
+  for (const link of links) {
+    link.addEventListener('click', async (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+      event.preventDefault();
+      try {
+        (await loadViewer()).openPiece(link);
+      } catch {
+        window.location.href = link.href;
+      }
+    });
+  }
+
+  const section = document.querySelector('.print-work');
+  if (section && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        void loadViewer();
+        observer.disconnect();
+      }
+    }, { rootMargin: '400px' });
+    observer.observe(section);
+  }
+</script>
