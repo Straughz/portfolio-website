@@ -25,6 +25,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, 'https://nexusvant
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href={newsreaderUrl} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href={schibstedUrl} as="font" type="font/woff2" crossorigin="anonymous" />
   </head>

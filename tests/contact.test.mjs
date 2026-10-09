@@ -120,3 +120,13 @@ test('missing key and missing production sender fail without sending', async () 
   assert.equal(demoSender.status, 503);
   assert.equal(calls, 0);
 });
+
+test('an email field holding more than one address is rejected', async () => {
+  let calls = 0;
+  const deps = { readConfig: config, log: silent, send: async () => { calls++; return { data: { id: 'mock-accepted' }, error: null }; } };
+  for (const email of ['a@example.com,b@example.com', 'a@example.com;b@example.com', 'a@example.com b@example.com']) {
+    const response = await handleContactRequest(request(payload({ email })), deps);
+    assert.equal(response.status, 400);
+  }
+  assert.equal(calls, 0);
+});

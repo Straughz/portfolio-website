@@ -11,7 +11,8 @@ const { title, slug, viewer } = entry.data;
 const faces = await Promise.all(viewer.faces.map(async (face) => {
   const image = resolveApprovedMedia(face.image);
   const optimized = await getImage({ src: image, width: Math.min(image.width, 1600), format: 'webp' });
-  return { src: optimized.src, alt: face.alt, width: image.width, height: image.height };
+  const fallback = await getImage({ src: image, width: Math.min(image.width, 1600), format: 'jpeg' });
+  return { src: optimized.src, fallback: fallback.src, alt: face.alt, width: image.width, height: image.height };
 }));
 const stillsId = `print-stills-${slug}`;
 ---
@@ -20,12 +21,17 @@ const stillsId = `print-stills-${slug}`;
   class="print-piece__open"
   href={`#${stillsId}`}
   data-print-viewer
-  data-viewer={JSON.stringify({ title, kind: viewer.kind, faces })}
+  data-viewer={JSON.stringify({ title, kind: viewer.kind, faces: faces.map(({ src, alt, width, height }) => ({ src, alt, width, height })) })}
   aria-label={`Open ${title} print piece`}
 >Open piece</a>
 <div class="print-piece__stills" id={stillsId} aria-label={`${title} flat stills`}>
   <p class="print-piece__stills-heading">Flat stills</p>
-  {faces.map((face) => <img src={face.src} alt={face.alt} width={face.width} height={face.height} loading="lazy" decoding="async" />)}
+  {faces.map((face) => (
+    <picture>
+      <source srcset={face.src} type="image/webp" />
+      <img src={face.fallback} alt={face.alt} width={face.width} height={face.height} loading="lazy" decoding="async" />
+    </picture>
+  ))}
   <a href={`#print-${slug}`}>Back to piece</a>
 </div>
 

@@ -16,7 +16,7 @@ type ValidationResult =
   | { ok: true; value: ContactInput; honeypot: boolean }
   | { ok: false; errors: Partial<Record<ContactField, string>> };
 
-const EMAIL_RE = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;
+const EMAIL_RE = /^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/;
 const INTENTS = ['general', 'strategy', 'conversation'] as const;
 
 export function validateContactInput(input: unknown): ValidationResult {
