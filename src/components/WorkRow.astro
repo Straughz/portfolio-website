@@ -11,9 +11,7 @@ const { entry } = Astro.props;
 const { slug, title, kind, status, media, publicUrl } = entry.data;
 const isClient = kind === 'Client work';
 const verifiedPublicLink = status === 'Live' ? publicUrl : undefined;
-const summary = slug === 'ups-store-4507-customer-kiosk'
-  ? 'A timed self-service customer PC with plans paid by card through Square, now in progress.'
-  : entry.data.summary;
+const summary = entry.data.summary;
 ---
 
 <li class:list={['work-row', { 'work-row--with-proof': Boolean(media) }]}>

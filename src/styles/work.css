@@ -70,14 +70,6 @@
   padding: 2rem 0;
 }
 
-.work-row:nth-child(2n) .work-row__body {
-  padding-left: clamp(0rem, 4vw, 4rem);
-}
-
-.work-row:nth-child(3n) .work-row__body {
-  padding-block: 2.75rem;
-}
-
 .work-row__kind {
   margin: 0 0 0.5rem;
   color: var(--color-link);

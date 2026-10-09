@@ -5,8 +5,8 @@ owner: Kavish Singh
 title: Good Ground & Co
 kind: Print work
 status: Approved for display
-summary: A newer business card design for print.
-medium: Newer business card
+summary: A business card designed for print.
+medium: Business card
 attribution: Designed by Kavish Singh while employed at The UPS Store.
 proofPolicy: Use only the confirmed newer version after review and redaction.
 privacyCondition: Use the confirmed newer version; remove name and phone.
