@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -6,25 +6,21 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
-# Ensure `public` always exists so cross-stage COPY doesn't fail.
-RUN mkdir -p public
 RUN npm run build
 
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV HOST=0.0.0.0
 ENV PORT=3000
 
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/server.js ./server.js
-COPY --from=builder /app/next.config.* ./
+COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["node", "./dist/server/entry.mjs"]
