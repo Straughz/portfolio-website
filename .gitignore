@@ -3,6 +3,11 @@ INIT.md
 INIT_CHECK.md
 INIT_EXISTING.md
 PROJECT.md
+CLAUDE.md
+
+# Local worktrees and research
+.worktrees/
+docs/research/
 
 # Environment & Secrets
 .env
@@ -31,6 +36,7 @@ vendor/
 .pnp.js
 
 # Build & Output
+.astro/
 dist/
 build/
 out/
