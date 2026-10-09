@@ -28,13 +28,13 @@ viewer:
       source: src/assets/print/good-ground-and-co-front.png
       filename: good-ground-and-co-front.png
       width: 1400
-      height: 801
-      alt: Black card front with the company name and a service list, name and phone replaced by bars
+      height: 800
+      alt: Dark green card front with the company name over a garden photograph, name and phone replaced by bars
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
       clearanceDate: '2026-10-09'
-    alt: Black card front with the company name and a service list, name and phone replaced by bars
+    alt: Dark green card front with the company name over a garden photograph, name and phone replaced by bars
   - image:
       source: src/assets/print/good-ground-and-co.png
       filename: good-ground-and-co.png
