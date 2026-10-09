@@ -6,8 +6,16 @@ const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 const clearedMedia = z.object({
   alt: z.string().min(1),
   focalPoint: z.object({ x: z.number().min(0).max(100), y: z.number().min(0).max(100) }),
-  source: z.string().regex(/^src\/assets\//),
+  source: z.string().regex(/^src\/assets\/(?:print|work|hero)\/[a-z0-9-]+\.(?:png|jpe?g|webp|avif)$/),
+  filename: z.string().regex(/^[a-z0-9-]+\.(?:png|jpe?g|webp|avif)$/),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+  sourceNote: z.literal('privacy-reviewed export'),
   clearance: z.literal('approved'),
+  clearanceDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+}).refine((media) => media.source.endsWith(`/${media.filename}`), {
+  message: 'Media filename must match its local source',
+  path: ['filename'],
 });
 
 const common = {
@@ -35,13 +43,20 @@ const print = defineCollection({
   schema: z.object({
     ...common,
     kind: z.literal('Print work'),
-    status: z.literal('Pending clearance'),
+    status: z.enum(['Pending clearance', 'Approved for display']),
     medium: z.string().min(1),
     attribution: z.literal('Designed by Kavish Singh while employed at The UPS Store.'),
     privacyCondition: z.string().min(1),
     clearance: z.enum(['pending', 'approved']),
+    secondaryMedia: clearedMedia.optional(),
   }).refine((entry) => entry.clearance === 'approved' || entry.media === undefined, {
     message: 'Pending print entries cannot include media',
+    path: ['media'],
+  }).refine((entry) => entry.clearance === 'approved' || entry.secondaryMedia === undefined, {
+    message: 'Pending print entries cannot include secondary media',
+    path: ['secondaryMedia'],
+  }).refine((entry) => entry.clearance !== 'approved' || (entry.status === 'Approved for display' && entry.media !== undefined), {
+    message: 'Approved print entries need approved media and status',
     path: ['media'],
   }),
 });
