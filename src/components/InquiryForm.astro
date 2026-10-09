@@ -1,0 +1,64 @@
+---
+import WaitingIndicator from './WaitingIndicator.astro';
+import { scopeSummary } from '../lib/scope-state';
+import { validateScope, type ServiceLabel } from '../lib/services';
+import '../styles/inquiry.css';
+
+interface Props {
+  initialScope?: readonly ServiceLabel[];
+  id?: string;
+}
+
+const selectedScope = validateScope(Astro.props.initialScope ?? []) ?? [];
+const sectionId = Astro.props.id ?? 'contact';
+---
+
+<section class="inquiry" id={sectionId} aria-labelledby="inquiry-title" data-inquiry-form data-initial-scope={JSON.stringify(selectedScope)}>
+  <div class="inquiry-intro">
+    <p class="inquiry-kicker">Your inquiry ticket</p>
+    <h2 id="inquiry-title">Put the job in writing.</h2>
+    <p>Tell me what you need. I will read the details and get back to you.</p>
+  </div>
+
+  <div class="inquiry-ticket">
+    <div class="inquiry-ticket-head"><span>Nexus Vantage Group / Inquiry</span><span>Your copy</span></div>
+    <div class="inquiry-scope">
+      <span>Scope selected</span>
+      <p data-inquiry-scope aria-live="polite" aria-atomic="true">{scopeSummary(selectedScope)}</p>
+    </div>
+
+    <form class="inquiry-fields" novalidate>
+      <div class="inquiry-field">
+        <label for="inquiry-name">Your name <span aria-hidden="true">*</span></label>
+        <input id="inquiry-name" name="name" autocomplete="name" required maxlength="120" aria-describedby="inquiry-name-error" />
+        <p class="inquiry-error" id="inquiry-name-error" data-error-for="name" aria-live="polite"></p>
+      </div>
+      <div class="inquiry-field">
+        <label for="inquiry-email">Email address <span aria-hidden="true">*</span></label>
+        <input id="inquiry-email" name="email" type="email" autocomplete="email" required maxlength="254" aria-describedby="inquiry-email-error" />
+        <p class="inquiry-error" id="inquiry-email-error" data-error-for="email" aria-live="polite"></p>
+      </div>
+      <div class="inquiry-field">
+        <label for="inquiry-phone">Phone <span class="inquiry-optional">optional, if you want me to call</span></label>
+        <input id="inquiry-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" aria-describedby="inquiry-phone-error" />
+        <p class="inquiry-error" id="inquiry-phone-error" data-error-for="phone" aria-live="polite"></p>
+      </div>
+      <div class="inquiry-field inquiry-field-wide">
+        <label for="inquiry-message">Project details <span aria-hidden="true">*</span></label>
+        <textarea id="inquiry-message" name="message" rows="6" required maxlength="3000" aria-describedby="inquiry-message-error"></textarea>
+        <p class="inquiry-error" id="inquiry-message-error" data-error-for="message" aria-live="polite"></p>
+      </div>
+      <div class="inquiry-honeypot" aria-hidden="true">
+        <label for="inquiry-website">Leave this field empty</label>
+        <input id="inquiry-website" name="_hp" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="inquiry-action">
+        <button type="submit">Send the ticket <span aria-hidden="true">↗</span></button>
+        <WaitingIndicator />
+      </div>
+      <p class="inquiry-status" data-inquiry-status role="status" aria-live="polite" aria-atomic="true"></p>
+    </form>
+  </div>
+</section>
+
+<script src="../scripts/inquiry-form.ts"></script>
