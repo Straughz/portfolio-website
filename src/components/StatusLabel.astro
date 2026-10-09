@@ -1,0 +1,14 @@
+---
+import type { WorkEntry } from '../lib/content';
+
+interface Props {
+  status: WorkEntry['data']['status'];
+}
+
+const { status } = Astro.props;
+---
+
+<span class="work-status" aria-label={`Status: ${status}`}>
+  <span class="work-status__word">Status</span>
+  <span>{status}</span>
+</span>

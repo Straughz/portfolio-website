@@ -1,0 +1,34 @@
+---
+import type { WorkEntry } from '../lib/content';
+import ProofImage from './ProofImage.astro';
+import StatusLabel from './StatusLabel.astro';
+
+interface Props {
+  entry: WorkEntry;
+}
+
+const { entry } = Astro.props;
+const { slug, title, kind, status, media, publicUrl } = entry.data;
+const isClient = kind === 'Client work';
+const verifiedPublicLink = status === 'Live' ? publicUrl : undefined;
+const summary = slug === 'ups-store-4507-customer-kiosk'
+  ? 'A timed self-service customer PC with plans paid by card through Square, now in progress.'
+  : entry.data.summary;
+---
+
+<li class:list={['work-row', { 'work-row--with-proof': Boolean(media) }]}>
+  <article class="work-row__body" aria-labelledby={`work-${slug}`}>
+    <div class="work-row__copy">
+      <p class="work-row__kind">{kind}</p>
+      <h3 id={`work-${slug}`}>{title}</h3>
+      <p class="work-row__summary">{summary}</p>
+      {verifiedPublicLink && <a class="work-row__link" href={verifiedPublicLink}>Visit public site <span aria-hidden="true">↗</span></a>}
+    </div>
+    {media && (
+      <div class="work-row__proof">
+        <ProofImage media={media} clientFrame={isClient} desaturate={isClient} sizes={isClient ? '(max-width: 720px) 25vw, 20vw' : '(max-width: 720px) 92vw, 28vw'} />
+      </div>
+    )}
+    <StatusLabel status={status} />
+  </article>
+</li>

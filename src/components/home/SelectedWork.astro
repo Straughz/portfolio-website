@@ -1,0 +1,22 @@
+---
+import { getWorkEntries } from '../../lib/content';
+import WorkRow from '../WorkRow.astro';
+import '../../styles/work.css';
+
+const work = await getWorkEntries();
+---
+
+<section class="selected-work" id="work" aria-labelledby="work-title">
+  <div class="selected-work__inner">
+    <header class="selected-work__heading">
+      <div>
+        <p class="selected-work__kicker">Selected work</p>
+        <h2 id="work-title">Made and in the making.</h2>
+      </div>
+      <p>Client websites and studio products, each marked with its current state.</p>
+    </header>
+    <ol class="selected-work__list">
+      {work.map((entry) => <WorkRow entry={entry} />)}
+    </ol>
+  </div>
+</section>
