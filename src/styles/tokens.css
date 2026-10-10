@@ -35,5 +35,5 @@
   --tracking-label: 0.08em;
   --tracking-display: -0.035em;
   --page-gutter: clamp(1rem, 4vw, 4rem);
-  --content-width: 81.25rem;
+  --page-max-width: 81.25rem;
 }

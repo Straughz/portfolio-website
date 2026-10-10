@@ -27,6 +27,7 @@ const viewLabel = viewer.kind === 'card' && faces.length > 1
   href={`#${stillsId}`}
   data-print-viewer
   data-viewer-kind={viewer.kind}
+  style={`--tile-ratio: ${faces[0].width} / ${faces[0].height}`}
   data-viewer={JSON.stringify({ title, kind: viewer.kind, faces: faces.map(({ src, alt, width, height }) => ({ src, alt, width, height })) })}
   aria-label={`View ${title}, ${viewLabel}`}
 >

@@ -1,8 +1,16 @@
+---
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const current = (href: string) => path === href;
+---
+
 <footer class="site-footer">
-  <div class="footer-inner">
+  <div class="footer-inner page-container">
     <p>Nexus Vantage Group<br /><span>Design and software by Kavish Singh.</span></p>
     <nav aria-label="Footer navigation">
-      <a href="/#work">Work</a>
+      <a href="/projects" aria-current={current('/projects') ? 'page' : undefined}>Work</a>
+      <a href="/projects/graphic-design" aria-current={current('/projects/graphic-design') ? 'page' : undefined}>Print</a>
+      <a href="/about" aria-current={current('/about') ? 'page' : undefined}>About</a>
+      <a href="/contact" aria-current={current('/contact') ? 'page' : undefined}>Start a ticket</a>
       <a href="#top">Back to top</a>
     </nav>
   </div>
@@ -20,9 +28,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    width: min(100%, var(--content-width));
-    margin-inline: auto;
-    padding: 1.5rem var(--page-gutter);
+    padding-block: 1.5rem;
   }
 
   p {
@@ -50,6 +56,12 @@
   }
 
   a:hover {
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+  }
+
+  a[aria-current='page'] {
+    font-weight: var(--font-weight-bold);
     text-decoration-thickness: 2px;
     text-underline-offset: 0.3em;
   }

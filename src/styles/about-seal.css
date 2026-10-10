@@ -1,5 +1,5 @@
 .about-seal {
-  padding: clamp(2rem, 4vw, 4rem) var(--page-gutter);
+  padding-block: clamp(2rem, 4vw, 4rem);
   background: var(--color-dark-surface);
   color: var(--color-dark-ink);
 }
@@ -9,8 +9,6 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   align-items: center;
   gap: clamp(2rem, 5vw, 5rem);
-  width: min(100%, var(--content-width));
-  margin-inline: auto;
 }
 
 .about-seal__account {

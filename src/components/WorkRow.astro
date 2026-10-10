@@ -20,16 +20,18 @@ const showMedia = variant === 'row' || slug === 'cokpit';
 <li class:list={['work-row', { 'work-row--with-proof': Boolean(media && showMedia), 'work-row--home': variant === 'home', 'work-row--lead': variant === 'home' && slug === 'cokpit' }]}>
   <article class="work-row__body" aria-labelledby={`work-${slug}`}>
     <div class="work-row__copy">
-      <p class="work-row__kind">{kind}</p>
+      <div class="work-row__meta">
+        <p class="work-row__kind">{kind}</p>
+        <StatusLabel status={status} />
+      </div>
       <h3 id={`work-${slug}`}>{title}</h3>
       <p class="work-row__summary">{summary}</p>
       {verifiedPublicLink && <a class="work-row__link" href={verifiedPublicLink}>Visit public site <span aria-hidden="true">↗</span></a>}
     </div>
     {media && showMedia && (
       <div class="work-row__proof">
-        <ProofImage media={media} clientFrame={isClient} desaturate={isClient} sizes={isClient ? '(max-width: 720px) 25vw, 20vw' : '(max-width: 720px) 92vw, 28vw'} />
+        <ProofImage media={media} clientFrame={isClient} desaturate={isClient} sizes="(max-width: 720px) 92vw, 44vw" />
       </div>
     )}
-    <StatusLabel status={status} />
   </article>
 </li>

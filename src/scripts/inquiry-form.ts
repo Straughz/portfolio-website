@@ -3,9 +3,16 @@ import { validateContactInput, type ContactField } from '../lib/contact-validati
 for (const root of document.querySelectorAll<HTMLElement>('[data-inquiry-form]')) {
   const form = root.querySelector<HTMLFormElement>('form');
   const status = root.querySelector<HTMLElement>('[data-inquiry-status]');
+  const summary = root.querySelector<HTMLElement>('[data-inquiry-summary]');
   const indicator = root.querySelector<HTMLElement>('[data-waiting-indicator]');
   const submit = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
-  if (!form || !status || !indicator || !submit) continue;
+  const submitLabel = submit?.querySelector<HTMLElement>('[data-submit-label]');
+  if (!form || !status || !summary || !indicator || !submit || !submitLabel) continue;
+
+  const setStatus = (message: string, state = '') => {
+    status.textContent = message;
+    status.dataset.state = state;
+  };
 
   const fields = ['name', 'email', 'phone', 'message'] as const;
   type FormField = (typeof fields)[number];
@@ -53,6 +60,8 @@ for (const root of document.querySelectorAll<HTMLElement>('[data-inquiry-form]')
     controller?.abort();
     controller = null;
     clearWait();
+    submit!.disabled = false;
+    submitLabel!.textContent = 'Send the ticket';
   }
   window.addEventListener('pagehide', abortSend);
   document.addEventListener('astro:before-swap', abortSend);
@@ -60,12 +69,13 @@ for (const root of document.querySelectorAll<HTMLElement>('[data-inquiry-form]')
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (controller) return;
-    status.textContent = '';
+    setStatus('');
+    summary.textContent = '';
     const payload = values();
     const result = validateContactInput(payload);
     if (!result.ok) {
       for (const name of fields) showError(name, result.errors[name] ?? '');
-      status.textContent = 'Check the marked fields and try again.';
+      summary.textContent = 'Check the marked fields and try again.';
       fields.find((name) => result.errors[name]) && inputFor(fields.find((name) => result.errors[name])!).focus();
       return;
     }
@@ -73,7 +83,8 @@ for (const root of document.querySelectorAll<HTMLElement>('[data-inquiry-form]')
     controller = new AbortController();
     const active = controller;
     submit.disabled = true;
-    status.textContent = 'Sending your ticket.';
+    submitLabel.textContent = 'Sending...';
+    setStatus('Sending your ticket.', 'waiting');
     waitTimer = setTimeout(() => {
       if (controller === active && !active.signal.aborted) {
         for (const image of indicator.querySelectorAll<HTMLImageElement>('img[data-src]')) {
@@ -101,15 +112,16 @@ for (const root of document.querySelectorAll<HTMLElement>('[data-inquiry-form]')
             for (const name of fields) if (typeof serverFields?.[name] === 'string') showError(name, serverFields[name]);
           }
         }
-        status.textContent = 'I could not send the ticket. Your details are still here. Please try again.';
+        setStatus('I could not send the ticket. Your details are still here. Please try again.', 'failure');
         return;
       }
-      status.textContent = 'Your ticket was accepted by the server. I will read it and get back to you.';
+      setStatus('Your ticket was accepted by the server. I will read it and get back to you.', 'success');
     } catch {
-      if (!active.signal.aborted) status.textContent = 'I could not send the ticket. Your details are still here. Check your connection and try again.';
+      if (!active.signal.aborted) setStatus('I could not send the ticket. Your details are still here. Check your connection and try again.', 'failure');
     } finally {
       if (controller === active) controller = null;
       submit.disabled = false;
+      submitLabel.textContent = 'Send the ticket';
       clearWait();
     }
   });

@@ -10,23 +10,22 @@ const pieces = await getPrintEntries();
 ---
 
 <SiteLayout
-  title="Graphic Design"
+  title="Print gallery"
   description="Brand and print design work by Kavish Singh."
 >
-  <div class="route-page print-gallery">
+  <div class="route-page page-container print-gallery">
     <header class="route-intro">
       <p class="route-kicker">Work / print</p>
-      <h1>Graphic Design</h1>
+      <h1>Print gallery</h1>
       <p>These are pieces I designed while employed at The UPS Store. They are not Nexus Vantage Group client work.</p>
     </header>
     <nav class="route-categories" aria-label="Work categories">
-      <a href="/projects">All projects</a>
-      <a href="/projects/web-design">Client Work</a>
+      <a href="/projects">All</a>
+      <a href="/projects/web-design">Client</a>
       <a href="/projects/prospect">Products</a>
-      <a href="/projects/graphic-design" aria-current="page">Print Work</a>
+      <a href="/projects/graphic-design" aria-current="page">Print</a>
     </nav>
-    <section class="route-print" aria-labelledby="print-pieces-title">
-      <h2 id="print-pieces-title">Print pieces</h2>
+    <section class="route-print" aria-label="Print gallery pieces">
       <ol class="print-work__list print-gallery__list">
         {pieces.map((entry) => <PrintPiece entry={entry} />)}
       </ol>

@@ -1,16 +1,12 @@
-body:has(.inquiry) { min-width: 0; }
-
 .inquiry {
   display: grid;
-  grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1.5fr);
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr);
   gap: clamp(2rem, 5vw, 5rem);
-  max-width: var(--content-width);
-  margin-inline: auto;
-  padding: clamp(3rem, 7vw, 7rem) var(--page-gutter);
+  padding-block: clamp(3rem, 7vw, 7rem);
   scroll-margin-top: 6rem;
 }
 
-.inquiry-intro { max-width: 28rem; }
+.inquiry-intro { max-width: 35rem; }
 .inquiry-kicker,
 .inquiry-ticket-head {
   font-family: var(--font-data);
@@ -19,15 +15,16 @@ body:has(.inquiry) { min-width: 0; }
   text-transform: uppercase;
 }
 .inquiry-kicker { color: var(--color-link); }
-.inquiry-intro h2 {
+.inquiry-intro h1 {
   margin: 1rem 0;
   font-family: var(--font-display);
-  font-size: var(--type-4);
-  font-weight: var(--font-weight-regular);
+  font-size: var(--type-6);
+  font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-display);
   line-height: 1.1;
 }
-.inquiry-intro > p:last-child { max-width: 35ch; }
+.inquiry-intro > p { max-width: 45ch; }
+.inquiry-intro > p:last-child { margin-top: 1.5rem; }
 .inquiry-ticket {
   min-width: 0;
   border: 1px solid var(--color-rule);
@@ -49,6 +46,8 @@ body:has(.inquiry) { min-width: 0; }
   gap: 1.5rem;
   padding: 1.5rem;
 }
+.inquiry-summary { grid-column: 1 / -1; margin: 0; padding: 0.75rem 1rem; border: 1px solid var(--color-ink); font-weight: var(--font-weight-bold); }
+.inquiry-summary:empty { display: none; }
 .inquiry-field { min-width: 0; }
 .inquiry-field-wide { grid-column: 1 / -1; }
 .inquiry-field label { display: block; margin-bottom: 0.5rem; font-weight: var(--font-weight-bold); }
@@ -99,6 +98,9 @@ body:has(.inquiry) { min-width: 0; }
 .inquiry-action button span { margin-left: 0.5rem; }
 .inquiry-status { grid-column: 1 / -1; margin: 0; }
 .inquiry-status:empty { display: none; }
+.inquiry-status:not(:empty) { padding: 0.75rem 1rem; border: 1px solid var(--color-rule); }
+.inquiry-status[data-state='success'] { border-color: var(--color-teal); color: var(--color-teal); font-weight: var(--font-weight-bold); }
+.inquiry-status[data-state='failure'] { border-color: var(--color-ink); font-weight: var(--font-weight-bold); }
 .inquiry-wait {
   position: relative;
   display: grid;

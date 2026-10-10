@@ -1,20 +1,11 @@
 .route-page {
-  width: min(100%, var(--content-width));
-  margin-inline: auto;
-  padding: 0 var(--page-gutter) clamp(4rem, 8vw, 7rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
 }
 
 .route-intro {
   max-width: 66ch;
   margin: 0;
   padding: clamp(3rem, 7vw, 6rem) 0 clamp(2rem, 5vw, 4rem);
-}
-
-.route-intro--contact {
-  width: min(100%, var(--content-width));
-  margin-inline: auto;
-  padding-inline: var(--page-gutter);
-  padding-bottom: 0;
 }
 
 .route-kicker {
@@ -44,11 +35,12 @@
 
 .route-categories {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
   margin-bottom: clamp(3rem, 6vw, 5rem);
   padding: 0.75rem 0;
-  border-block: 1px solid var(--color-rule);
+  border-top: 2px solid var(--color-ink);
+  border-bottom: 1px solid var(--color-rule);
 }
 
 .route-categories a {
@@ -57,6 +49,7 @@
   min-height: 44px;
   color: var(--color-link);
   text-underline-offset: 0.25em;
+  white-space: nowrap;
 }
 
 .route-categories a[aria-current='page'] {
@@ -77,17 +70,15 @@
   font-optical-sizing: auto;
 }
 
-.route-print > h2 { margin-bottom: 2rem; }
-
 .route-prose {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(2rem, 6vw, 5rem);
   border-top: 2px solid var(--color-ink);
   padding-top: 2rem;
 }
 
-.route-prose section { max-width: 66ch; }
+.route-prose section { display: flex; flex-direction: column; min-width: 0; }
 .route-prose p { margin: 0 0 1rem; }
 .route-prose a {
   display: inline-flex;
@@ -95,6 +86,7 @@
   min-height: 44px;
   color: var(--color-link);
   font-weight: var(--font-weight-bold);
+  margin-top: auto;
 }
 
 .route-action {
@@ -134,4 +126,8 @@
 @media (max-width: 720px) {
   .route-prose { grid-template-columns: minmax(0, 1fr); }
   .route-action { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 40rem) {
+  .route-categories { justify-content: space-between; gap: 0.5rem; }
 }

@@ -1,20 +1,22 @@
 ---
 import smallMarkUrl from '../assets/identity/nvg-monogram-small.svg?url';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const current = (href: string) => path === href;
 ---
 
 <header class="site-header" id="top">
-  <div class="header-inner">
-    <a class="brand" href="/" aria-label="Nexus Vantage Group home">
+  <div class="header-inner page-container">
+    <a class="brand" href="/" aria-label="Nexus Vantage Group home" aria-current={current('/') ? 'page' : undefined}>
       <span class="brand-plate" aria-hidden="true">
         <img src={smallMarkUrl} width="48" height="45" alt="" />
       </span>
       <span class="brand-name">Nexus Vantage Group</span>
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="/#work">Work</a>
-      <a href="/#services">Services</a>
-      <a href="/#about">About</a>
-      <a class="contact-link" href="/contact">Start a ticket</a>
+      <a href="/projects" aria-current={current('/projects') ? 'page' : undefined}>Work</a>
+      <a href="/projects/graphic-design" aria-current={current('/projects/graphic-design') ? 'page' : undefined}>Print</a>
+      <a href="/about" aria-current={current('/about') ? 'page' : undefined}>About</a>
+      <a class="contact-link" href="/contact" aria-current={current('/contact') ? 'page' : undefined}>Start a ticket</a>
     </nav>
   </div>
 </header>
@@ -30,9 +32,7 @@ import smallMarkUrl from '../assets/identity/nvg-monogram-small.svg?url';
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    width: min(100%, var(--content-width));
-    margin-inline: auto;
-    padding: 0.75rem var(--page-gutter);
+    padding-block: 0.75rem;
   }
 
   .brand {
@@ -69,6 +69,12 @@ import smallMarkUrl from '../assets/identity/nvg-monogram-small.svg?url';
     font-optical-sizing: auto;
   }
 
+  .brand[aria-current='page'] .brand-name {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+  }
+
   .site-nav {
     display: flex;
     align-items: center;
@@ -91,6 +97,13 @@ import smallMarkUrl from '../assets/identity/nvg-monogram-small.svg?url';
     text-underline-offset: 0.3em;
   }
 
+  .site-nav a[aria-current='page'] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+    font-weight: var(--font-weight-bold);
+  }
+
   .site-nav .contact-link {
     border: 1px solid var(--color-dark-accent);
     color: var(--color-dark-accent);
@@ -109,16 +122,14 @@ import smallMarkUrl from '../assets/identity/nvg-monogram-small.svg?url';
     }
 
     .site-nav {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      display: flex;
+      justify-content: space-between;
+      gap: 0.25rem;
     }
   }
 
-  @media (max-width: 30rem) {
-    .brand { white-space: normal; }
-
-    .site-nav {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  @media (max-width: 26rem) {
+    .site-nav a { padding-inline: 0.125rem; }
+    .site-nav .contact-link { padding-inline: 0.25rem; }
   }
 </style>

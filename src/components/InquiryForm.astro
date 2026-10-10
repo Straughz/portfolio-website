@@ -9,16 +9,18 @@ interface Props {
 const sectionId = Astro.props.id ?? 'contact';
 ---
 
-<section class="inquiry" id={sectionId} aria-labelledby="inquiry-title" data-inquiry-form>
+<section class="inquiry page-container" id={sectionId} aria-labelledby="inquiry-title" data-inquiry-form>
   <div class="inquiry-intro">
-    <p class="inquiry-kicker">Your inquiry ticket</p>
-    <h2 id="inquiry-title">Put the job in writing.</h2>
-    <p>Tell me what you need. I will read the details and get back to you.</p>
+    <p class="inquiry-kicker">Contact</p>
+    <h1 id="inquiry-title">Start a ticket.</h1>
+    <p>Tell me about the work you have in mind. Describe what you need in the project details field.</p>
+    <p>I will read the details and get back to you.</p>
   </div>
 
   <div class="inquiry-ticket">
     <div class="inquiry-ticket-head"><span>Nexus Vantage Group / Inquiry</span><span>Your copy</span></div>
     <form class="inquiry-fields" novalidate>
+      <p class="inquiry-summary" data-inquiry-summary role="alert" aria-atomic="true"></p>
       <div class="inquiry-field">
         <label for="inquiry-name">Your name <span aria-hidden="true">*</span></label>
         <input id="inquiry-name" name="name" autocomplete="name" required maxlength="120" aria-describedby="inquiry-name-error" />
@@ -44,7 +46,7 @@ const sectionId = Astro.props.id ?? 'contact';
         <input id="inquiry-website" name="_hp" type="text" tabindex="-1" autocomplete="off" />
       </div>
       <div class="inquiry-action">
-        <button type="submit">Send the ticket <span aria-hidden="true">↗</span></button>
+        <button type="submit"><span data-submit-label>Send the ticket</span> <span aria-hidden="true">↗</span></button>
         <WaitingIndicator />
       </div>
       <p class="inquiry-status" data-inquiry-status role="status" aria-live="polite" aria-atomic="true"></p>

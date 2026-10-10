@@ -7,14 +7,14 @@ const work = await getWorkEntries();
 ---
 
 <section class="selected-work" id="work" aria-labelledby="work-title">
-  <div class="selected-work__inner">
+  <div class="selected-work__inner page-container">
     <header class="selected-work__heading">
       <div>
         <h2 id="work-title">Made and in the making.</h2>
       </div>
       <a href="/projects">All work <span aria-hidden="true">↗</span></a>
     </header>
-    <ol class="selected-work__list">
+    <ol class="selected-work__list selected-work__list--home">
       {work.map((entry) => <WorkRow entry={entry} variant="home" />)}
     </ol>
   </div>
