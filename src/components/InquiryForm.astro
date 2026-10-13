@@ -38,7 +38,8 @@ const sectionId = Astro.props.id ?? 'contact';
       </div>
       <div class="inquiry-field inquiry-field-wide">
         <label for="inquiry-message">Project details <span aria-hidden="true">*</span></label>
-        <textarea id="inquiry-message" name="message" rows="6" required maxlength="3000" aria-describedby="inquiry-message-error"></textarea>
+        <textarea id="inquiry-message" name="message" rows="6" required maxlength="3000" aria-describedby="inquiry-message-count inquiry-message-error"></textarea>
+        <p class="inquiry-count" id="inquiry-message-count" data-word-count>0 / 300 words</p>
         <p class="inquiry-error" id="inquiry-message-error" data-error-for="message" aria-live="polite"></p>
       </div>
       <div class="inquiry-honeypot" aria-hidden="true">

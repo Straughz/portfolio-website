@@ -1,6 +1,11 @@
 import { validateScope, type ServiceLabel } from './services';
 
-export const CONTACT_LIMITS = { name: 120, email: 254, phone: 30, message: 3000 } as const;
+export const CONTACT_LIMITS = { name: 120, email: 254, phone: 30, message: 3000, words: 300 } as const;
+
+export function countWords(text: string): number {
+  const trimmed = text.trim();
+  return trimmed ? trimmed.split(/\s+/).length : 0;
+}
 
 export type ContactField = 'name' | 'email' | 'phone' | 'message' | 'scope';
 export type ContactInput = {
@@ -41,6 +46,7 @@ export function validateContactInput(input: unknown): ValidationResult {
   }
   if (!message) errors.message = 'Describe your project or question.';
   else if (message.length > CONTACT_LIMITS.message) errors.message = 'Keep your details under 3000 characters.';
+  else if (countWords(message) > CONTACT_LIMITS.words) errors.message = `Keep your details under ${CONTACT_LIMITS.words} words.`;
 
   const rawScope = body.scope === undefined ? [] : body.scope;
   const scope = Array.isArray(rawScope) && rawScope.length <= 5 ? validateScope(rawScope) : null;
