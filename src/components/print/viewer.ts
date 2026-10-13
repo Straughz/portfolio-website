@@ -83,6 +83,7 @@ function makeBrochure(model: Piece): HTMLElement {
   const booklet = document.createElement('div');
   booklet.className = 'pv-booklet pv-tilt';
   booklet.style.aspectRatio = `${model.faces[0].width * 2} / ${model.faces[0].height}`;
+  booklet.style.setProperty('--piece-ratio', String(model.faces[0].width / model.faces[0].height));
   booklet.dataset.panel = String(panel);
   booklet.tabIndex = 0;
   booklet.setAttribute('role', 'group');

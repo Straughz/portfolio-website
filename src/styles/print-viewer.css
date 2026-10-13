@@ -45,13 +45,14 @@
   perspective: 1200px;
 }
 .pv-tilt { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transform-style: preserve-3d; transition: transform 180ms ease-out; }
-.pv-object { position: relative; width: min(72vw, 680px, calc(54vh * var(--piece-ratio))); flex: none; transform-style: preserve-3d; }
-.pv-object--sheet { width: min(38vw, 450px, calc(54vh * var(--piece-ratio))); }
-.pv-object--sheet:only-child { width: min(72vw, 680px, calc(54vh * var(--piece-ratio))); }
+.pv-stage { --stage-height: calc(min(94dvh, 900px) - 270px); }
+.pv-object { position: relative; width: min(72vw, 680px, calc(var(--stage-height) * var(--piece-ratio))); flex: none; transform-style: preserve-3d; }
+.pv-object--sheet { width: min(38vw, 450px, calc(var(--stage-height) * var(--piece-ratio))); }
+.pv-object--sheet:only-child { width: min(72vw, 680px, calc(var(--stage-height) * var(--piece-ratio))); }
 .pv-stage--sheet .pv-object + .pv-object { margin-left: -48px; }
 .pv-stage--sheet .pv-object:focus-visible { z-index: 10; }
-.pv-object--sticker { width: min(60vw, 420px, 50vh); border-radius: 50%; box-shadow: var(--piece-shadow); }
-.pv-object--sign { width: min(76vw, 750px, calc(54vh * var(--piece-ratio))); box-shadow: var(--piece-shadow-lifted); }
+.pv-object--sticker { width: min(60vw, 420px, var(--stage-height)); border-radius: 50%; box-shadow: var(--piece-shadow); }
+.pv-object--sign { width: min(76vw, 750px, calc(var(--stage-height) * var(--piece-ratio))); box-shadow: var(--piece-shadow-lifted); }
 .pv-stage { user-select: none; -webkit-user-select: none; }
 .pv-stage img { -webkit-user-drag: none; }
 .pv-card, .pv-booklet { cursor: grab; touch-action: pan-y; }
@@ -85,10 +86,11 @@
 .pv-object--sign > .pv-face { box-shadow: inset 0 0 0 2px #c9cbcd, inset 0 0 0 3px #9a9ea2; }
 .pv-card__rotor { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(var(--rotation, 0deg)); transition: transform 280ms ease-out; }
 .pv-dragging { transition-duration: 0.01ms !important; }
-.pv-card__rotor::after { content: ''; position: absolute; inset: 0; background: var(--paper-edge); box-shadow: var(--piece-shadow); transform: translateZ(-1.5px); pointer-events: none; }
+.pv-card__rotor::after { content: ''; position: absolute; inset: 0; box-shadow: var(--piece-shadow); transform: translateZ(-1.5px); pointer-events: none; }
+.pv-card .pv-face { box-shadow: 0 0 0 1px var(--paper-edge); }
 .pv-card__front { transform: translateZ(1.5px); }
 .pv-card__back { transform: rotateY(180deg) translateZ(1.5px); }
-.pv-booklet { position: relative; width: min(calc(100% - 16px), 82vw, 850px, 68vh); transform-style: preserve-3d; }
+.pv-booklet { position: relative; width: min(calc(100% - 16px), 82vw, 850px, calc(var(--stage-height) * 2 * var(--piece-ratio, 0.647))); transform-style: preserve-3d; }
 .pv-booklet__base, .pv-booklet__leaf { position: absolute; top: 0; left: 50%; width: 50%; height: 100%; transform-style: preserve-3d; transform-origin: left center; transition: transform 280ms ease-out; }
 .pv-booklet__base { background: var(--paper-edge); box-shadow: var(--piece-shadow); }
 .pv-booklet__leaf { z-index: 2; box-shadow: var(--piece-shadow); }
@@ -107,7 +109,8 @@
   .pv-stage { padding: 16px; gap: 12px; }
   .pv-object { max-width: calc(100% - 8px); }
   .pv-booklet { width: min(calc(100% - 8px), 82vw, 68vh); }
-  .pv-object--sheet { width: min(42vw, calc(54vh * var(--piece-ratio))); }
+  .pv-stage { --stage-height: calc(100dvh - 16px - 250px); }
+  .pv-object--sheet { width: min(42vw, calc(var(--stage-height) * var(--piece-ratio))); }
   .pv-stage--sheet .pv-object + .pv-object { margin-left: -24px; }
   .pv-footer { flex-direction: column; gap: 4px; }
   .pv-hint { max-width: none; }
