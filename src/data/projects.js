@@ -14,11 +14,10 @@ const projectsUnsorted = [
         },
     },
     {
-        title: 'The UPS Store #4507 website',
-        description: 'A local UPS Store website with a customer file-upload portal for print orders, plus staff tools behind login.',
+        title: 'Retail store website',
+        description: 'A website for a local retail store with a customer file-upload portal for print orders, plus staff tools behind login.',
         category: 'Client work',
         status: 'Live',
-        href: 'https://lofa4507.com',
         color: 'linear-gradient(135deg, #0f1e26 0%, #1a3540 50%, #1d4550 100%)',
         publishedAt: '2026-03-01',
         caseStudy: {
@@ -28,7 +27,7 @@ const projectsUnsorted = [
         },
     },
     {
-        title: 'The UPS Store #4507 customer kiosk',
+        title: 'Retail store customer kiosk',
         description: 'A self-service customer PC with timed plans paid by card, being piloted in store.',
         category: 'Client work',
         status: 'In progress',
