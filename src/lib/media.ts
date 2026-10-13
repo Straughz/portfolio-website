@@ -9,6 +9,7 @@ import kumuBack from '../assets/print/kumu-hula-nohea-macugay-back.png';
 import kumu from '../assets/print/kumu-hula-nohea-macugay.png';
 import quantum from '../assets/print/quantum-submetering.png';
 import spareRoom from '../assets/print/the-spare-room.png';
+import spareRoomBack from '../assets/print/the-spare-room-back.png';
 import cokpitHero from '../assets/hero/cokpit-hero.png';
 import compassionPage1 from '../assets/print/compassion-care-transport-page-1.png';
 import compassionPage2 from '../assets/print/compassion-care-transport-page-2.png';
@@ -43,6 +44,7 @@ const approvedAssets: Readonly<Record<string, ImageMetadata>> = {
   'src/assets/print/kumu-hula-nohea-macugay.png': kumu,
   'src/assets/print/quantum-submetering.png': quantum,
   'src/assets/print/the-spare-room.png': spareRoom,
+  'src/assets/print/the-spare-room-back.png': spareRoomBack,
   'src/assets/hero/cokpit-hero.png': cokpitHero,
   'src/assets/print/compassion-care-transport-page-1.png': compassionPage1,
   'src/assets/print/compassion-care-transport-page-2.png': compassionPage2,

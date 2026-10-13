@@ -6,8 +6,8 @@ title: The Spare Room
 kind: Print work
 status: Approved for display
 summary: A wordmark and card designed for print.
-medium: Wordmark and card
-spec: 3.5 x 2 in card, 16pt, UV gloss
+medium: Two-sided business card
+spec: 2 x 3.5 in portrait card, 16pt, UV gloss
 attribution: Designed by Kavish Singh while employed at The UPS Store.
 proofPolicy: Use only a reviewed public export without proof marks.
 privacyCondition: Use a file without the proof watermark.
@@ -17,23 +17,34 @@ media:
   filename: the-spare-room.png
   width: 800
   height: 1400
-  alt: The Spare Room poster with a large dark wordmark on a light ground
+  alt: The Spare Room card front with a large dark wordmark on off-white
   focalPoint: { x: 50, y: 50 }
   sourceNote: privacy-reviewed export
   clearance: approved
   clearanceDate: '2026-10-08'
 viewer:
-  kind: sheet
+  kind: card
   faces:
   - image:
       source: src/assets/print/the-spare-room.png
       filename: the-spare-room.png
       width: 800
       height: 1400
-      alt: The Spare Room poster with a large dark wordmark on a light ground
+      alt: The Spare Room card front with a large dark wordmark on off-white
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
       clearanceDate: '2026-10-08'
-    alt: The Spare Room poster with a large dark wordmark on a light ground
+    alt: The Spare Room card front with a large dark wordmark on off-white
+  - image:
+      source: src/assets/print/the-spare-room-back.png
+      filename: the-spare-room-back.png
+      width: 800
+      height: 1400
+      alt: Card back with a softened QR code and the website address on off-white
+      focalPoint: { x: 50, y: 50 }
+      sourceNote: privacy-reviewed export
+      clearance: approved
+      clearanceDate: '2026-10-13'
+    alt: Card back with a softened QR code and the website address on off-white
 ---

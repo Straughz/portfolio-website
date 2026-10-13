@@ -283,8 +283,8 @@ function ensureDialog(): HTMLDialogElement {
     const y = (event.clientY - bounds.top) / bounds.height - 0.5;
     target.style.setProperty('--tilt-x', `${(-y * 8).toFixed(2)}deg`);
     target.style.setProperty('--tilt-y', `${(x * 8).toFixed(2)}deg`);
-    target.style.setProperty('--sheen-x', `${(50 + x * 90).toFixed(1)}%`);
-    target.style.setProperty('--sheen-y', `${(50 + y * 90).toFixed(1)}%`);
+    target.style.setProperty('--sheen-x', `${(50 - x * 70).toFixed(1)}%`);
+    target.style.setProperty('--sheen-y', `${(50 - y * 70).toFixed(1)}%`);
   });
   const finishDrag = (event: PointerEvent) => {
     if (!drag || event.pointerId !== drag.pointerId) return;

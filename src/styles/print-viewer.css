@@ -63,13 +63,21 @@
   --paper-edge: #f6f4ee;
 }
 .pv-face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; background-color: var(--color-page); }
-/* Material: a sheen that follows the pointer. UV gloss on cards, gloss vinyl, gloss text, metal. */
-.pv-gloss { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 180ms ease-out; mix-blend-mode: screen; }
-.pv-tilt:hover .pv-gloss, .pv-tilt:focus-visible .pv-gloss { opacity: 1; }
-.pv-object--card .pv-gloss, .pv-card .pv-gloss, .pv-booklet .pv-gloss { background: radial-gradient(60% 45% at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.07) 45%, transparent 72%); }
-.pv-object--sticker .pv-gloss { background: radial-gradient(55% 42% at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08) 45%, transparent 70%); }
-.pv-object--sheet .pv-gloss { background: radial-gradient(70% 50% at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.14), transparent 70%); }
-.pv-object--sign .pv-gloss { opacity: 1; background: linear-gradient(calc(100deg + (var(--tilt-y, 0deg) * 3)), transparent 0%, rgba(255, 255, 255, 0.05) 30%, rgba(255, 255, 255, 0.2) calc(var(--sheen-x, 50%) * 0.6 + 20%), rgba(255, 255, 255, 0.05) 70%, transparent 100%), repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 3px); }
+/* Material: a sheen that follows the pointer. UV gloss on cards, gloss vinyl, gloss text, brushed metal.
+   Kept faint: a coated surface catches a soft window light, it does not glow. The band sits opposite the tilt. */
+.pv-gloss { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; transition: opacity 180ms ease-out; }
+.pv-object--card .pv-gloss, .pv-card .pv-gloss, .pv-booklet .pv-gloss, .pv-object--sheet .pv-gloss {
+  background: linear-gradient(112deg, transparent calc(var(--sheen-x, 50%) - 38%), rgba(255, 255, 255, 0.075) var(--sheen-x, 50%), transparent calc(var(--sheen-x, 50%) + 38%));
+}
+.pv-object--sticker .pv-gloss {
+  background: linear-gradient(112deg, transparent calc(var(--sheen-x, 50%) - 34%), rgba(255, 255, 255, 0.11) var(--sheen-x, 50%), transparent calc(var(--sheen-x, 50%) + 34%));
+}
+/* Brushed aluminium reflects along the grain: a horizontal streak that rides the vertical tilt only. */
+.pv-object--sign .pv-gloss {
+  background:
+    linear-gradient(180deg, transparent calc(var(--sheen-y, 50%) - 30%), rgba(255, 255, 255, 0.085) var(--sheen-y, 50%), transparent calc(var(--sheen-y, 50%) + 30%)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 3px);
+}
 /* One edge rule: the real trim edge of the object, one shadow, no decorative borders. */
 .pv-image { display: block; width: 100%; height: 100%; object-fit: contain; }
 .pv-object--sheet > .pv-face { box-shadow: var(--piece-shadow); }
