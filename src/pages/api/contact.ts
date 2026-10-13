@@ -69,8 +69,9 @@ export async function handleContactRequest(request: Request, dependencies: Depen
   // The demo sender is allowed only for a local development contingency.
   const from = config.from?.trim() || (config.production ? '' : 'Nexus Vantage <onboarding@resend.dev>');
   const fromAddress = from.match(/<([^<>]+)>$/)?.[1] ?? from;
+  // A verified sender on the studio's own domain, root or subdomain; the demo sender never ships.
   const senderIsProductionReady = !/\bonboarding@resend\.dev$/i.test(fromAddress) &&
-    /@[^@.]+\.[^@.]+\.[^@.]+$/.test(fromAddress);
+    /@[^@\s]+\.[^@.\s]{2,}$/.test(fromAddress);
   if (!key || !to || !address(to) || !address(fromAddress) || (config.production && !senderIsProductionReady)) {
     log({ event: 'contact_send', outcome: 'configuration_missing' });
     return json({ error: 'I could not send the ticket right now. Please try again later.' }, 503);

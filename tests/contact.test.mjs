@@ -131,6 +131,17 @@ test('missing key and missing production sender fail without sending', async () 
   assert.equal(calls, 0);
 });
 
+test('a verified sender on the root domain is accepted in production', async () => {
+  const sent = [];
+  const send = async (_key, mail) => { sent.push(mail); return { data: { id: 'mock-accepted' }, error: null }; };
+  const response = await handleContactRequest(request(payload()), {
+    readConfig: () => ({ ...config(), from: 'Nexus Vantage Group <tickets@nexusvantagegroup.com>' }), send, log: silent,
+  });
+  assert.equal(response.status, 200);
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].from, 'Nexus Vantage Group <tickets@nexusvantagegroup.com>');
+});
+
 test('an email field holding more than one address is rejected', async () => {
   let calls = 0;
   const deps = { readConfig: config, log: silent, send: async () => { calls++; return { data: { id: 'mock-accepted' }, error: null }; } };
