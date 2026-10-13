@@ -30,12 +30,12 @@ viewer:
       filename: good-ground-and-co-front.png
       width: 1400
       height: 800
-      alt: Dark green card front with the company name, the owner's name and phone over a garden photograph
+      alt: Dark card front with the company name, the owner's name and phone, services line and a QR code over a garden photograph
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
       clearanceDate: '2026-10-09'
-    alt: Dark green card front with the company name, the owner's name and phone over a garden photograph
+    alt: Dark card front with the company name, the owner's name and phone, services line and a QR code over a garden photograph
   - image:
       source: src/assets/print/good-ground-and-co.png
       filename: good-ground-and-co.png
