@@ -17,6 +17,7 @@
 .pv-footer { border-top: 1px solid var(--color-rule); }
 .pv-kicker { margin: 0 0 4px; color: var(--color-link); font-size: var(--type-0); font-weight: var(--font-weight-bold); letter-spacing: var(--tracking-label); text-transform: uppercase; }
 .pv-header h2 { margin: 0; font-family: var(--font-display); font-size: var(--type-2); line-height: 1.2; }
+.pv-spec { margin: 4px 0 0; color: color-mix(in srgb, var(--color-ink) 72%, var(--color-page)); }
 .pv-close {
   min-width: 44px;
   min-height: 44px;
@@ -49,28 +50,40 @@
 .pv-object--sheet:only-child { width: min(72vw, 680px, calc(54vh * var(--piece-ratio))); }
 .pv-stage--sheet .pv-object + .pv-object { margin-left: -48px; }
 .pv-stage--sheet .pv-object:focus-visible { z-index: 10; }
-.pv-object--sticker { width: min(60vw, 480px, 54vh); border-radius: 50%; filter: drop-shadow(8px 12px 8px color-mix(in srgb, var(--color-ink) 20%, transparent)); }
-.pv-object--sign { width: min(76vw, 750px, calc(54vh * var(--piece-ratio))); padding: 10px; background-color: color-mix(in srgb, var(--color-page) 55%, var(--color-ink)); background-image: repeating-linear-gradient(0deg, color-mix(in srgb, var(--color-page) 28%, transparent) 0 1px, color-mix(in srgb, var(--color-ink) 8%, transparent) 1px 2px); box-shadow: 8px 12px 14px color-mix(in srgb, var(--color-ink) 25%, transparent); }
+.pv-object--sticker { width: min(60vw, 420px, 50vh); border-radius: 50%; box-shadow: var(--piece-shadow); }
+.pv-object--sign { width: min(76vw, 750px, calc(54vh * var(--piece-ratio))); box-shadow: var(--piece-shadow-lifted); }
+.pv-stage { user-select: none; -webkit-user-select: none; }
+.pv-stage img { -webkit-user-drag: none; }
 .pv-card, .pv-booklet { cursor: grab; touch-action: pan-y; }
 .pv-card:active, .pv-booklet:active { cursor: grabbing; }
 .pv-object[tabindex] { cursor: pointer; }
+.pv-stage {
+  --piece-shadow: 6px 10px 14px color-mix(in srgb, var(--color-ink) 22%, transparent);
+  --piece-shadow-lifted: 10px 16px 22px color-mix(in srgb, var(--color-ink) 28%, transparent);
+  --paper-edge: #f6f4ee;
+}
 .pv-face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; background-color: var(--color-page); }
+/* Material: a sheen that follows the pointer. UV gloss on cards, gloss vinyl, gloss text, metal. */
+.pv-gloss { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 180ms ease-out; mix-blend-mode: screen; }
+.pv-tilt:hover .pv-gloss, .pv-tilt:focus-visible .pv-gloss { opacity: 1; }
+.pv-object--card .pv-gloss, .pv-card .pv-gloss, .pv-booklet .pv-gloss { background: radial-gradient(60% 45% at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.07) 45%, transparent 72%); }
+.pv-object--sticker .pv-gloss { background: radial-gradient(55% 42% at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08) 45%, transparent 70%); }
+.pv-object--sheet .pv-gloss { background: radial-gradient(70% 50% at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.14), transparent 70%); }
+.pv-object--sign .pv-gloss { opacity: 1; background: linear-gradient(calc(100deg + (var(--tilt-y, 0deg) * 3)), transparent 0%, rgba(255, 255, 255, 0.05) 30%, rgba(255, 255, 255, 0.2) calc(var(--sheen-x, 50%) * 0.6 + 20%), rgba(255, 255, 255, 0.05) 70%, transparent 100%), repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 3px); }
+/* One edge rule: the real trim edge of the object, one shadow, no decorative borders. */
 .pv-image { display: block; width: 100%; height: 100%; object-fit: contain; }
-.pv-object--sheet > .pv-face { box-shadow: 5px 9px 12px color-mix(in srgb, var(--color-ink) 20%, transparent); }
-.pv-object--sticker > .pv-face { border-radius: 50%; }
-.pv-object--sticker::after { content: ''; position: absolute; inset: 0; z-index: 2; border-radius: 50%; pointer-events: none; background: linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--color-page) 32%, transparent) 46%, transparent 62%); }
-.pv-object--sign::before { content: ''; position: absolute; inset: 10px; z-index: 2; pointer-events: none; background: linear-gradient(120deg, color-mix(in srgb, var(--color-page) 16%, transparent), transparent 46%, color-mix(in srgb, var(--color-page) 10%, transparent) 60%, transparent); }
-.pv-object--sign::after { content: ''; position: absolute; inset: 10px; z-index: 3; pointer-events: none; background: radial-gradient(circle at 3% 7%, var(--color-ink) 0 4px, var(--color-page) 5px 8px, transparent 9px), radial-gradient(circle at 97% 7%, var(--color-ink) 0 4px, var(--color-page) 5px 8px, transparent 9px), radial-gradient(circle at 3% 93%, var(--color-ink) 0 4px, var(--color-page) 5px 8px, transparent 9px), radial-gradient(circle at 97% 93%, var(--color-ink) 0 4px, var(--color-page) 5px 8px, transparent 9px); }
-.pv-object--sign > .pv-face { inset: 10px; }
+.pv-object--sheet > .pv-face { box-shadow: var(--piece-shadow); }
+.pv-object--sticker > .pv-face { border-radius: 50%; box-shadow: inset 0 0 0 6px #ffffff; }
+.pv-object--sign > .pv-face { box-shadow: inset 0 0 0 2px #c9cbcd, inset 0 0 0 3px #9a9ea2; }
 .pv-card__rotor { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateY(var(--rotation, 0deg)); transition: transform 280ms ease-out; }
 .pv-dragging { transition-duration: 0.01ms !important; }
-.pv-card__rotor::after { content: ''; position: absolute; inset: 0; border: 2px solid color-mix(in srgb, var(--color-ink) 20%, transparent); box-shadow: 3px 5px 8px color-mix(in srgb, var(--color-ink) 24%, transparent); transform: translateZ(-2px); pointer-events: none; }
-.pv-card__front { transform: translateZ(2px); }
-.pv-card__back { transform: rotateY(180deg) translateZ(2px); }
+.pv-card__rotor::after { content: ''; position: absolute; inset: 0; background: var(--paper-edge); box-shadow: var(--piece-shadow); transform: translateZ(-1.5px); pointer-events: none; }
+.pv-card__front { transform: translateZ(1.5px); }
+.pv-card__back { transform: rotateY(180deg) translateZ(1.5px); }
 .pv-booklet { position: relative; width: min(calc(100% - 16px), 82vw, 850px, 68vh); transform-style: preserve-3d; }
 .pv-booklet__base, .pv-booklet__leaf { position: absolute; top: 0; left: 50%; width: 50%; height: 100%; transform-style: preserve-3d; transform-origin: left center; transition: transform 280ms ease-out; }
-.pv-booklet__base { background: var(--color-page); box-shadow: 6px 9px 12px color-mix(in srgb, var(--color-ink) 22%, transparent); }
-.pv-booklet__leaf { z-index: 2; box-shadow: 4px 8px 10px color-mix(in srgb, var(--color-ink) 20%, transparent); }
+.pv-booklet__base { background: var(--paper-edge); box-shadow: var(--piece-shadow); }
+.pv-booklet__leaf { z-index: 2; box-shadow: var(--piece-shadow); }
 .pv-booklet__inside-left, .pv-booklet__back { transform: rotateY(180deg); }
 .pv-booklet[data-panel='1'] .pv-booklet__leaf, .pv-booklet[data-panel='2'] .pv-booklet__leaf { transform: rotateY(-180deg); }
 .pv-booklet[data-panel='2'] .pv-booklet__base { z-index: 3; transform: rotateY(-180deg); }
@@ -106,5 +119,5 @@
   .pv-booklet[data-panel='1'] .pv-booklet__inside-left { grid-column: 1; grid-row: 1; }
   .pv-booklet[data-panel='1'] .pv-booklet__inside-right { grid-column: 2; grid-row: 1; }
   .pv-booklet[data-panel='2'] .pv-booklet__back { grid-column: 1; }
-  .pv-object::before, .pv-object::after, .pv-card__rotor::after { display: none; }
+  .pv-object::before, .pv-object::after, .pv-card__rotor::after, .pv-gloss { display: none; }
 }

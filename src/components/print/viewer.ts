@@ -1,6 +1,7 @@
 type Face = { src: string; alt: string; width: number; height: number };
 type Piece = {
   title: string;
+  spec?: string;
   kind: 'card' | 'brochure' | 'sticker' | 'sheet' | 'sign';
   faces: Face[];
 };
@@ -14,6 +15,9 @@ type Drag = {
   startAngle?: number;
   direction?: number;
   moved: boolean;
+  lastX: number;
+  lastTime: number;
+  velocity: number;
 };
 
 let dialog: HTMLDialogElement | undefined;
@@ -38,7 +42,11 @@ function faceElement(face: Face, className: string, index: number): HTMLElement 
   image.height = face.height;
   image.decoding = 'async';
   image.className = 'pv-image';
-  surface.append(image);
+  image.draggable = false;
+  const gloss = document.createElement('span');
+  gloss.className = 'pv-gloss';
+  gloss.setAttribute('aria-hidden', 'true');
+  surface.append(image, gloss);
   return surface;
 }
 
@@ -167,6 +175,8 @@ function clearTilt(stage: HTMLElement): void {
   stage.querySelectorAll<HTMLElement>('.pv-tilt').forEach((target) => {
     target.style.removeProperty('--tilt-x');
     target.style.removeProperty('--tilt-y');
+    target.style.removeProperty('--sheen-x');
+    target.style.removeProperty('--sheen-y');
   });
 }
 
@@ -178,7 +188,7 @@ function ensureDialog(): HTMLDialogElement {
   dialog.innerHTML = `
     <div class="pv-shell">
       <header class="pv-header">
-        <div><p class="pv-kicker">The print drawer</p><h2 id="piece-viewer-title"></h2></div>
+        <div><p class="pv-kicker">The print drawer</p><h2 id="piece-viewer-title"></h2><p class="pv-spec"></p></div>
         <button class="pv-close" type="button">Close</button>
       </header>
       <div class="pv-stage" aria-label="Print piece"></div>
@@ -235,12 +245,19 @@ function ensureDialog(): HTMLDialogElement {
         : panel === 2 ? -180 : 0,
       direction: action > 0 ? -1 : 1,
       moved: false,
+      lastX: event.clientX,
+      lastTime: event.timeStamp,
+      velocity: 0,
     };
     target.setPointerCapture(event.pointerId);
   });
   stage.addEventListener('pointermove', (event) => {
     if (drag && event.pointerId === drag.pointerId) {
       const dx = event.clientX - drag.startX;
+      const elapsed = event.timeStamp - drag.lastTime;
+      if (elapsed > 0) drag.velocity = (event.clientX - drag.lastX) / elapsed;
+      drag.lastX = event.clientX;
+      drag.lastTime = event.timeStamp;
       if (Math.abs(dx) > 6 || Math.abs(event.clientY - drag.startY) > 6) drag.moved = true;
       if (!drag.moved || reducedMotion.matches) return;
       if (drag.target.classList.contains('pv-card')) {
@@ -266,6 +283,8 @@ function ensureDialog(): HTMLDialogElement {
     const y = (event.clientY - bounds.top) / bounds.height - 0.5;
     target.style.setProperty('--tilt-x', `${(-y * 8).toFixed(2)}deg`);
     target.style.setProperty('--tilt-y', `${(x * 8).toFixed(2)}deg`);
+    target.style.setProperty('--sheen-x', `${(50 + x * 90).toFixed(1)}%`);
+    target.style.setProperty('--sheen-y', `${(50 + y * 90).toFixed(1)}%`);
   });
   const finishDrag = (event: PointerEvent) => {
     if (!drag || event.pointerId !== drag.pointerId) return;
@@ -279,10 +298,12 @@ function ensureDialog(): HTMLDialogElement {
     if (!current.moved) return;
     suppressClick = true;
     window.setTimeout(() => { suppressClick = false; }, 0);
+    const flick = Math.abs(current.velocity) > 0.45 && Math.abs(dx) > 12;
+    const tap = Math.abs(dx) < 14;
     if (current.target.classList.contains('pv-card')) {
       const width = current.target.getBoundingClientRect().width;
-      if (Math.abs(dx / width * 240) >= 90) flipped = !flipped;
-    } else if (Math.abs(dx) > 32 && Math.sign(dx) === current.direction) {
+      if (tap || flick || Math.abs(dx) >= width * 0.25) flipped = !flipped;
+    } else if (tap || (Math.sign(dx) === current.direction && (flick || Math.abs(dx) > 32))) {
       panel = Math.max(0, Math.min(2, panel + current.action));
     }
     updateState();
@@ -307,6 +328,8 @@ export function openPiece(link: HTMLAnchorElement): void {
   const modal = ensureDialog();
   const title = modal.querySelector<HTMLElement>('#piece-viewer-title');
   if (title) title.textContent = piece.title;
+  const specLine = modal.querySelector<HTMLElement>('.pv-spec');
+  if (specLine) specLine.textContent = piece.spec ?? '';
   updateStage();
   modal.showModal();
   inertBefore = [...document.body.children]

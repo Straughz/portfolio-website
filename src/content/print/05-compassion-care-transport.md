@@ -7,6 +7,7 @@ kind: Print work
 status: Approved for display
 summary: A brochure designed for print.
 medium: Brochure
+spec: 8.5 x 11 in half-fold brochure, gloss text
 attribution: Designed by Kavish Singh while employed at The UPS Store.
 proofPolicy: Use only reviewed public brochure panels with resident privacy protected.
 privacyCondition: Remove resident faces unless cleared.

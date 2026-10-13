@@ -7,7 +7,7 @@ import '../../styles/print-viewer.css';
 interface Props { entry: PrintEntry }
 
 const { entry } = Astro.props;
-const { title, slug, viewer } = entry.data;
+const { title, slug, viewer, spec } = entry.data;
 const faces = await Promise.all(viewer.faces.map(async (face) => {
   const image = resolveApprovedMedia(face.image);
   const optimized = await getImage({ src: image, width: Math.min(image.width, 1600), format: 'webp' });
@@ -28,7 +28,7 @@ const viewLabel = viewer.kind === 'card' && faces.length > 1
   data-print-viewer
   data-viewer-kind={viewer.kind}
   style={`--tile-ratio: ${faces[0].width} / ${faces[0].height}`}
-  data-viewer={JSON.stringify({ title, kind: viewer.kind, faces: faces.map(({ src, alt, width, height }) => ({ src, alt, width, height })) })}
+  data-viewer={JSON.stringify({ title, spec, kind: viewer.kind, faces: faces.map(({ src, alt, width, height }) => ({ src, alt, width, height })) })}
   aria-label={`View ${title}, ${viewLabel}`}
 >
   <picture class="print-piece__art">

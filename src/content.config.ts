@@ -45,6 +45,7 @@ const print = defineCollection({
     kind: z.literal('Print work'),
     status: z.enum(['Pending clearance', 'Approved for display']),
     medium: z.string().min(1),
+    spec: z.string().min(1),
     attribution: z.literal('Designed by Kavish Singh while employed at The UPS Store.'),
     privacyCondition: z.string().min(1),
     clearance: z.enum(['pending', 'approved']),

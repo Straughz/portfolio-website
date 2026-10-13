@@ -7,6 +7,7 @@ kind: Print work
 status: Approved for display
 summary: A two-sided business card designed for print.
 medium: Two-sided business card
+spec: 3.5 x 2 in card, 16pt, UV gloss both sides
 attribution: Designed by Kavish Singh while employed at The UPS Store.
 proofPolicy: Use only a reviewed public export with sensitive details removed or cleared.
 privacyCondition: Crop face photo, address, and email unless cleared.

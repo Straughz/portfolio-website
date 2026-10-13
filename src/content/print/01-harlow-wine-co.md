@@ -7,6 +7,7 @@ kind: Print work
 status: Approved for display
 summary: Logo, cards, and tasting cards designed for print.
 medium: Logo, cards, tasting cards
+spec: 3.5 x 2 in card, 16pt, UV gloss
 attribution: Designed by Kavish Singh while employed at The UPS Store.
 proofPolicy: Use only reviewed public exports without personal details or proof marks.
 privacyCondition: Remove phone and email from cards.

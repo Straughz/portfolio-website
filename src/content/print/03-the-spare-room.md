@@ -7,6 +7,7 @@ kind: Print work
 status: Approved for display
 summary: A wordmark and card designed for print.
 medium: Wordmark and card
+spec: 3.5 x 2 in card, 16pt, UV gloss
 attribution: Designed by Kavish Singh while employed at The UPS Store.
 proofPolicy: Use only a reviewed public export without proof marks.
 privacyCondition: Use a file without the proof watermark.

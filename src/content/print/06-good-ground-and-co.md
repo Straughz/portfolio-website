@@ -7,6 +7,7 @@ kind: Print work
 status: Approved for display
 summary: A business card designed for print.
 medium: Business card
+spec: 3.5 x 2 in card, 16pt, UV gloss
 attribution: Designed by Kavish Singh while employed at The UPS Store.
 proofPolicy: Use only the confirmed newer version after review and redaction.
 privacyCondition: Use the confirmed newer version; remove name and phone.

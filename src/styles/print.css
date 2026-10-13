@@ -85,7 +85,7 @@
 .print-piece__art img { height: auto; aspect-ratio: var(--tile-ratio); object-fit: contain; }
 .print-piece__open[data-viewer-kind='sheet'],
 .print-piece__open[data-viewer-kind='brochure'] { width: min(100%, 24rem); }
-.print-piece__open[data-viewer-kind='sticker'] { width: min(100%, 25rem); }
+.print-piece__open[data-viewer-kind='sticker'] { width: min(100%, 25rem); border-radius: 50%; overflow: hidden; }
 .print-piece__holding {
   display: grid;
   place-items: center;
