@@ -9,15 +9,15 @@ summary: A two-sided business card designed for print.
 medium: Two-sided business card
 spec: 3.5 x 2 in card, 16pt, UV gloss both sides
 attribution: Designed by Kavish Singh while employed at The UPS Store.
-proofPolicy: Use only a reviewed public export with sensitive details removed or cleared.
-privacyCondition: Crop face photo, address, and email unless cleared.
+proofPolicy: Use the clean final file, not a proof.
+privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved
 media:
   source: src/assets/print/kumu-hula-nohea-macugay.png
   filename: kumu-hula-nohea-macugay.png
-  width: 1400
-  height: 821
-  alt: Black and coral business card with a floral emblem and hula school lettering
+  width: 1450
+  height: 850
+  alt: Black and coral business card front with the halau emblem, the kumu's photo and contact details
   focalPoint: { x: 50, y: 50 }
   sourceNote: privacy-reviewed export
   clearance: approved
@@ -25,8 +25,8 @@ media:
 secondaryMedia:
   source: src/assets/print/kumu-hula-nohea-macugay-back.png
   filename: kumu-hula-nohea-macugay-back.png
-  width: 1400
-  height: 821
+  width: 1450
+  height: 850
   alt: Coral reverse of the business card with a QR code and website
   focalPoint: { x: 50, y: 50 }
   sourceNote: privacy-reviewed export
@@ -38,19 +38,19 @@ viewer:
   - image:
       source: src/assets/print/kumu-hula-nohea-macugay.png
       filename: kumu-hula-nohea-macugay.png
-      width: 1400
-      height: 821
-      alt: Black and coral business card with a floral emblem and hula school lettering
+      width: 1450
+      height: 850
+      alt: Black and coral business card front with the halau emblem, the kumu's photo and contact details
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
       clearanceDate: '2026-10-08'
-    alt: Black and coral business card with a floral emblem and hula school lettering
+    alt: Black and coral business card front with the halau emblem, the kumu's photo and contact details
   - image:
       source: src/assets/print/kumu-hula-nohea-macugay-back.png
       filename: kumu-hula-nohea-macugay-back.png
-      width: 1400
-      height: 821
+      width: 1450
+      height: 850
       alt: Coral reverse of the business card with a QR code and website
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export

@@ -9,8 +9,8 @@ summary: A round sticker designed for print.
 medium: Round sticker
 spec: 3 in round sticker, gloss vinyl
 attribution: Designed by Kavish Singh while employed at The UPS Store.
-proofPolicy: Use only a reviewed clean sticker export, with design authorship cleared.
-privacyCondition: Use the clean sticker, not the watermarked card.
+proofPolicy: Use the clean final file, not a proof.
+privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved
 media:
   source: src/assets/print/cozy-aroma-bar.png

@@ -9,8 +9,8 @@ summary: A wordmark and card designed for print.
 medium: Two-sided business card
 spec: 2 x 3.5 in portrait card, 16pt, UV gloss
 attribution: Designed by Kavish Singh while employed at The UPS Store.
-proofPolicy: Use only a reviewed public export without proof marks.
-privacyCondition: Use a file without the proof watermark.
+proofPolicy: Use the clean final file, not a proof.
+privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved
 media:
   source: src/assets/print/the-spare-room.png
@@ -41,10 +41,10 @@ viewer:
       filename: the-spare-room-back.png
       width: 800
       height: 1400
-      alt: Card back with a softened QR code and the website address on off-white
+      alt: Card back with a QR code and the website address on off-white
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
       clearanceDate: '2026-10-13'
-    alt: Card back with a softened QR code and the website address on off-white
+    alt: Card back with a QR code and the website address on off-white
 ---

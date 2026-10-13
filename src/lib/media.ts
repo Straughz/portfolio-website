@@ -1,6 +1,5 @@
 import type { ImageMetadata } from 'astro';
 import clark from '../assets/print/clark.png';
-import compassion from '../assets/print/compassion-care-transport.png';
 import cozy from '../assets/print/cozy-aroma-bar.png';
 import goodGround from '../assets/print/good-ground-and-co.png';
 import harlowTasting from '../assets/print/harlow-wine-co-tasting.png';
@@ -35,7 +34,6 @@ export type ClearedMedia = {
 // Add future hero/work imports only after clearance and matching content metadata exist.
 const approvedAssets: Readonly<Record<string, ImageMetadata>> = {
   'src/assets/print/clark.png': clark,
-  'src/assets/print/compassion-care-transport.png': compassion,
   'src/assets/print/cozy-aroma-bar.png': cozy,
   'src/assets/print/good-ground-and-co.png': goodGround,
   'src/assets/print/harlow-wine-co-tasting.png': harlowTasting,

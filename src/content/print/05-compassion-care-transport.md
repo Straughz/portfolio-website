@@ -9,15 +9,15 @@ summary: A brochure designed for print.
 medium: Brochure
 spec: 8.5 x 11 in half-fold brochure, gloss text
 attribution: Designed by Kavish Singh while employed at The UPS Store.
-proofPolicy: Use only reviewed public brochure panels with resident privacy protected.
-privacyCondition: Remove resident faces unless cleared.
+proofPolicy: Use the clean final file, not a proof.
+privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved
 media:
-  source: src/assets/print/compassion-care-transport.png
-  filename: compassion-care-transport.png
-  width: 840
-  height: 561
-  alt: Compassion Care brochure cover crop with a purple heart and house symbol
+  source: src/assets/print/compassion-care-transport-page-1.png
+  filename: compassion-care-transport-page-1.png
+  width: 1100
+  height: 1700
+  alt: Brochure cover with a photo of a carer and a resident, the heart and house logo, the company name and contact lines
   focalPoint: { x: 50, y: 50 }
   sourceNote: privacy-reviewed export
   clearance: approved
@@ -30,12 +30,12 @@ viewer:
       filename: compassion-care-transport-page-1.png
       width: 1100
       height: 1700
-      alt: Brochure cover with a blurred photo, the heart and house logo and the company name
+      alt: Brochure cover with a photo of a carer and a resident, the heart and house logo, the company name and contact lines
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
       clearanceDate: '2026-10-09'
-    alt: Brochure cover with a blurred photo, the heart and house logo and the company name
+    alt: Brochure cover with a photo of a carer and a resident, the heart and house logo, the company name and contact lines
   - image:
       source: src/assets/print/compassion-care-transport-page-2.png
       filename: compassion-care-transport-page-2.png
@@ -63,10 +63,10 @@ viewer:
       filename: compassion-care-transport-page-4.png
       width: 1100
       height: 1700
-      alt: Back page with a large headline and blurred photos
+      alt: Back page with a large headline, contact details and two photos of residents and staff
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
       clearanceDate: '2026-10-09'
-    alt: Back page with a large headline and blurred photos
+    alt: Back page with a large headline, contact details and two photos of residents and staff
 ---

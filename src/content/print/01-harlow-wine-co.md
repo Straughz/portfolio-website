@@ -9,8 +9,8 @@ summary: Logo, cards, and tasting cards designed for print.
 medium: Logo, cards, tasting cards
 spec: 3.5 x 2 in card, 16pt, UV gloss
 attribution: Designed by Kavish Singh while employed at The UPS Store.
-proofPolicy: Use only reviewed public exports without personal details or proof marks.
-privacyCondition: Remove phone and email from cards.
+proofPolicy: Use the clean final file, not a proof.
+privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved
 media:
   source: src/assets/print/harlow-wine-co.png
@@ -51,10 +51,10 @@ viewer:
       filename: harlow-wine-co-card-back.png
       width: 1400
       height: 800
-      alt: Card back with the company name, contact lines replaced by bars
+      alt: Card back with the company name, phone, email, website and QR code
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
       clearanceDate: '2026-10-09'
-    alt: Card back with the company name, contact lines replaced by bars
+    alt: Card back with the company name, phone, email, website and QR code
 ---

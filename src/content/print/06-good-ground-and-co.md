@@ -9,8 +9,8 @@ summary: A business card designed for print.
 medium: Business card
 spec: 3.5 x 2 in card, 16pt, UV gloss
 attribution: Designed by Kavish Singh while employed at The UPS Store.
-proofPolicy: Use only the confirmed newer version after review and redaction.
-privacyCondition: Use the confirmed newer version; remove name and phone.
+proofPolicy: Use the clean final file, not a proof.
+privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved
 media:
   source: src/assets/print/good-ground-and-co.png
@@ -30,12 +30,12 @@ viewer:
       filename: good-ground-and-co-front.png
       width: 1400
       height: 800
-      alt: Dark green card front with the company name over a garden photograph, name and phone replaced by bars
+      alt: Dark green card front with the company name, the owner's name and phone over a garden photograph
       focalPoint: { x: 50, y: 50 }
       sourceNote: privacy-reviewed export
       clearance: approved
       clearanceDate: '2026-10-09'
-    alt: Dark green card front with the company name over a garden photograph, name and phone replaced by bars
+    alt: Dark green card front with the company name, the owner's name and phone over a garden photograph
   - image:
       source: src/assets/print/good-ground-and-co.png
       filename: good-ground-and-co.png
