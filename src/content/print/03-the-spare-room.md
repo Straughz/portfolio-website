@@ -8,7 +8,7 @@ status: Approved for display
 summary: A wordmark and card designed for print.
 medium: Two-sided business card
 spec: 2 x 3.5 in portrait card, 16pt, UV gloss
-attribution: Designed by Kavish Singh while employed at The UPS Store.
+attribution: Designed by Kavish Singh while employed at a retail store.
 proofPolicy: Use the clean final file, not a proof.
 privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved

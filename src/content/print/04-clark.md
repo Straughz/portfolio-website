@@ -8,7 +8,7 @@ status: Approved for display
 summary: A monogram address sign designed for print.
 medium: Monogram address sign
 spec: 9 x 6 in brushed aluminium sign, tape mounted
-attribution: Designed by Kavish Singh while employed at The UPS Store.
+attribution: Designed by Kavish Singh while employed at a retail store.
 proofPolicy: Use the clean final file, not a proof.
 privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved

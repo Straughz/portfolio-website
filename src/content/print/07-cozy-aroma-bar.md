@@ -8,7 +8,7 @@ status: Approved for display
 summary: A round sticker designed for print.
 medium: Round sticker
 spec: 3 in round sticker, gloss vinyl
-attribution: Designed by Kavish Singh while employed at The UPS Store.
+attribution: Designed by Kavish Singh while employed at a retail store.
 proofPolicy: Use the clean final file, not a proof.
 privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved

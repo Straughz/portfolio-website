@@ -46,7 +46,7 @@ const print = defineCollection({
     status: z.enum(['Pending clearance', 'Approved for display']),
     medium: z.string().min(1),
     spec: z.string().min(1),
-    attribution: z.literal('Designed by Kavish Singh while employed at The UPS Store.'),
+    attribution: z.literal('Designed by Kavish Singh while employed at a retail store.'),
     privacyCondition: z.string().min(1),
     clearance: z.enum(['pending', 'approved']),
     secondaryMedia: clearedMedia.optional(),

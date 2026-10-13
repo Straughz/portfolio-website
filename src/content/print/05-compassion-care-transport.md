@@ -8,7 +8,7 @@ status: Approved for display
 summary: A brochure designed for print.
 medium: Brochure
 spec: 8.5 x 11 in half-fold brochure, gloss text
-attribution: Designed by Kavish Singh while employed at The UPS Store.
+attribution: Designed by Kavish Singh while employed at a retail store.
 proofPolicy: Use the clean final file, not a proof.
 privacyCondition: None. Shown as printed (Kavish, 2026-10-13).
 clearance: approved
